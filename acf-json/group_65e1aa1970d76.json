@@ -1,0 +1,54 @@
+{
+    "key": "group_65e1aa1970d76",
+    "title": "LC Hike Icon",
+    "fields": [
+        {
+            "key": "field_65e1aa1a04038",
+            "label": "Icon",
+            "name": "icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "guided-walks": "Guided Walks",
+                "guided-tours": "Guided Tours",
+                "ultra-hikes": "Ultra Hikes",
+                "multi-day-hikes": "Multi-Day Hikes",
+                "womens-wellness-walks": "Women's Wellness Walks"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_parent",
+                "operator": "==",
+                "value": "25"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1710606620
+}

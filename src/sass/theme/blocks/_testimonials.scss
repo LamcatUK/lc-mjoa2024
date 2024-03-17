@@ -1,0 +1,20 @@
+.testimonials {
+    background-image: url(../img/testimonial-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: var(--col-green-400);
+    color: var(--col-light);
+
+   .testimonial {
+        max-width: 70%;
+        text-align: center;
+        margin-inline: auto;
+        &__body {
+            margin-bottom: 1rem;
+        }
+        &__cite {
+            font-weight: var(--fw-900);
+        }
+    }
+}

@@ -1,0 +1,179 @@
+.news_index {
+    &__grid {
+        display: grid;
+        gap: 1.5rem;
+        @media (min-width:768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    &__card {
+        display: grid;
+        gap: 1rem;
+        grid-auto-rows: max-content;
+        border-bottom: 1px solid var(--col-primary-900);
+
+        background-color: var(--col-light);
+        padding: 1rem;
+        box-shadow: var(--shadow-in);
+        transition: transform var(--transition), box-shadow var(--transition);
+        &:hover {
+            box-shadow: var(--shadow-in-2);
+            transform: translateY(2px);
+        }
+        
+        // @media (min-width:992px) {
+        //     grid-template-columns: 300px auto;
+        // }
+        img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: inset 0 0 5px #00000080;
+        }
+
+        &--first {
+            grid-column: 1 / -1;
+            grid-template-columns: 0.75fr 1fr;
+            .news_index__inner {
+                grid-template-rows: 7rem auto;
+                h2 {
+                    font-size: var(--fs-700);        
+                }
+                p {
+                    font-size: var(--fs-400);
+                }
+            }
+        }
+    }
+
+    &__image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        img {
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        &::after {
+            content: '';
+            display: block;
+            inset: 0;
+            position: absolute;
+            box-shadow: inset 0 0 5px #00000080;
+        }
+    }
+
+    &__inner {
+        display: grid;
+        grid-template-rows: 4rem auto;
+        color: var(--col-dark);
+        h2 {
+            font-size: var(--fs-500);
+            font-family: var(--ff-headlines);
+            font-weight: var(--fw-900);
+        }
+        p {
+            font-size: var(--fs-300);
+        }
+    }
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-size: var(--fs-200);
+    }
+    &__category {
+        background-color: var(--col-primary-900);
+        color: var(--col-highlight);
+        font-family: var(--ff-headlines);
+        font-size: var(--fs-200);
+        font-weight: var(--fw-900);
+        padding-inline: 0.5rem;
+        padding-block: 0.25 rem 0;
+    }
+
+    
+}
+
+.blog {
+    &__title {
+        font-size: var(--fs-700);
+        font-family: var(--ff-headlines);
+        font-weight: var(--fw-900);
+        color: var(--col-dark);
+        max-width: unset;
+        padding-inline: 0;
+    }
+    &__image {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        object-position: center;
+        margin-bottom: 0;
+    }
+    h2 {
+        font-size: var(--fs-600);
+        font-weight: var(--fw-900);
+        color: var(--col-dark);
+    }
+    .reading {
+        font-size: 0.889rem;
+        font-style: italic;
+    }
+}
+
+.related_news {
+    &__grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    &__card {
+        @media (min-width:768px) {
+            flex-basis: calc(33.33%  - 1rem);
+        }
+        @media (min-width:992px) {
+            flex-basis: calc(25%  - 1rem);
+        }
+    }
+    .polaroid__image {
+        aspect-ratio: 1;
+    }
+    .polaroid__title {
+        font-size: 1.4rem;
+        line-height: 1;
+    }
+}
+
+.sidebar {
+    background-color: var(--col-polaroid);
+    padding: 1rem;
+    position: sticky;
+    top: calc( var(--h-top) + 1rem);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-in-2);
+
+    div {
+        font-family: var(--ff-headlines);
+        font-weight: var(--fw-900);
+        color: var(--col-dark);
+        font-size: var(--fs-500);
+    }
+
+    li {
+        list-style: none;
+        padding-inline-start: 0;
+        font-size: 0.889rem;
+        margin-bottom: 0.5rem;
+        a {
+            text-decoration: none;
+            color: white;
+            transition: all var(--transition);
+            &:hover {
+                color: var(--col-accent);
+            }
+        }
+    }
+}

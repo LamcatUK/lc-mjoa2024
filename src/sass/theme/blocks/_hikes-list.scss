@@ -1,0 +1,51 @@
+.hikes-list {
+    &__row {
+        position: relative;
+        display: block;
+        padding: 0.5rem;
+        background-color: var(--col-polaroid);
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow-in);
+        transition: box-shadow var(--transition), transform var(--transition);
+        &:hover {
+            box-shadow: var(--shadow-in-2);
+            transform: translateY(2px);
+        }
+        @media (min-width:576px) {
+            padding-left: 100px;
+        }
+    }
+    &__icon {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        opacity: 0.05;
+        aspect-ratio: 1;
+        height: calc(100% - 1rem);
+    }
+    &__meta {
+        display: grid;
+        grid-template-areas: "date price" "title title" "desc desc";
+    }
+    &__date {
+        grid-area: date;
+        font-size: var(--fs-300);
+        font-weight: var(--fw-900);
+        text-transform: uppercase;
+    }
+    &__title {
+        grid-area: title;
+        font-size: var(--fs-500);
+        font-weight: var(--fw-900);
+    }
+    &__price {
+        grid-area: price;
+        font-size: var(--fs-300);
+        font-weight: var(--fw-900);
+        text-align: end;
+    }
+    &__desc {
+        grid-area: desc;
+    }
+
+}

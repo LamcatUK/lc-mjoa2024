@@ -1,0 +1,77 @@
+footer {
+    background-color: var(--col-green-400);
+    font-size: var(--fs-200);
+    color: var(--col-light);
+    position: relative;
+    // margin-top: var(--_imgheight);
+
+    &::before {
+        content: "";
+        background-image: url(../img/mjoa-hills--dark.svg);
+        height: var(--footer-img);
+        background-size: auto var(--footer-img);
+        background-position: top left;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: calc( var(--footer-img) * -1);
+        display: block;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .fa-ul {
+        margin-left: 1.25rem;
+        li {
+            margin-bottom: 0.25rem;
+        }
+    }
+
+    .social-icons {
+        font-size: 1.4rem;
+        a {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .menu {
+        list-style: none;
+        padding-inline-start: 0;
+        margin-bottom: 0;
+    }
+
+    li.menu-item {
+        margin-bottom: 0.25rem;
+    }
+
+    a {
+        color: var(--col-light);
+        transition: color var(--transition);
+        &:hover {
+            color: var(--col-accent);
+        }
+    }
+    .current_page_item a {
+        color: var(--col-accent);
+    }
+}
+.colophon {
+    background-color: var(--col-brown-400);
+    color: hsl(0 0% 100% / 0.8);
+    font-size: var(--fs-100);
+    text-align: center;
+    padding-block: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    a {
+        color: hsl(0 0% 100% / 0.8);
+        transition: var(--transition);
+        text-transform: initial;
+        &:hover {
+            opacity: 0.6;
+        }
+        &::after{
+            content: "" !important;
+        }
+    }
+}

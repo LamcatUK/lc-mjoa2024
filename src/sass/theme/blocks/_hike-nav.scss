@@ -1,0 +1,29 @@
+.hike-nav {
+    background-image: url(../img/wood-bg-1_1320.jpg);
+    background-size: cover;
+    background-position: center;
+
+    &__content {
+        background-color: var(--col-light);
+        padding: 1rem;
+        box-shadow: var(--shadow-in);
+    }
+
+    &__card {
+        min-width: 245px;
+        @media (min-width:768px) {
+            flex-basis: calc(50% - 0.5rem);
+        }
+        @media (min-width:992px) {
+            flex-basis: calc(20% - 0.5rem);
+        }
+        &:active, &:focus-visible {
+            outline: none;
+            .polaroid {
+                transform: rotate(-3deg) scale(1.1);
+                box-shadow: var(--shadow-out);
+                z-index: 2;
+            }
+        }
+    }
+}

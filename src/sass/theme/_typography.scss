@@ -1,0 +1,129 @@
+/* lato-300 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/lato-v24-latin-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lato-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/lato-v24-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* Shelby-400 */
+@font-face {
+    font-display: swap;
+    font-family: 'Shelby';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/shelby-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* Gaglin-400 */
+@font-face {
+    font-display: swap;
+    font-family: 'Gagalin';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/gagalin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+html {
+    // font-size: var(--fs-400);
+    font-size: 18px;
+}
+
+body {
+    font-family: var(--ff-body);
+    font-weight: var(--fw-400);
+    font-style: normal;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    color: var(--col-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.headline {
+    font-family: var(--ff-headlines) !important;
+    font-weight: var(--fw-600) !important;
+    font-style: normal !important;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, .h99 {
+    font-family: var(--ff-headings);
+    font-weight: var(--fw-900);
+    font-style: normal;
+    text-wrap: balance;
+    // margin-bottom: 1rem;
+    // font-size: var(--fs-400);
+    span {
+        color: var(--col-primary);
+    }
+}
+
+h1, .h1 {
+    font-size: var(--fs-900); //2rem;
+    max-width: 36ch;
+    padding-inline: 1rem;
+}
+
+h2, .h2 {
+    font-size: var(--fs-700); //1.8rem;
+}
+
+h3, .h3 {
+    font-size: var(--fs-600); //1.4rem;
+}
+
+h4, .h4 {
+    font-size: var(--fs-500);
+}
+
+.font-size-base {
+    font-size: 1rem;
+}
+
+strong {
+    font-weight: var(--fw-900);
+}
+
+sup {
+    font-size: 60%;
+}
+.larger {
+    font-size: 1.25em;
+}
+.smaller {
+    font-size: 0.75em;
+}
+
+.max-ch {
+    max-width: 64ch;
+}
+
+.hand {
+    font-family: var(--ff-hand);
+    font-weight: var(--fw-600);
+    // letter-spacing: calc( var(--fs-400) / 3 );
+    line-height: 1.1;
+}
+
+::selection {
+    background-color: var(--col-red-400);
+    color: var(--col-light);
+}
+
+main a:not([class]):not(footer a) {
+    color: var(--col-red-400);
+    font-weight: var(--fw-900);
+    transition: color var(--transition);
+    &:hover {
+        color: var(--col-blue-400);
+    }
+}

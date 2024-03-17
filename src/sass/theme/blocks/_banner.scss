@@ -1,0 +1,45 @@
+.banner {
+    display: block;
+    background-image: url(../img/banner-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    padding-block: 2rem;
+
+    &__grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        
+        @media (min-width:768px) {
+            flex-direction: row;
+            & > * {
+                flex-basis: calc(33.33% + 1rem);
+            }
+        }
+    }
+    &__img {
+        text-align: center;
+        img {
+            width: auto;
+            max-height: 250px;
+        }
+    }
+
+    &__button {
+        font-family: var(--ff-headlines);
+        font-size: var(--fs-700);
+        text-align: center;
+        text-wrap: balance;
+        line-height: 1;
+        margin-block: auto;
+        transition: color var(--transition);
+    }
+    &:hover .banner__button {
+        color: var(--col-accent);
+    }
+
+    color: var(--col-light);
+
+}

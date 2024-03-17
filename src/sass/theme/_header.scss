@@ -1,0 +1,44 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    .navbar {
+        background-color: #fff;
+        // box-shadow: var(--shadow-in);
+        box-shadow: var(--shadow-bottom);
+        // box-shadow: 0 4px 2px -2px black;
+        .nav-link {
+            font-family: var(--ff-headlines);
+            font-size: var(--fs-600);
+            font-weight: var(--fw-600);
+            color: var(--col-green-400);
+            &:hover {
+                color: var(--col-dark);
+            }
+        }
+
+        img {
+            object-fit: contain;
+            object-position: center;
+            max-width: 180px;
+        }
+        
+        .navbar-toggler {
+            i {
+                color: var(--col-dark);
+            }
+        }
+
+        a[aria-current="page"], .current_page_parent a {
+            color: var(--col-accent);
+        }
+       
+    }
+    .navbar-cart {
+        padding-left: 3rem;
+        color: var(--col-green-400);
+        &:hover {
+            color: var(--col-dark);
+        }
+    }
+}

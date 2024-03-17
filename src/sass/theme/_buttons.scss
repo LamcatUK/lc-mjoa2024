@@ -1,0 +1,57 @@
+.btn {
+    border-radius: 100vw;
+    border-width: 2px;
+    align-self: flex-start;
+    min-width: 300px;
+    font-weight: var(--fw-900);
+    font-family: var(--ff-headlines);
+    font-size: var(--fs-600);
+    letter-spacing: 1.2px;
+    transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+}
+.btn-primary {
+    background-color: var(--col-accent);
+    border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+    box-shadow: var(--shadow-out);
+    color: var(--col-brown-400);
+    &:hover, &:active, &:focus-visible {
+        color: var(--col-brown-400);
+        background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
+        border-color:  color-mix(in srgb, var(--col-accent), #000 20%);
+        box-shadow: var(--shadow-in);
+        transform: translateY(2px);
+    }
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: none;
+    min-width: 200px;
+    font-size: var(--fs-500);
+    transition: color var(--transition);
+    &:hover, &:active, &:focus-visible {
+        color: var(--col-accent);
+    }
+}
+
+.btn-next {
+    @extend .btn-outline;
+    &::after {
+        content: "\f105";
+        font-family: 'font awesome 6 free';
+        margin-left: 0.5rem;
+    }
+}
+
+.btn-previous {
+    @extend .btn-outline;
+    &::before {
+        content: "\f104";
+        font-family: 'font awesome 6 free';
+        margin-right: 0.5rem;
+    }
+
+    &::after {
+        content: "";
+    }
+}
