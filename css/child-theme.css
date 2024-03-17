@@ -22661,6 +22661,10 @@ footer .current_page_item a {
   color: var(--col-accent);
 }
 
+.hike_intro img {
+  max-width: 150px;
+}
+
 a,
 a.noline {
   text-decoration: none;
