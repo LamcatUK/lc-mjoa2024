@@ -24,7 +24,7 @@ $classes = $block['className'] ?? 'mb-5';
     <div class="mx-4 mb-4 hike-nav__slider d-flex flex-wrap gap-2 justify-content-center" data-aos="fade-up">
         <?php
     $hikes = get_page_by_path('hikes', OBJECT, 'page');
-$child_pages = get_pages(array('child_of' => $hikes->ID));
+$child_pages = get_pages(array('child_of' => $hikes->ID,'sort_column' => 'menu_order'));
 $all = new stdClass();
 foreach ($child_pages as $page) {
     if ($page->post_title == 'All Hikes') {
