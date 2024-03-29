@@ -31,6 +31,27 @@ foreach ($child_pages as $page) {
         $all = $page;
         continue;
     }
+
+    $category_slug = $page->post_name;
+
+    $args = array(
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'posts_per_page' => -1, // Retrieve all products
+        'fields' => 'ids', // Only get product IDs to improve performance
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $category_slug,
+            ),
+        ),
+    );
+
+    $query = new WP_Query($args);
+
+    $product_count = $query->found_posts; // Number of products found
+
     $img = get_the_post_thumbnail_url($page->ID, 'large');
     $icon = get_field('icon', $page->ID);
     $icon = 'icon--' . $icon;
@@ -38,6 +59,13 @@ foreach ($child_pages as $page) {
         <a class="hike-nav__card <?=$icon?>"
             href="<?=get_the_permalink($page->ID)?>">
             <div class="polaroid">
+                <?php
+                if ($product_count > 0) {
+                    ?>
+                <div class="count"><?=$product_count?></div>
+                <?php
+                }
+    ?>
                 <div class="polaroid__image">
                     <img src="<?=$img?>"
                         alt="<?=$page->post_title?>">

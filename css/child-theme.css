@@ -22563,6 +22563,24 @@ footer .current_page_item a {
 .hike-nav--content .hike-nav__inner {
   max-width: unset;
 }
+.hike-nav .count {
+  background-color: firebrick;
+  color: white;
+  font-weight: bold;
+  padding-inline: 0.25rem;
+  padding-bottom: 0.25rem;
+  position: absolute;
+  top: 0;
+  right: 8px;
+  z-index: 9;
+  line-height: 1;
+  height: 30px;
+  display: grid;
+  place-content: center;
+  font-size: 0.883rem;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 100% 75%, 50% 100%, 0% 75%, 0 85%);
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 100% 75%, 50% 100%, 0% 75%, 0 85%);
+}
 
 .hikes-list__row {
   position: relative;
