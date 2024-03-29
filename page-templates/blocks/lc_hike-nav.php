@@ -1,27 +1,27 @@
 <?php
 $classes = $block['className'] ?? 'mb-5';
+$hasContent = get_field('content') ? 'hike-nav--content' : null;
 ?>
-<section class="hike-nav py-5 <?=$classes?>">
+<section
+    class="hike-nav py-5 <?=$classes?> <?=$hasContent?>">
     <?php
-    if (get_field('content')) {
+    if (get_field('content') ?? null) {
         ?>
     <div class="hike-nav__content mx-4 mb-4" data-aos="fade-up">
         <h2 class="headline">
             <?=get_field('title')?>
         </h2>
-        <div class="row">
-            <div class="col-md-8 mb-4">
-                <?=get_field('content')?>
-            </div>
-            <div class="col-md-4">
-                <a href="/hikes/" class="btn btn-primary">Find out more</a>
-            </div>
+        <div class="mb-4">
+            <?=get_field('content')?>
+        </div>
+        <div class="text-center">
+            <a href="/hikes/" class="btn btn-primary">Find out more</a>
         </div>
     </div>
     <?php
     }
 ?>
-    <div class="mx-4 mb-4 hike-nav__slider d-flex flex-wrap gap-2 justify-content-center" data-aos="fade-up">
+    <div class="mx-4 mx-lg-auto mb-4 hike-nav__inner d-flex flex-wrap gap-2 justify-content-center" data-aos="fade-up">
         <?php
     $hikes = get_page_by_path('hikes', OBJECT, 'page');
 $child_pages = get_pages(array('child_of' => $hikes->ID,'sort_column' => 'menu_order'));
@@ -49,10 +49,10 @@ foreach ($child_pages as $page) {
         <?php
 }
 ?>
-    </div>
-    <div class="text-center">
-        <a href="<?=get_the_permalink($all->ID)?>"
-            class="btn btn-primary">All Hikes</a>
+        <div class="text-center pt-4">
+            <a href="<?=get_the_permalink($all->ID)?>"
+                class="btn btn-primary">All Hikes</a>
+        </div>
     </div>
 </section>
 <script>

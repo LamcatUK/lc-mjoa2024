@@ -22518,18 +22518,27 @@ footer .current_page_item a {
   background-color: var(--col-light);
   padding: 1rem;
   box-shadow: var(--shadow-in);
+  align-self: flex-start;
+}
+.hike-nav__inner {
+  max-width: 800px;
 }
 .hike-nav__card {
   min-width: 245px;
 }
-@media (min-width: 768px) {
+@media (min-width: 576px) {
+  .hike-nav__card {
+    flex-basis: calc(30% - 0.5rem);
+  }
+}
+@media (min-width: 992px) {
   .hike-nav__card {
     flex-basis: calc(50% - 0.5rem);
   }
 }
 @media (min-width: 992px) {
   .hike-nav__card {
-    flex-basis: calc(20% - 0.5rem);
+    flex-basis: calc(30% - 0.5rem);
   }
 }
 .hike-nav__card:active, .hike-nav__card:focus-visible {
@@ -22539,6 +22548,20 @@ footer .current_page_item a {
   transform: rotate(-3deg) scale(1.1);
   box-shadow: var(--shadow-out);
   z-index: 2;
+}
+.hike-nav--content {
+  display: grid;
+}
+@media (min-width: 992px) {
+  .hike-nav--content {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+.hike-nav--content .hike-nav__card {
+  min-width: unset;
+}
+.hike-nav--content .hike-nav__inner {
+  max-width: unset;
 }
 
 .hikes-list__row {
