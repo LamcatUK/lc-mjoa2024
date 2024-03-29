@@ -54,7 +54,7 @@ function custom_woocommerce_breadcrumbs($crumbs, $breadcrumb)
         $slugs = array_column((array) $terms, 'slug');
         
         // Check if product has specific categories
-        if (array_intersect($slugs, array( 'multi-day-hikes', 'guided-tours', 'guided-walks', 'ultra-hikes', 'womens-wellness-walks' ))) {
+        if (array_intersect($slugs, array( 'multi-day-hikes', 'group-tours', 'guided-walks', 'challenge-events', 'womens-wellness-walks', 'community-events' ))) {
             // Define the new breadcrumb path for specific categories
             $crumbs = array(
                 array(

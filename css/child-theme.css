@@ -22283,6 +22283,106 @@ footer .current_page_item a {
   display: grid;
 }
 
+/* single product stuff */
+.single-hike time.icon {
+  margin-inline: auto;
+  font-size: 1em;
+  /* change icon size */
+  display: block;
+  position: relative;
+  width: min(7em, 90vw);
+  height: min(7em, 90vw);
+  background-color: #fff;
+  border-radius: 0.6em;
+  box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+  overflow: hidden;
+}
+.single-hike time.icon * {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+.single-hike time.icon strong {
+  position: absolute;
+  top: 0;
+  padding: 0.4em 0;
+  color: #fff;
+  background-color: var(--col-accent);
+  border-bottom: 1px dashed #f37302;
+  box-shadow: 0 2px 0 var(--col-accent);
+}
+.single-hike time.icon em {
+  position: absolute;
+  bottom: 0.2em;
+  color: var(--col-accent);
+}
+.single-hike time.icon span {
+  font-size: 2.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.7em;
+  color: #2f2f2f;
+}
+.single-hike .sticky-top {
+  top: calc(var(--h-top) + 1.5rem);
+  text-align: center;
+}
+.single-hike .product__intro {
+  background-color: var(--col-light);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-in-1);
+}
+.single-hike .product__intro h1, .single-hike .product__intro .h1 {
+  padding-inline: 0;
+  font-family: var(--ff-headlines);
+}
+.single-hike .product__intro .woocommerce-product-details__short-description {
+  font-size: var(--fs-500);
+}
+.single-hike .product__intro .woocommerce-product-details__short-description p {
+  margin-bottom: 0;
+}
+.single-hike .price {
+  font-size: var(--fs-600);
+}
+.single-hike .price::before {
+  content: "Tickets: ";
+  font-size: var(--fs-400);
+  font-weight: var(--fw-900);
+}
+.single-hike .stock {
+  display: none;
+}
+
+.single-hike .quantity,
+.single-product .quantity {
+  margin-bottom: 1rem;
+}
+.single-hike .quantity::before,
+.single-product .quantity::before {
+  content: "Quantity: ";
+  font-size: var(--fs-400);
+  font-weight: var(--fw-900);
+}
+.single-hike .quantity .form-control,
+.single-product .quantity .form-control {
+  display: inline-block;
+}
+.single-hike button,
+.single-product button {
+  min-width: unset;
+  padding: 0.5rem 1rem;
+  font-family: var(--ff-body);
+  font-size: var(--fs-500);
+  background-color: var(--col-accent);
+  transition: all var(--transition);
+  margin-inline: auto;
+  display: inline-block;
+}
+
 .news_index__grid {
   display: grid;
   gap: 1.5rem;

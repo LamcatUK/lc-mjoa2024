@@ -10,3 +10,116 @@
 .wc-block-grid__product-add-to-cart {
     display: grid;
 }
+
+/* single product stuff */
+.single-hike {
+    time.icon {
+        margin-inline: auto;
+        font-size: 1em;
+        /* change icon size */
+        display: block;
+        position: relative;
+        width: min(7em,90vw);
+        height: min(7em,90vw);
+        background-color: #fff;
+        border-radius: 0.6em;
+        box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+        overflow: hidden;
+        * {
+            display: block;
+            width: 100%;
+            font-size: 1em;
+            font-weight: bold;
+            font-style: normal;
+            text-align: center;
+        }
+
+        strong {
+            position: absolute;
+            top: 0;
+            padding: 0.4em 0;
+            color: #fff;
+            background-color: var(--col-accent);
+            border-bottom: 1px dashed #f37302;
+            box-shadow: 0 2px 0 var(--col-accent);
+        }
+
+        em {
+            position: absolute;
+            bottom: 0.2em;
+            color: var(--col-accent);
+        }
+
+        span {
+            font-size: 2.8em;
+            letter-spacing: -0.05em;
+            padding-top: 0.7em;
+            color: #2f2f2f;
+        }
+    }
+
+    .sticky-top {
+        top: calc( var(--h-top) + 1.5rem );
+        text-align: center;
+    }
+
+
+    .product__intro {
+        background-color: var(--col-light);
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow-in-1);
+        h1 {
+            padding-inline: 0;
+            font-family: var(--ff-headlines);
+        }
+        .woocommerce-product-details__short-description {
+            font-size: var(--fs-500);
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .price {
+        font-size: var(--fs-600);
+        &::before {
+            content: "Tickets: ";
+            font-size: var(--fs-400);
+            font-weight: var(--fw-900);
+        }
+    }
+    .stock {
+        display: none;
+    }
+
+
+}
+
+.single-hike,
+.single-product {
+    .quantity {
+        &::before {
+            content: "Quantity: ";
+            font-size: var(--fs-400);
+            font-weight: var(--fw-900);
+        }
+        .form-control {
+            display: inline-block;
+        }
+        margin-bottom: 1rem;
+    }
+    button {
+        min-width: unset;
+        padding: 0.5rem 1rem;
+        font-family: var(--ff-body);
+        font-size: var(--fs-500);
+        background-color: var(--col-accent);
+        transition: all var(--transition);
+        margin-inline: auto;
+        display: inline-block;
+    }
+}
+
+.single-product {
+    
+}
