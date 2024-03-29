@@ -126,11 +126,16 @@ function lc_products_by_category($catids, $title = 'products', $limit = -1)
 
     if($q->have_posts()) {
         $a = 0;
+        $today = new DateTime('today');
         while($q->have_posts()) {
             $q->the_post();
-            $output[$a]['title'] = get_the_title();
             $start = get_post_meta(get_the_ID(), 'WooCommerceEventsDate', true);
-            $output[$a]['start'] = new DateTime($start);
+            $start = new DateTime($start);
+            if ($start < $today) {
+                continue;
+            }
+            $output[$a]['title'] = get_the_title();
+            $output[$a]['start'] = $start;
             $output[$a]['link'] = get_the_permalink();
 
             $product = wc_get_product(get_the_ID());
@@ -147,7 +152,7 @@ function lc_products_by_category($catids, $title = 'products', $limit = -1)
         }
         wp_reset_postdata();
     } else {
-        echo 'No ' . $title . ' found in this category.';
+        // echo 'No ' . $title . ' found in this category.';
     }
     
     return $output;

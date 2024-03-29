@@ -8,14 +8,19 @@
 
     if (!empty($output)) {
 
+        $e = 0;
         usort($output, function ($a, $b) {
             if ($a['start'] == $b['start']) {
                 return 0;
             }
             return ($a['start'] < $b['start']) ? -1 : 1;
         });
-
+        $today = new DateTime('today');
         foreach ($output as $h) {
+            if ($h['start'] < $today) {
+                continue;
+            }
+            $e++;
             ?>
     <a class="hikes-list__row"
         href="<?=$h['link']?>">
@@ -38,7 +43,21 @@
     </a>
     <?php
         }
+        if ($e == 0) {
+            ?>
+    <div class="text-center headline">
+        No upcoming events found
+    </div>
+    <?php
+        }
+    } else {
+        ?>
+    <div class="text-center headline">
+        No upcoming events found
+    </div>
+    <?php
     }
+
 
     if ($limit != -1) {
         $l = get_field('cta');

@@ -26,6 +26,7 @@ $hasContent = get_field('content') ? 'hike-nav--content' : null;
     $hikes = get_page_by_path('hikes', OBJECT, 'page');
 $child_pages = get_pages(array('child_of' => $hikes->ID,'sort_column' => 'menu_order'));
 $all = new stdClass();
+$today = new DateTime('today');
 foreach ($child_pages as $page) {
     if ($page->post_title == 'All Hikes') {
         $all = $page;
@@ -37,8 +38,8 @@ foreach ($child_pages as $page) {
     $args = array(
         'post_type' => 'product',
         'post_status' => 'publish',
-        'posts_per_page' => -1, // Retrieve all products
-        'fields' => 'ids', // Only get product IDs to improve performance
+        'posts_per_page' => -1,
+        'fields' => 'ids',
         'tax_query' => array(
             array(
                 'taxonomy' => 'product_cat',
@@ -48,9 +49,17 @@ foreach ($child_pages as $page) {
         ),
     );
 
-    $query = new WP_Query($args);
+    $q = new WP_Query($args);
 
-    $product_count = $query->found_posts; // Number of products found
+    $product_count = 0;
+    while ($q->have_posts()) {
+        $q->the_post();
+        $start = get_post_meta(get_the_ID(), 'WooCommerceEventsDate', true);
+        $start = new DateTime($start);
+        if ($start > $today) {
+            $product_count++;
+        }
+    }
 
     $img = get_the_post_thumbnail_url($page->ID, 'large');
     $icon = get_field('icon', $page->ID);
