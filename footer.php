@@ -19,7 +19,32 @@ defined('ABSPATH') || exit;
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
             <div class="h4"></div>
-            <?php wp_nav_menu(array('theme_location' => 'footer_menu1')); ?>
+            <?php
+// Replace '123' with the actual ID of your "/hikes/" page
+$page = get_page_by_path('hikes', OBJECT, 'page');
+$hikes_page_id = $page->ID;
+
+$args = array(
+    'parent' => $hikes_page_id,
+    'post_type' => 'page',
+    'post_status' => 'publish',
+    'sort_column' => 'menu_order', // or 'post_title', depending on your needs
+);
+
+$child_pages = get_pages($args);
+?>
+            <div>
+                <ul class="menu">
+                    <?php
+foreach ($child_pages as $page) {
+    $link = get_page_link($page->ID);
+    $title = $page->post_title;
+    $curr = $page->ID == get_the_ID() ? 'current_page_item' : '';
+    echo "<li class='menu-item {$curr}'><a href='{$link}'>{$title}</a></li>";
+}
+?>
+                </ul>
+            </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
             <div class="h4"></div>

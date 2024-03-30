@@ -31,7 +31,7 @@ while ($r->have_posts()) {
     ?>
             </div>
             <div class="text-center mt-4">
-                <a href="/news/" class="btn btn-primary">View All</a>
+                <a href="/news/" class="btn btn-primary">All News</a>
             </div>
         </div>
     </div>

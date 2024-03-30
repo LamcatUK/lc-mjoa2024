@@ -59,7 +59,6 @@ function widgets_init()
     register_nav_menus(array(
         'primary_nav' => __('Primary Nav', 'lc-mjoa2024'),
         'footer_menu1' => __('Footer Menu 1', 'lc-mjoa2024'),
-        'footer_menu2' => __('Footer Menu 2', 'lc-mjoa2024'),
     ));
 
     unregister_sidebar('hero');

@@ -21,7 +21,7 @@
   --fs-500: 1.2rem;
   --fs-600: 1.56rem;
   --fs-700: 2.4rem;
-  --fs-900: 3rem;
+  --fs-900: clamp(2.5rem, 0rem + 6.667vw, 3rem);
   --fw-400: 300;
   --fw-600: 400;
   --fw-900: 700;
@@ -148,7 +148,11 @@ hr {
   opacity: 0.25;
 }
 
-h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, .woocommerce-order-details__title,
+.woocommerce-column__title, h2, .h2, .woocommerce-notice--success,
+.cart_totals h2,
+.cart_totals .h2,
+.cart_totals .woocommerce-notice--success, h1, .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -164,20 +168,28 @@ h1, .h1 {
   }
 }
 
-h2, .h2 {
+h2, .h2, .woocommerce-notice--success,
+.cart_totals h2,
+.cart_totals .h2,
+.cart_totals .woocommerce-notice--success {
   font-size: calc(1.325rem + 0.9vw);
 }
 @media (min-width: 1200px) {
-  h2, .h2 {
+  h2, .h2, .woocommerce-notice--success,
+  .cart_totals h2,
+  .cart_totals .h2,
+  .cart_totals .woocommerce-notice--success {
     font-size: 2rem;
   }
 }
 
-h3, .h3 {
+h3, .h3, .woocommerce-order-details__title,
+.woocommerce-column__title {
   font-size: calc(1.3rem + 0.6vw);
 }
 @media (min-width: 1200px) {
-  h3, .h3 {
+  h3, .h3, .woocommerce-order-details__title,
+  .woocommerce-column__title {
     font-size: 1.75rem;
   }
 }
@@ -2358,7 +2370,13 @@ textarea.form-control-lg {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .btn-check:disabled + .btn {
+.btn-check[disabled] + .btn, .place-order .btn-check[disabled] + button,
+.wc-proceed-to-checkout .btn-check[disabled] + a,
+.btn-check[disabled] + .btn-outline-primary,
+.btn-check[disabled] + .add_to_cart_button, .btn-check:disabled + .btn, .place-order .btn-check:disabled + button,
+.wc-proceed-to-checkout .btn-check:disabled + a,
+.btn-check:disabled + .btn-outline-primary,
+.btn-check:disabled + .add_to_cart_button {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2553,11 +2571,19 @@ textarea.form-control-lg {
 .input-group > .form-floating:focus-within {
   z-index: 5;
 }
-.input-group .btn {
+.input-group .btn, .input-group .place-order button, .place-order .input-group button,
+.input-group .wc-proceed-to-checkout a,
+.wc-proceed-to-checkout .input-group a,
+.input-group .btn-outline-primary,
+.input-group .add_to_cart_button {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus {
+.input-group .btn:focus, .input-group .place-order button:focus, .place-order .input-group button:focus,
+.input-group .wc-proceed-to-checkout a:focus,
+.wc-proceed-to-checkout .input-group a:focus,
+.input-group .btn-outline-primary:focus,
+.input-group .add_to_cart_button:focus {
   z-index: 5;
 }
 
@@ -2579,7 +2605,11 @@ textarea.form-control-lg {
 .input-group-lg > .form-control,
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
-.input-group-lg > .btn {
+.input-group-lg > .btn,
+.place-order .input-group-lg > button,
+.wc-proceed-to-checkout .input-group-lg > a,
+.input-group-lg > .btn-outline-primary,
+.input-group-lg > .add_to_cart_button {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.5rem;
@@ -2588,7 +2618,11 @@ textarea.form-control-lg {
 .input-group-sm > .form-control,
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
-.input-group-sm > .btn {
+.input-group-sm > .btn,
+.place-order .input-group-sm > button,
+.wc-proceed-to-checkout .input-group-sm > a,
+.input-group-sm > .btn-outline-primary,
+.input-group-sm > .add_to_cart_button {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.25rem;
@@ -2804,7 +2838,10 @@ textarea.form-control-lg {
   z-index: 4;
 }
 
-.btn {
+.btn, .place-order button,
+.wc-proceed-to-checkout a,
+.btn-outline-primary,
+.add_to_cart_button {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
   --bs-btn-font-family: ;
@@ -2840,41 +2877,96 @@ textarea.form-control-lg {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn {
+  .btn, .place-order button,
+  .wc-proceed-to-checkout a,
+  .btn-outline-primary,
+  .add_to_cart_button {
     transition: none;
   }
 }
-.btn:hover {
+.btn:hover, .place-order button:hover,
+.wc-proceed-to-checkout a:hover,
+.btn-outline-primary:hover,
+.add_to_cart_button:hover {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
 }
-.btn-check + .btn:hover {
+.btn-check + .btn:hover, .place-order .btn-check + button:hover,
+.wc-proceed-to-checkout .btn-check + a:hover,
+.btn-check + .btn-outline-primary:hover,
+.btn-check + .add_to_cart_button:hover {
   color: var(--bs-btn-color);
   background-color: var(--bs-btn-bg);
   border-color: var(--bs-btn-border-color);
 }
-.btn:focus-visible {
+.btn:focus-visible, .place-order button:focus-visible,
+.wc-proceed-to-checkout a:focus-visible,
+.btn-outline-primary:focus-visible,
+.add_to_cart_button:focus-visible {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:focus-visible + .btn {
+.btn-check:focus-visible + .btn, .place-order .btn-check:focus-visible + button,
+.wc-proceed-to-checkout .btn-check:focus-visible + a,
+.btn-check:focus-visible + .btn-outline-primary,
+.btn-check:focus-visible + .add_to_cart_button {
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+.btn-check:checked + .btn, .place-order .btn-check:checked + button,
+.wc-proceed-to-checkout .btn-check:checked + a,
+.btn-check:checked + .btn-outline-primary,
+.btn-check:checked + .add_to_cart_button, :not(.btn-check) + .btn:active, .place-order :not(.btn-check) + button:active,
+.wc-proceed-to-checkout :not(.btn-check) + a:active,
+:not(.btn-check) + .btn-outline-primary:active,
+:not(.btn-check) + .add_to_cart_button:active, .btn:first-child:active, .place-order button:first-child:active,
+.wc-proceed-to-checkout a:first-child:active,
+.btn-outline-primary:first-child:active,
+.add_to_cart_button:first-child:active, .btn.active, .place-order button.active,
+.wc-proceed-to-checkout a.active,
+.active.btn-outline-primary,
+.active.add_to_cart_button, .btn.show, .place-order button.show,
+.wc-proceed-to-checkout a.show,
+.show.btn-outline-primary,
+.show.add_to_cart_button {
   color: var(--bs-btn-active-color);
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.btn-check:checked + .btn:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .btn:first-child:active:focus-visible, .btn.active:focus-visible, .btn.show:focus-visible {
+.btn-check:checked + .btn:focus-visible, .place-order .btn-check:checked + button:focus-visible,
+.wc-proceed-to-checkout .btn-check:checked + a:focus-visible,
+.btn-check:checked + .btn-outline-primary:focus-visible,
+.btn-check:checked + .add_to_cart_button:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .place-order :not(.btn-check) + button:active:focus-visible,
+.wc-proceed-to-checkout :not(.btn-check) + a:active:focus-visible,
+:not(.btn-check) + .btn-outline-primary:active:focus-visible,
+:not(.btn-check) + .add_to_cart_button:active:focus-visible, .btn:first-child:active:focus-visible, .place-order button:first-child:active:focus-visible,
+.wc-proceed-to-checkout a:first-child:active:focus-visible,
+.btn-outline-primary:first-child:active:focus-visible,
+.add_to_cart_button:first-child:active:focus-visible, .btn.active:focus-visible, .place-order button.active:focus-visible,
+.wc-proceed-to-checkout a.active:focus-visible,
+.active.btn-outline-primary:focus-visible,
+.active.add_to_cart_button:focus-visible, .btn.show:focus-visible, .place-order button.show:focus-visible,
+.wc-proceed-to-checkout a.show:focus-visible,
+.show.btn-outline-primary:focus-visible,
+.show.add_to_cart_button:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+.btn:disabled, .place-order button:disabled,
+.wc-proceed-to-checkout a:disabled,
+.btn-outline-primary:disabled,
+.add_to_cart_button:disabled, .btn.disabled, .place-order button.disabled,
+.wc-proceed-to-checkout a.disabled,
+.disabled.btn-outline-primary,
+.disabled.add_to_cart_button, fieldset:disabled .btn, fieldset:disabled .place-order button, .place-order fieldset:disabled button,
+fieldset:disabled .wc-proceed-to-checkout a,
+.wc-proceed-to-checkout fieldset:disabled a,
+fieldset:disabled .btn-outline-primary,
+fieldset:disabled .add_to_cart_button {
   color: var(--bs-btn-disabled-color);
   pointer-events: none;
   background-color: var(--bs-btn-disabled-bg);
@@ -3176,14 +3268,20 @@ textarea.form-control-lg {
   color: var(--bs-btn-hover-color);
 }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-lg, .btn-group-lg > .btn, .place-order .btn-group-lg > button,
+.wc-proceed-to-checkout .btn-group-lg > a,
+.btn-group-lg > .btn-outline-primary,
+.btn-group-lg > .add_to_cart_button {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 1rem;
   --bs-btn-font-size: 1.25rem;
   --bs-btn-border-radius: 0.5rem;
 }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .place-order .btn-group-sm > button,
+.wc-proceed-to-checkout .btn-group-sm > a,
+.btn-group-sm > .btn-outline-primary,
+.btn-group-sm > .add_to_cart_button {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.875rem;
@@ -3549,23 +3647,77 @@ textarea.form-control-lg {
   display: inline-flex;
   vertical-align: middle;
 }
-.btn-group > .btn,
-.btn-group-vertical > .btn {
+.btn-group > .btn, .place-order .btn-group > button,
+.wc-proceed-to-checkout .btn-group > a,
+.btn-group > .btn-outline-primary,
+.btn-group > .add_to_cart_button,
+.btn-group-vertical > .btn,
+.place-order .btn-group-vertical > button,
+.wc-proceed-to-checkout .btn-group-vertical > a,
+.btn-group-vertical > .btn-outline-primary,
+.btn-group-vertical > .add_to_cart_button {
   position: relative;
   flex: 1 1 auto;
 }
-.btn-group > .btn-check:checked + .btn,
+.btn-group > .btn-check:checked + .btn, .place-order .btn-group > .btn-check:checked + button,
+.wc-proceed-to-checkout .btn-group > .btn-check:checked + a,
+.btn-group > .btn-check:checked + .btn-outline-primary,
+.btn-group > .btn-check:checked + .add_to_cart_button,
 .btn-group > .btn-check:focus + .btn,
+.place-order .btn-group > .btn-check:focus + button,
+.wc-proceed-to-checkout .btn-group > .btn-check:focus + a,
+.btn-group > .btn-check:focus + .btn-outline-primary,
+.btn-group > .btn-check:focus + .add_to_cart_button,
 .btn-group > .btn:hover,
+.place-order .btn-group > button:hover,
+.wc-proceed-to-checkout .btn-group > a:hover,
+.btn-group > .btn-outline-primary:hover,
+.btn-group > .add_to_cart_button:hover,
 .btn-group > .btn:focus,
+.place-order .btn-group > button:focus,
+.wc-proceed-to-checkout .btn-group > a:focus,
+.btn-group > .btn-outline-primary:focus,
+.btn-group > .add_to_cart_button:focus,
 .btn-group > .btn:active,
+.place-order .btn-group > button:active,
+.wc-proceed-to-checkout .btn-group > a:active,
+.btn-group > .btn-outline-primary:active,
+.btn-group > .add_to_cart_button:active,
 .btn-group > .btn.active,
+.place-order .btn-group > button.active,
+.wc-proceed-to-checkout .btn-group > a.active,
+.btn-group > .active.btn-outline-primary,
+.btn-group > .active.add_to_cart_button,
 .btn-group-vertical > .btn-check:checked + .btn,
+.place-order .btn-group-vertical > .btn-check:checked + button,
+.wc-proceed-to-checkout .btn-group-vertical > .btn-check:checked + a,
+.btn-group-vertical > .btn-check:checked + .btn-outline-primary,
+.btn-group-vertical > .btn-check:checked + .add_to_cart_button,
 .btn-group-vertical > .btn-check:focus + .btn,
+.place-order .btn-group-vertical > .btn-check:focus + button,
+.wc-proceed-to-checkout .btn-group-vertical > .btn-check:focus + a,
+.btn-group-vertical > .btn-check:focus + .btn-outline-primary,
+.btn-group-vertical > .btn-check:focus + .add_to_cart_button,
 .btn-group-vertical > .btn:hover,
+.place-order .btn-group-vertical > button:hover,
+.wc-proceed-to-checkout .btn-group-vertical > a:hover,
+.btn-group-vertical > .btn-outline-primary:hover,
+.btn-group-vertical > .add_to_cart_button:hover,
 .btn-group-vertical > .btn:focus,
+.place-order .btn-group-vertical > button:focus,
+.wc-proceed-to-checkout .btn-group-vertical > a:focus,
+.btn-group-vertical > .btn-outline-primary:focus,
+.btn-group-vertical > .add_to_cart_button:focus,
 .btn-group-vertical > .btn:active,
-.btn-group-vertical > .btn.active {
+.place-order .btn-group-vertical > button:active,
+.wc-proceed-to-checkout .btn-group-vertical > a:active,
+.btn-group-vertical > .btn-outline-primary:active,
+.btn-group-vertical > .add_to_cart_button:active,
+.btn-group-vertical > .btn.active,
+.place-order .btn-group-vertical > button.active,
+.wc-proceed-to-checkout .btn-group-vertical > a.active,
+.btn-group-vertical > .active.btn-outline-primary,
+.btn-group-vertical > .active.add_to_cart_button {
   z-index: 1;
 }
 
@@ -3581,19 +3733,44 @@ textarea.form-control-lg {
 .btn-group {
   border-radius: 0.375rem;
 }
-.btn-group > :not(.btn-check:first-child) + .btn,
+.btn-group > :not(.btn-check:first-child) + .btn, .place-order .btn-group > :not(.btn-check:first-child) + button,
+.wc-proceed-to-checkout .btn-group > :not(.btn-check:first-child) + a,
+.btn-group > :not(.btn-check:first-child) + .btn-outline-primary,
+.btn-group > :not(.btn-check:first-child) + .add_to_cart_button,
 .btn-group > .btn-group:not(:first-child) {
   margin-left: -1px;
 }
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .place-order .btn-group > button:not(:last-child):not(.dropdown-toggle),
+.wc-proceed-to-checkout .btn-group > a:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-outline-primary:not(:last-child):not(.dropdown-toggle),
+.btn-group > .add_to_cart_button:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn.dropdown-toggle-split:first-child,
-.btn-group > .btn-group:not(:last-child) > .btn {
+.place-order .btn-group > button.dropdown-toggle-split:first-child,
+.wc-proceed-to-checkout .btn-group > a.dropdown-toggle-split:first-child,
+.btn-group > .dropdown-toggle-split.btn-outline-primary:first-child,
+.btn-group > .dropdown-toggle-split.add_to_cart_button:first-child,
+.btn-group > .btn-group:not(:last-child) > .btn,
+.place-order .btn-group > .btn-group:not(:last-child) > button,
+.wc-proceed-to-checkout .btn-group > .btn-group:not(:last-child) > a,
+.btn-group > .btn-group:not(:last-child) > .btn-outline-primary,
+.btn-group > .btn-group:not(:last-child) > .add_to_cart_button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.btn-group > .btn:nth-child(n+3),
+.btn-group > .btn:nth-child(n+3), .place-order .btn-group > button:nth-child(n+3),
+.wc-proceed-to-checkout .btn-group > a:nth-child(n+3),
+.btn-group > .btn-outline-primary:nth-child(n+3),
+.btn-group > .add_to_cart_button:nth-child(n+3),
 .btn-group > :not(.btn-check) + .btn,
-.btn-group > .btn-group:not(:first-child) > .btn {
+.place-order .btn-group > :not(.btn-check) + button,
+.wc-proceed-to-checkout .btn-group > :not(.btn-check) + a,
+.btn-group > :not(.btn-check) + .btn-outline-primary,
+.btn-group > :not(.btn-check) + .add_to_cart_button,
+.btn-group > .btn-group:not(:first-child) > .btn,
+.place-order .btn-group > .btn-group:not(:first-child) > button,
+.wc-proceed-to-checkout .btn-group > .btn-group:not(:first-child) > a,
+.btn-group > .btn-group:not(:first-child) > .btn-outline-primary,
+.btn-group > .btn-group:not(:first-child) > .add_to_cart_button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -3609,12 +3786,18 @@ textarea.form-control-lg {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .place-order .btn-group-sm > button + .dropdown-toggle-split,
+.wc-proceed-to-checkout .btn-group-sm > a + .dropdown-toggle-split,
+.btn-group-sm > .btn-outline-primary + .dropdown-toggle-split,
+.btn-group-sm > .add_to_cart_button + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .place-order .btn-group-lg > button + .dropdown-toggle-split,
+.wc-proceed-to-checkout .btn-group-lg > a + .dropdown-toggle-split,
+.btn-group-lg > .btn-outline-primary + .dropdown-toggle-split,
+.btn-group-lg > .add_to_cart_button + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -3624,21 +3807,61 @@ textarea.form-control-lg {
   align-items: flex-start;
   justify-content: center;
 }
-.btn-group-vertical > .btn,
+.btn-group-vertical > .btn, .place-order .btn-group-vertical > button,
+.wc-proceed-to-checkout .btn-group-vertical > a,
+.btn-group-vertical > .btn-outline-primary,
+.btn-group-vertical > .add_to_cart_button,
 .btn-group-vertical > .btn-group {
   width: 100%;
 }
-.btn-group-vertical > .btn:not(:first-child),
+.btn-group-vertical > .btn:not(:first-child), .place-order .btn-group-vertical > button:not(:first-child),
+.wc-proceed-to-checkout .btn-group-vertical > a:not(:first-child),
+.btn-group-vertical > .btn-outline-primary:not(:first-child),
+.btn-group-vertical > .add_to_cart_button:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: -1px;
 }
-.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group-vertical > .btn-group:not(:last-child) > .btn {
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .place-order .btn-group-vertical > button:not(:last-child):not(.dropdown-toggle),
+.wc-proceed-to-checkout .btn-group-vertical > a:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn-outline-primary:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .add_to_cart_button:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn-group:not(:last-child) > .btn,
+.place-order .btn-group-vertical > .btn-group:not(:last-child) > button,
+.wc-proceed-to-checkout .btn-group-vertical > .btn-group:not(:last-child) > a,
+.btn-group-vertical > .btn-group:not(:last-child) > .btn-outline-primary,
+.btn-group-vertical > .btn-group:not(:last-child) > .add_to_cart_button {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.btn-group-vertical > .btn ~ .btn,
-.btn-group-vertical > .btn-group:not(:first-child) > .btn {
+.btn-group-vertical > .btn ~ .btn, .place-order .btn-group-vertical > button ~ .btn,
+.wc-proceed-to-checkout .btn-group-vertical > a ~ .btn,
+.btn-group-vertical > .btn-outline-primary ~ .btn,
+.btn-group-vertical > .add_to_cart_button ~ .btn, .place-order .btn-group-vertical > .btn ~ button, .place-order .btn-group-vertical > button ~ button,
+.wc-proceed-to-checkout .place-order .btn-group-vertical > a ~ button,
+.place-order .wc-proceed-to-checkout .btn-group-vertical > a ~ button,
+.place-order .btn-group-vertical > .btn-outline-primary ~ button,
+.place-order .btn-group-vertical > .add_to_cart_button ~ button,
+.wc-proceed-to-checkout .btn-group-vertical > .btn ~ a,
+.place-order .wc-proceed-to-checkout .btn-group-vertical > button ~ a,
+.wc-proceed-to-checkout .place-order .btn-group-vertical > button ~ a,
+.wc-proceed-to-checkout .btn-group-vertical > a ~ a,
+.wc-proceed-to-checkout .btn-group-vertical > .btn-outline-primary ~ a,
+.wc-proceed-to-checkout .btn-group-vertical > .add_to_cart_button ~ a,
+.btn-group-vertical > .btn ~ .btn-outline-primary,
+.place-order .btn-group-vertical > button ~ .btn-outline-primary,
+.wc-proceed-to-checkout .btn-group-vertical > a ~ .btn-outline-primary,
+.btn-group-vertical > .btn-outline-primary ~ .btn-outline-primary,
+.btn-group-vertical > .add_to_cart_button ~ .btn-outline-primary,
+.btn-group-vertical > .btn ~ .add_to_cart_button,
+.place-order .btn-group-vertical > button ~ .add_to_cart_button,
+.wc-proceed-to-checkout .btn-group-vertical > a ~ .add_to_cart_button,
+.btn-group-vertical > .btn-outline-primary ~ .add_to_cart_button,
+.btn-group-vertical > .add_to_cart_button ~ .add_to_cart_button,
+.btn-group-vertical > .btn-group:not(:first-child) > .btn,
+.place-order .btn-group-vertical > .btn-group:not(:first-child) > button,
+.wc-proceed-to-checkout .btn-group-vertical > .btn-group:not(:first-child) > a,
+.btn-group-vertical > .btn-group:not(:first-child) > .btn-outline-primary,
+.btn-group-vertical > .btn-group:not(:first-child) > .add_to_cart_button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -4652,7 +4875,10 @@ textarea.form-control-lg {
   display: none;
 }
 
-.btn .badge {
+.btn .badge, .place-order button .badge,
+.wc-proceed-to-checkout a .badge,
+.btn-outline-primary .badge,
+.add_to_cart_button .badge {
   position: relative;
   top: -1px;
 }
@@ -6647,7 +6873,10 @@ textarea.form-control-lg {
   background-color: currentcolor;
   opacity: 0.5;
 }
-.placeholder.btn::before {
+.placeholder.btn::before, .place-order button.placeholder::before,
+.wc-proceed-to-checkout a.placeholder::before,
+.placeholder.btn-outline-primary::before,
+.placeholder.add_to_cart_button::before {
   display: inline-block;
   content: "";
 }
@@ -22002,19 +22231,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ff-body {
+  font-family: var(--ff-body) !important;
+  font-weight: var(--fw-400) !important;
+}
+
 .headline {
   font-family: var(--ff-headlines) !important;
   font-weight: var(--fw-600) !important;
   font-style: normal !important;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, .h99 {
+h1, .h1, h2, .h2, .woocommerce-notice--success,
+.cart_totals h2,
+.cart_totals .h2,
+.cart_totals .woocommerce-notice--success, h3, .h3, .woocommerce-order-details__title,
+.woocommerce-column__title, h4, .h4, .h99 {
   font-family: var(--ff-headings);
   font-weight: var(--fw-900);
   font-style: normal;
   text-wrap: balance;
 }
-h1 span, .h1 span, h2 span, .h2 span, h3 span, .h3 span, h4 span, .h4 span, .h99 span {
+h1 span, .h1 span, h2 span, .h2 span, .woocommerce-notice--success span,
+.cart_totals h2 span, h3 span, .h3 span, .woocommerce-order-details__title span,
+.woocommerce-column__title span, h4 span, .h4 span, .h99 span {
   color: var(--col-primary);
 }
 
@@ -22024,11 +22264,15 @@ h1, .h1 {
   padding-inline: 1rem;
 }
 
-h2, .h2 {
+h2, .h2, .woocommerce-notice--success,
+.cart_totals h2,
+.cart_totals .h2,
+.cart_totals .woocommerce-notice--success {
   font-size: var(--fs-700);
 }
 
-h3, .h3 {
+h3, .h3, .woocommerce-order-details__title,
+.woocommerce-column__title {
   font-size: var(--fs-600);
 }
 
@@ -22082,7 +22326,7 @@ main a:not([class]):not(footer a) {
   transition: color var(--transition);
 }
 main a:not([class]):not(footer a):hover {
-  color: var(--col-blue-400);
+  color: var(--col-accent);
 }
 
 .bg--primary {
@@ -22143,6 +22387,9 @@ header .navbar-cart {
 }
 header .navbar-cart:hover {
   color: var(--col-dark);
+}
+header #navbar {
+  order: 2;
 }
 
 footer {
@@ -22218,14 +22465,17 @@ footer .current_page_item a {
   content: "" !important;
 }
 
-.btn {
+.btn, .place-order button,
+.wc-proceed-to-checkout a,
+.btn-outline-primary,
+.add_to_cart_button {
   border-radius: 100vw;
   border-width: 2px;
   align-self: flex-start;
-  min-width: 300px;
+  padding: 0.5rem 1.5rem;
   font-weight: var(--fw-900);
   font-family: var(--ff-headlines);
-  font-size: var(--fs-600);
+  font-size: var(--fs-500);
   letter-spacing: 1.2px;
   transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
 }
@@ -22270,6 +22520,79 @@ footer .current_page_item a {
   content: "";
 }
 
+.place-order button,
+.wc-proceed-to-checkout a,
+.btn-outline-primary,
+.add_to_cart_button {
+  min-width: unset;
+  padding: 0.25rem 1rem;
+  background-color: var(--col-accent);
+  border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+  box-shadow: var(--shadow-in);
+  color: var(--col-brown-400);
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  transition: all var(--transition);
+  margin-inline: auto;
+  display: inline-block;
+}
+.place-order button:hover, .place-order button:active, .place-order button:focus-visible,
+.wc-proceed-to-checkout a:hover,
+.wc-proceed-to-checkout a:active,
+.wc-proceed-to-checkout a:focus-visible,
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary:focus-visible,
+.add_to_cart_button:hover,
+.add_to_cart_button:active,
+.add_to_cart_button:focus-visible {
+  color: var(--col-brown-400);
+  background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
+  border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+  box-shadow: var(--shadow-in-2);
+  transform: translateY(2px);
+}
+
+.actions .coupon {
+  float: unset;
+  display: flex;
+  flex-wrap: wrap;
+}
+.actions .coupon #coupon_code {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 576px) {
+  .actions .coupon #coupon_code {
+    width: min(200px, 100vw);
+  }
+}
+.actions button[name=update_cart] {
+  display: block;
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .actions button[name=update_cart] {
+    margin-right: 0;
+  }
+}
+
+.woocommerce-notice--success,
+.cart_totals h2,
+.cart_totals .h2,
+.cart_totals .woocommerce-notice--success {
+  font-family: var(--ff-headlines);
+}
+
+.woocommerce-notice--success {
+  margin-bottom: 1rem;
+}
+
+.woocommerce-order-details__title,
+.woocommerce-column__title {
+  font-family: var(--ff-headlines);
+}
+
 .wc-block-grid__product-add-to-cart.wp-block-button .wp-block-button__link:hover {
   color: var(--col-accent);
 }
@@ -22277,6 +22600,10 @@ footer .current_page_item a {
 #woocommerce-wrapper {
   padding: 0.5rem 0;
   background-color: white;
+}
+
+.wc-block-grid__products {
+  justify-content: center;
 }
 
 .wc-block-grid__product-add-to-cart {
@@ -22345,6 +22672,15 @@ footer .current_page_item a {
 .single-hike .product__intro .woocommerce-product-details__short-description p {
   margin-bottom: 0;
 }
+.single-hike .product__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.single-hike .product__meta .start_time, .single-hike .product__meta .start_date {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0rem 0.5rem;
+}
 .single-hike .price {
   font-size: var(--fs-600);
 }
@@ -22357,30 +22693,50 @@ footer .current_page_item a {
   display: none;
 }
 
-.single-hike .quantity,
+main .single-hike button,
+main .single-product button {
+  min-width: unset;
+  padding: 0.25rem 1rem;
+  background-color: var(--col-accent);
+  border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+  box-shadow: var(--shadow-in);
+  color: var(--col-brown-400);
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  transition: all var(--transition);
+  margin-inline: auto;
+  display: inline-block;
+}
+main .single-hike button:hover, main .single-hike button:active, main .single-hike button:focus-visible,
+main .single-product button:hover,
+main .single-product button:active,
+main .single-product button:focus-visible {
+  color: var(--col-brown-400);
+  background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
+  border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+  box-shadow: var(--shadow-in-2);
+  transform: translateY(2px);
+}
+
 .single-product .quantity {
   margin-bottom: 1rem;
 }
-.single-hike .quantity::before,
 .single-product .quantity::before {
   content: "Quantity: ";
   font-size: var(--fs-400);
   font-weight: var(--fw-900);
 }
-.single-hike .quantity .form-control,
 .single-product .quantity .form-control {
   display: inline-block;
 }
-.single-hike button,
-.single-product button {
-  min-width: unset;
-  padding: 0.5rem 1rem;
-  font-family: var(--ff-body);
-  font-size: var(--fs-500);
-  background-color: var(--col-accent);
-  transition: all var(--transition);
-  margin-inline: auto;
-  display: inline-block;
+.single-product .stock {
+  color: var(--col-accent);
+  font-weight: var(--fw-900);
+}
+.single-product .woocommerce-Price-amount::before {
+  content: "Price: ";
+  font-size: var(--fs-400);
+  font-weight: var(--fw-900);
 }
 
 .news_index__grid {
@@ -22415,18 +22771,20 @@ footer .current_page_item a {
   object-position: center;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5019607843);
 }
-.news_index__card--first {
-  grid-column: 1/-1;
-  grid-template-columns: 0.75fr 1fr;
-}
-.news_index__card--first .news_index__inner {
-  grid-template-rows: 7rem auto;
-}
-.news_index__card--first .news_index__inner h2, .news_index__card--first .news_index__inner .h2 {
-  font-size: var(--fs-700);
-}
-.news_index__card--first .news_index__inner p {
-  font-size: var(--fs-400);
+@media (min-width: 992px) {
+  .news_index__card--first {
+    grid-column: 1/-1;
+    grid-template-columns: 0.75fr 1fr;
+  }
+  .news_index__card--first .news_index__inner {
+    grid-template-rows: repeat(3, auto);
+  }
+  .news_index__card--first .news_index__inner h2, .news_index__card--first .news_index__inner .h2, .news_index__card--first .news_index__inner .woocommerce-notice--success {
+    font-size: var(--fs-700);
+  }
+  .news_index__card--first .news_index__inner p {
+    font-size: var(--fs-400);
+  }
 }
 .news_index__image {
   position: relative;
@@ -22449,10 +22807,10 @@ footer .current_page_item a {
 }
 .news_index__inner {
   display: grid;
-  grid-template-rows: 4rem auto;
+  grid-template-rows: minmax(4rem, auto) auto;
   color: var(--col-dark);
 }
-.news_index__inner h2, .news_index__inner .h2 {
+.news_index__inner h2, .news_index__inner .h2, .news_index__inner .woocommerce-notice--success {
   font-size: var(--fs-500);
   font-family: var(--ff-headlines);
   font-weight: var(--fw-900);
@@ -22493,7 +22851,7 @@ footer .current_page_item a {
   object-position: center;
   margin-bottom: 0;
 }
-.blog h2, .blog .h2 {
+.blog h2, .blog .h2, .blog .woocommerce-notice--success {
   font-size: var(--fs-600);
   font-weight: var(--fw-900);
   color: var(--col-dark);
@@ -22528,11 +22886,16 @@ footer .current_page_item a {
 
 .sidebar {
   background-color: var(--col-polaroid);
-  padding: 1rem;
+  padding: 0.5rem;
   position: sticky;
   top: calc(var(--h-top) + 1rem);
   margin-bottom: 1rem;
   box-shadow: var(--shadow-in-2);
+}
+@media (min-width: 992px) {
+  .sidebar {
+    padding: 1rem;
+  }
 }
 .sidebar div {
   font-family: var(--ff-headlines);
@@ -22569,7 +22932,7 @@ footer .current_page_item a {
 }
 .hero__bg {
   --parallax-speed: 2;
-  height: 450px;
+  height: 450px !important;
   max-height: 450px;
   width: 100%;
   -o-object-fit: cover;
@@ -22601,7 +22964,6 @@ footer .current_page_item a {
   max-width: unset;
   width: 100%;
   margin-bottom: 0;
-  padding-bottom: 1rem;
 }
 
 @keyframes parallax {
@@ -22739,6 +23101,12 @@ footer .current_page_item a {
   justify-content: flex-start;
   font-size: var(--fs-700);
 }
+.contact .fa-ul {
+  margin-left: 1.5rem;
+}
+.contact a:hover {
+  color: var(--col-accent);
+}
 
 .testimonials {
   background-image: url(../img/testimonial-bg.jpg);
@@ -22803,8 +23171,11 @@ footer .current_page_item a {
   color: var(--col-accent);
 }
 
-.hike_intro img {
+.hike_intro svg {
   max-width: 150px;
+}
+.hike_intro svg .cls-1 {
+  fill: var(--col-dark);
 }
 
 a,

@@ -137,9 +137,9 @@ function modify_core_add_margin($attributes, $content)
         return $content;
     }
     if (isset($attributes['className'])) {
-        $attributes['className'] .= ' mx-4';
+        $attributes['className'] .= ' px-4';
     } else {
-        $attributes['className'] = 'mx-4';
+        $attributes['className'] = 'px-4';
     }
     $content_with_class = '<div class="' . $attributes['className'] . '">' . $content . '</div>';
     return $content_with_class;

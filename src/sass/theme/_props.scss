@@ -33,8 +33,8 @@ $col-highlight: #ff0000;
     --fs-700: 2.4rem;
     // --fs-800: clamp(2.44rem, calc(2.33rem + 0.53vw), 2.75rem);
     // --fs-900: clamp(2.5rem, calc(2.44rem + 0.62vw), 5rem);
-    // --fs-900: clamp(2.5rem, 0rem + 6.667vw, 6rem);
-    --fs-900: 3rem;
+    --fs-900: clamp(2.5rem, 0rem + 6.667vw, 3rem);
+    // --fs-900: 3rem;
 
     --fw-400: 300;
     --fw-600: 400;

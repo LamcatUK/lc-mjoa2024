@@ -14,6 +14,17 @@ foreach ($blocks as $block) {
 ?>
 <main id="main">
     <?php
+    if (!is_front_page()) {
+        ?>
+    <section class="breadcrumbs container-xl text-center mb-4">
+        <?php
+if (function_exists('yoast_breadcrumb')) {
+    yoast_breadcrumb('<div id="breadcrumbs" class="my-2">', '</div>');
+}
+        ?>
+    </section>
+    <?php
+    }
 the_post();
 foreach ($blocks as $block) {
     if ($block['blockName'] != 'acf/lc-hero') {

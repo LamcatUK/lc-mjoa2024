@@ -17,6 +17,13 @@ $bg = get_the_post_thumbnail_url($shop_page, 'full') ?? null;
     MJ's Trading Post
 </h1>
 <main id="main">
+    <section class="breadcrumbs container-xl text-center mb-4">
+        <?php
+if (function_exists('yoast_breadcrumb')) {
+    yoast_breadcrumb('<div id="breadcrumbs" class="my-2">', '</div>');
+}
+?>
+    </section>
     <?php
 echo apply_filters('the_content', get_the_content(null, false, $shop_page));
 ?>

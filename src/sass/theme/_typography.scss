@@ -48,6 +48,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ff-body {
+    font-family: var(--ff-body) !important;
+    font-weight: var(--fw-400) !important;
+}
 
 .headline {
     font-family: var(--ff-headlines) !important;
@@ -124,6 +128,6 @@ main a:not([class]):not(footer a) {
     font-weight: var(--fw-900);
     transition: color var(--transition);
     &:hover {
-        color: var(--col-blue-400);
+        color: var(--col-accent);
     }
 }

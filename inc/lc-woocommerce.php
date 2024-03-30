@@ -18,12 +18,30 @@ function add_cart_icon_to_header_nav()
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var cartIcon =
-            '<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" class="menu-item nav-item"><a title="Cart" href="<?=wc_get_cart_url()?>" class="nav-link"><i class="fa-solid fa-basket-shopping"></i> (' +
+            '<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" class="menu-item nav-item d-none d-md-block"><a title="Cart" href="<?=wc_get_cart_url()?>" class="nav-link"><i class="fa-solid fa-basket-shopping"></i> (' +
             <?php echo WC()->cart->get_cart_contents_count(); ?>
             +
             ')</a></li>';
+        var cartIcon2 =
+            '<div class="d-md-none"><a title="Cart" href="<?=wc_get_cart_url()?>" class="nav-link"><i class="fa-solid fa-basket-shopping"></i> (' +
+            <?php echo WC()->cart->get_cart_contents_count(); ?>
+            +
+            ')</a></div>';
 
         $('#main-menu').append(cartIcon);
+        var $cartIcon2 = $(cartIcon2); // Assuming cartIcon2 is your element or a selector
+        var $children = $('#main-nav').children(); // Get all child elements of #main-nav
+        var penultimateIndex = $children.length - 2; // Calculate the penultimate index
+
+        // Check if there are at least two elements to have a penultimate position
+        if (penultimateIndex >= 0) {
+            $children.eq(penultimateIndex).before(
+            $cartIcon2); // Insert cartIcon2 before the penultimate element
+        } else {
+            // If there are less than 2 elements, just append it (or handle as needed)
+            $('#main-nav').append($cartIcon2);
+        }
+
     });
 </script>
 <?php
@@ -37,7 +55,7 @@ function custom_woocommerce_breadcrumbs_defaults($defaults)
     // Change the breadcrumb home text from 'Home' to 'Your Home Text'
     // $defaults['home'] = 'Your Home Text';
     // Change breadcrumb delimiter from '/' to '>'
-    $defaults['delimiter'] = ' &raquo; ';
+    $defaults['delimiter'] = ' / ';
     // You can also customize 'wrap_before', 'wrap_after', 'before', 'after', 'breadcrumb_class' etc.
 
     return $defaults;

@@ -14,8 +14,18 @@ $bg = get_the_post_thumbnail_url($page_for_posts, 'full') ?? null;
     Trail Tales &amp; Tips
 </h1>
 <main id="main">
+    <section class="breadcrumbs container-xl text-center mb-4">
+        <?php
+if (function_exists('yoast_breadcrumb')) {
+    yoast_breadcrumb('<div id="breadcrumbs" class="my-2">', '</div>');
+}
+?>
+    </section>
     <section class="news_index pb-4">
-        <div class="container-xl bg-white py-4">
+        <div class="container-xl bg-white pb-4">
+            <div class="max-ch mx-auto text-center mb-5">
+                <?=apply_filters('the_content', get_the_content(null, false, $page_for_posts))?>
+            </div>
             <div class="news_index__grid">
                 <?php
     $style = 'news_index__card--first';

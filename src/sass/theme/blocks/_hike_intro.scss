@@ -1,5 +1,8 @@
 .hike_intro {
-    img {
+    svg {
         max-width: 150px;
+        .cls-1 {
+            fill: var(--col-dark); 
+        }
     }
 }

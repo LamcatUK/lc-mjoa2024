@@ -34,12 +34,31 @@ while (have_posts()) {
     <section id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
         <div class="container-xl pt-4 pb-5">
             <?php woocommerce_breadcrumb(); ?>
+            <?php wc_print_notices(); ?>
             <div class="row">
                 <div class="col-md-8 col-lg-9">
                     <div class="product__intro">
                         <div class="h3 d-md-none"><?=$start?></div>
                         <h1><?php the_title(); ?></h1>
                         <?php woocommerce_template_single_excerpt(); ?>
+                        <div class="product__meta pt-4">
+                            <div class="start_date"><strong>Date:</strong>
+                                <?=$start?>
+                            </div>
+                            <?php
+        $startHours = get_post_meta(get_the_ID(), 'WooCommerceEventsHour', true);
+        $startMinutes = get_post_meta(get_the_ID(), 'WooCommerceEventsMinutes', true);
+        $endHours = get_post_meta(get_the_ID(), 'WooCommerceEventsHourEnd', true);
+        $endMinutes = get_post_meta(get_the_ID(), 'WooCommerceEventsMinutesEnd', true);
+        if ($startHours != '00') {
+            echo '<div class="start_time"><strong>Time:</strong> <span>' . $startHours . ':' . $startMinutes;
+            if ($endHours != '00') {
+                echo ' - ' . $endHours . ':' . $endMinutes;
+            }
+            echo '</span></div>';
+        }
+        ?>
+                        </div>
                     </div>
                     <div class="text-center mb-4 d-md-none">
                         <a href="#cartbar" class="btn btn-primary">Buy Tickets</a>
@@ -76,8 +95,9 @@ while (have_posts()) {
     <section id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
         <div class="container-xl pt-4 pb-5">
             <?php woocommerce_breadcrumb(); ?>
-            <h1 class="headline"><?=get_the_title()?></h1>
-            <div class="row">
+            <?php wc_print_notices(); ?>
+            <h1 class="headline mb-4"><?=get_the_title()?></h1>
+            <div class="row mx-0 g-4">
                 <div class="col-md-4">
                     <?php do_action('woocommerce_before_single_product_summary'); ?>
                 </div>

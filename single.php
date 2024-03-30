@@ -20,7 +20,7 @@ if (function_exists('yoast_breadcrumb')) {
     </section>
     <div class="container-xl">
         <div class="row g-2">
-            <div class="col-lg-8 order-1">
+            <div class="col-lg-8 order-2 order-lg-1">
                 <img src="<?=$img?>" alt="" class="blog__image">
                 <div class="blog__content bg-white pt-4 mb-2">
                     <h1 class="blog__title"><?=get_the_title()?></h1>
@@ -66,16 +66,26 @@ echo lc_post_nav();
                     <hr>
                 </div>
             </div>
-            <div class="col-lg-4 order-2">
+            <div class="col-lg-4 order-1 order-lg-2">
                 <div class="sidebar pb-2">
-                    <?php
-                    if (isset($sidebar)) {
-                        echo '<div>Quicklinks</div>';
-                        foreach ($sidebar as $heading => $id) {
-                            echo '<li><a href="#' . $id . '">' . $heading . '</a></li>';
-                        }
+                    <div class="h6 d-lg-none headline mb-0 collapsed" data-bs-toggle="collapse" href="#links"
+                        role="button">Quick
+                        Links
+                    </div>
+                    <div class="h6 d-none d-lg-block headline">Quick Links</div>
+                    <div class="collapse d-lg-block" id="links">
+                        <ul class="pt-3 pt-lg-0 ps-0 ff-body">
+                            <?php
+                    foreach ($sidebar as $s => $l) {
+                        ?>
+                            <li><a
+                                    href="#<?=$l?>"><?=$s?></a>
+                            </li>
+                            <?php
                     }
 ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

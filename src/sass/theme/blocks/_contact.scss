@@ -5,4 +5,10 @@
         justify-content: flex-start;
         font-size: var(--fs-700);
     }
+    .fa-ul {
+        margin-left: 1.5rem;
+    }
+    a:hover {
+        color: var(--col-accent);
+    }
 }

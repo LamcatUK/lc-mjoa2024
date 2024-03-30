@@ -7,6 +7,10 @@
     background-color: white;
 }
 
+.wc-block-grid__products {
+    justify-content: center;
+}
+
 .wc-block-grid__product-add-to-cart {
     display: grid;
 }
@@ -80,6 +84,17 @@
             }
         }
     }
+
+    .product__meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .start_time, .start_date {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0rem 0.5rem;
+        }
+    }
+
     .price {
         font-size: var(--fs-600);
         &::before {
@@ -95,7 +110,32 @@
 
 }
 
-.single-hike,
+main .single-hike,
+main .single-product {
+    button {
+        min-width: unset;
+        padding: 0.25rem 1rem;
+
+        background-color: var(--col-accent);
+        border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+        box-shadow: var(--shadow-in);
+        color: var(--col-brown-400);
+        &:hover, &:active, &:focus-visible {
+            color: var(--col-brown-400);
+            background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
+            border-color:  color-mix(in srgb, var(--col-accent), #000 20%);
+            box-shadow: var(--shadow-in-2);
+            transform: translateY(2px);
+        }
+
+        font-family: var(--ff-body);
+        font-size: var(--fs-400);
+        transition: all var(--transition);
+        margin-inline: auto;
+        display: inline-block;
+    }
+}
+
 .single-product {
     .quantity {
         &::before {
@@ -108,18 +148,15 @@
         }
         margin-bottom: 1rem;
     }
-    button {
-        min-width: unset;
-        padding: 0.5rem 1rem;
-        font-family: var(--ff-body);
-        font-size: var(--fs-500);
-        background-color: var(--col-accent);
-        transition: all var(--transition);
-        margin-inline: auto;
-        display: inline-block;
+    .stock {
+        color: var(--col-accent);
+        font-weight: var(--fw-900);
     }
-}
-
-.single-product {
-    
+    .woocommerce-Price-amount {
+        &::before {
+            content: "Price: ";
+            font-size: var(--fs-400);
+            font-weight: var(--fw-900);
+        }
+    }
 }
