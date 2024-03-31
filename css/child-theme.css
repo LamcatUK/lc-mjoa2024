@@ -23311,6 +23311,10 @@ a > .polaroid:hover {
   background-image: url(../img/icons/icon--multi-day-hikes.svg);
 }
 
+.icon--community-events .polaroid::after {
+  background-image: url(../img/icons/icon--community-events.svg);
+}
+
 /*
 var all = document.getElementsByTagName("*"), i = 0, rect, docWidth = document.documentElement.offsetWidth;
 for (; i < all.length; i++) {

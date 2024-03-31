@@ -18,10 +18,11 @@
             },
             "choices": {
                 "guided-walks": "Guided Walks",
-                "group-tours": "Group Tours",
-                "challenge-events": "Challenge Events",
+                "guided-tours": "Guided Tours",
+                "ultra-hikes": "Ultra Hikes",
                 "multi-day-hikes": "Multi-Day Hikes",
-                "womens-wellness-walks": "Women's Wellness Walks"
+                "womens-wellness-walks": "Women's Wellness Walks",
+                "community-events": "Community Events"
             },
             "default_value": false,
             "return_format": "value",
@@ -50,5 +51,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1710874589
+    "modified": 1711896577
 }
