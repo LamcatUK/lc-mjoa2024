@@ -4,14 +4,7 @@
     <style>
       .cls-1 {
         fill: #000;
-      }
-
-      .cls-1, .cls-2 {
-        stroke-width: 0px;
-      }
-
-      .cls-2 {
-        fill: none;        
+n        stroke-width: 0px;
       }
     </style>
   </defs>
@@ -23,6 +16,5 @@
       <path class="cls-1" d="m51,168.66q-.2-3.05,2.08-3.42c-.73,1.2-1.29,2.11-2.08,3.42Z"/>
       <path class="cls-1" d="m41.47,162.26c-.63-.12-1.27-.23-2.07-.38q1.18-.68,2,.46s.07-.08.07-.08Z"/>
     </g>
-    <rect class="cls-2" x=".13" width="300" height="300"/>
   </g>
 </svg>
