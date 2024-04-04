@@ -83,7 +83,7 @@ if (get_field('contact_phone_jenn', 'options') ?? null) {
         <div>&copy; <?=date('Y')?>
             MJ Outdoor Adventures</div>
         <div>
-            <a href="/privacy-policy/">Privacy</a> &amp; <a href="/cookie-policy/">Cookie Policy</a>
+            <a href="/privacy-policy/">Privacy</a> &amp; <a href="/cookie-policy/">Cookie</a> Policy
             |
             <span>Site by <a href="https://www.lamcat.co.uk/">Lamcat</a></span>
         </div>
