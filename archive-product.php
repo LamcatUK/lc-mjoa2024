@@ -14,7 +14,7 @@ $bg = get_the_post_thumbnail_url($shop_page, 'full') ?? null;
     <img src="<?=$bg?>" class="hero__bg">
 </section>
 <h1 class="hero__title">
-    MJ's Trading Post
+    M&amp;J's Trading Post
 </h1>
 <main id="main">
     <section class="breadcrumbs container-xl text-center mb-4">
