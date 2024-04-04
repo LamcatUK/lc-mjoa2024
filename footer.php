@@ -55,14 +55,24 @@ foreach ($child_pages as $page) {
                 <li><span class="fa-li"><i class="fa-solid fa-envelope text-light"></i></span>
                     <?=do_shortcode('[contact_email]')?>
                 </li>
+                <?php
+                if (get_field('contact_phone_mike', 'options') ?? null) {
+                    ?>
                 <li><span class="fa-li"><i class="fa-solid fa-phone text-light"></i></span>
                     <strong>Mike:</strong>
                     <?=do_shortcode('[contact_phone_mike]')?>
                 </li>
+                <?php
+                }
+if (get_field('contact_phone_jenn', 'options') ?? null) {
+    ?>
                 <li><span class="fa-li"><i class="fa-solid fa-phone text-light"></i></span>
                     <strong>Jenn:</strong>
                     <?=do_shortcode('[contact_phone_jenn]')?>
                 </li>
+                <?php
+}
+?>
             </ul>
             <div class="social-icons">
                 <?=do_shortcode('[social_icons]')?>
