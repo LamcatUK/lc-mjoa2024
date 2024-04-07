@@ -11,14 +11,24 @@
                     <li class="mb-3"><span class="fa-li"><i class="fa-solid fa-envelope"></i></span>
                         <?=do_shortcode('[contact_email]')?>
                     </li>
+                    <?php
+                    if (get_field('contact_phone_mike', 'options') ?? null) {
+                        ?>
                     <li class="mb-3"><span class="fa-li"><i class="fa-solid fa-phone"></i></span>
                         <strong>Mike:</strong>
                         <?=do_shortcode('[contact_phone_mike]')?>
                     </li>
+                    <?php
+                    }
+                        if (get_field('contact_phone_jenn', 'options') ?? null) {
+                            ?>
                     <li class="mb-3"><span class="fa-li"><i class="fa-solid fa-phone"></i></span>
                         <strong>Jenn:</strong>
                         <?=do_shortcode('[contact_phone_jenn]')?>
                     </li>
+                    <?php
+                        }
+                        ?>
                 </ul>
                 <h3 class="headline">Connect</h3>
                 <div class="mb-4">Find us on social media</div>
