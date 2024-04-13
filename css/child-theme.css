@@ -22679,6 +22679,7 @@ footer .current_page_item a {
 .single-hike .product__meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 1rem;
 }
 .single-hike .product__meta .start_time, .single-hike .product__meta .start_date, .single-hike .product__meta .start_loca {
