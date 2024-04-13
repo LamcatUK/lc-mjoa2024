@@ -86,9 +86,10 @@
     }
 
     .product__meta {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        .start_time, .start_date {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        .start_time, .start_date, .start_loca {
             display: flex;
             flex-wrap: wrap;
             gap: 0rem 0.5rem;
@@ -97,17 +98,15 @@
 
     .price {
         font-size: var(--fs-600);
-        &::before {
-            content: "Tickets: ";
-            font-size: var(--fs-400);
-            font-weight: var(--fw-900);
-        }
+        // &::before {
+        //     content: "Tickets: ";
+        //     font-size: var(--fs-400);
+        //     font-weight: var(--fw-900);
+        // }
     }
     .stock {
         display: none;
     }
-
-
 }
 
 main .single-hike,

@@ -36,7 +36,7 @@ function add_cart_icon_to_header_nav()
         // Check if there are at least two elements to have a penultimate position
         if (penultimateIndex >= 0) {
             $children.eq(penultimateIndex).before(
-            $cartIcon2); // Insert cartIcon2 before the penultimate element
+                $cartIcon2); // Insert cartIcon2 before the penultimate element
         } else {
             // If there are less than 2 elements, just append it (or handle as needed)
             $('#main-nav').append($cartIcon2);
@@ -174,5 +174,35 @@ function lc_products_by_category($catids, $title = 'products', $limit = -1)
     }
     
     return $output;
+}
+
+function lc_woocommerce_show_stock()
+{
+    global $product;
+    if (! $product->managing_stock() && ! $product->is_in_stock()) {
+        return; // If the product doesn't manage stock or isn't in stock, don't display anything.
+    }
+    
+    $stock_quantity = $product->get_stock_quantity(); // Retrieves the stock quantity.
+    $backorders_allowed = $product->get_backorders();
+    
+    if ($stock_quantity > 2) {
+        return '<p class="in-stock">' . sprintf('%s tickets available', $stock_quantity) . '</p>';
+    } elseif ($stock_quantity > 1) {
+        return '<p class="in-stock text-warning fw-bold">' . sprintf('Only %s tickets left', $stock_quantity) . '</p>';
+    } elseif ($stock_quantity == 1) {
+        if ($backorders_allowed === 'no') {
+            return '<p class="in-stock text-danger fw-bold">Only one ticket left</p><style>.quantity{display:none}</style>';
+        } else {
+            return '<p class="in-stock text-danger fw-bold">Only one ticket left.<br><a href="/contact-us/"><u>Contact us</u> to join the waiting list if you need more.</a></p>';
+        }
+    } else {
+        if ($backorders_allowed === 'no') {
+            return '<p class="out-of-stock text-danger fw-bold">Sold Out!</p>';
+        } else {
+            return '<p class="in-stock text-danger fw-bold">Sold Out!<br><a href="/contact-us/"><u>Contact us</u> to join the waiting list.</a></p>';
+        }
+    }
+
 }
 ?>

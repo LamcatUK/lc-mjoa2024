@@ -22677,21 +22677,17 @@ footer .current_page_item a {
   margin-bottom: 0;
 }
 .single-hike .product__meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.single-hike .product__meta .start_time, .single-hike .product__meta .start_date {
+.single-hike .product__meta .start_time, .single-hike .product__meta .start_date, .single-hike .product__meta .start_loca {
   display: flex;
   flex-wrap: wrap;
   gap: 0rem 0.5rem;
 }
 .single-hike .price {
   font-size: var(--fs-600);
-}
-.single-hike .price::before {
-  content: "Tickets: ";
-  font-size: var(--fs-400);
-  font-weight: var(--fw-900);
 }
 .single-hike .stock {
   display: none;
@@ -23097,6 +23093,23 @@ main .single-product button:focus-visible {
 }
 .hikes-list__desc {
   grid-area: desc;
+}
+.hikes-list__banner--sold-out {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-family: var(--ff-headlines);
+  font-size: var(--fs-900);
+  transform: rotate(-15deg);
+  color: red;
+}
+.hikes-list__banner--last-few {
+  color: var(--col-accent);
 }
 
 .contact .social-icons {

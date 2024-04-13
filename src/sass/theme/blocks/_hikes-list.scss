@@ -48,4 +48,21 @@
         grid-area: desc;
     }
 
+    &__banner--sold-out {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        font-family: var(--ff-headlines);
+        font-size: var(--fs-900);
+        transform: rotate(-15deg);
+        color: red;
+    }
+    &__banner--last-few {
+        color: var(--col-accent);
+    }
 }

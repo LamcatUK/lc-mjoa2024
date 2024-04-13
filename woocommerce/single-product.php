@@ -46,7 +46,7 @@ while (have_posts()) {
                                 <?=$start?>
                             </div>
                             <?php
-        $startHours = get_post_meta(get_the_ID(), 'WooCommerceEventsHour', true);
+                            $startHours = get_post_meta(get_the_ID(), 'WooCommerceEventsHour', true);
         $startMinutes = get_post_meta(get_the_ID(), 'WooCommerceEventsMinutes', true);
         $endHours = get_post_meta(get_the_ID(), 'WooCommerceEventsHourEnd', true);
         $endMinutes = get_post_meta(get_the_ID(), 'WooCommerceEventsMinutesEnd', true);
@@ -57,7 +57,17 @@ while (have_posts()) {
             }
             echo '</span></div>';
         }
+
+        $location = get_post_meta(get_the_ID(), 'WooCommerceEventsLocation', true);
+        if ($location ?? null) {
+            ?>
+                            <div class="start_loca"><strong>Location:</strong>
+                                <span><?=$location?></span>
+                            </div>
+                            <?php
+        }
         ?>
+
                         </div>
                     </div>
                     <div class="text-center mb-4 d-md-none">
@@ -76,8 +86,8 @@ while (have_posts()) {
                             <strong><?=$datetime->format('F')?></strong>
                             <span><?=$datetime->format('j')?></span>
                         </time>
+                        <?=lc_woocommerce_show_stock()?>
                         <?php woocommerce_template_single_price(); ?>
-
                         <?php woocommerce_template_single_add_to_cart(); ?>
                         <div class="max-ch mx-auto text-center">
                             <?=apply_filters('the_content', get_field('content'))?>

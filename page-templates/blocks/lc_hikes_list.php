@@ -40,14 +40,46 @@ if (!empty($output)) {
             continue;
         }
         $e++;
+        $product = wc_get_product($h['product']);
+        $stock_quantity = $product->get_stock_quantity();
+        $banner = $bannerClass = '';
+        if (is_numeric($stock_quantity)) {
+            if ($stock_quantity == 0) {
+                $banner = 'SOLD OUT';
+                $bannerClass = 'sold-out';
+            } elseif ($stock_quantity < 3) {
+                $banner = '*NEARLY FULL*';
+                $bannerClass = 'last-few';
+            }
+        } else {
+            $banner = 'Stock status: ' . $product->get_stock_status(); // Out of stock, on backorder, etc.
+        }
         ?>
     <a class="hikes-list__row"
         href="<?=$h['link']?>">
+        <?php
+        if ($bannerClass == 'sold-out') {
+            ?>
+        <div class="hikes-list__banner--<?=$bannerClass?>">
+            <?=$banner?>
+        </div>
+        <?php
+        }
+        ?>
         <img class="hikes-list__icon"
             src="<?=get_stylesheet_directory_uri()?>/img/icons/icon--<?=$h['slug']?>.svg">
         <div class="hikes-list__meta">
             <div class="hikes-list__date">
                 <?=$h['start']->format('jS F, Y')?>
+                <?php
+                if ($bannerClass == 'last-few') {
+                    ?>
+                <span class="hikes-list__banner--<?=$bannerClass?>">
+                    <?=$banner?>
+                </span>
+                <?php
+                }
+        ?>
             </div>
             <div class="hikes-list__title">
                 <?=$h['title']?>
