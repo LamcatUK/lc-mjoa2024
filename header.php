@@ -97,7 +97,7 @@ do_action('wp_body_open');
 
 if (strpos($host, 'staging') === 0) {
     ?>
-    <div class="bg-accent text-center">DEVELOPMENT</div>
+    <div class="bg--accent text-center">DEVELOPMENT</div>
     <?php
 }
 ?>
