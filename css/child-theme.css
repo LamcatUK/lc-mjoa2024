@@ -23320,6 +23320,14 @@ a > .polaroid:hover {
   background-image: url(../img/icons/icon--community-events.svg);
 }
 
+.devbanner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
 /*
 var all = document.getElementsByTagName("*"), i = 0, rect, docWidth = document.documentElement.offsetWidth;
 for (; i < all.length; i++) {

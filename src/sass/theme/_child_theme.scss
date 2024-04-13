@@ -149,6 +149,13 @@ a > .polaroid {
 }
 
 
+.devbanner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
 
 // show stuff that overflows horizontally
 // * {
