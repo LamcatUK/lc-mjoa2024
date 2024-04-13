@@ -22341,6 +22341,10 @@ main a:not([class]):not(footer a):hover {
   background-color: var(--col-grey-800);
 }
 
+.bg--accent {
+  background-color: var(--col-accent);
+}
+
 .text-highlight {
   color: var(--col-highlight-400);
 }
