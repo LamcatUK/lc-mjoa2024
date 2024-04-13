@@ -9,6 +9,11 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
+
+$home_url = home_url();
+
+$url_components = parse_url($home_url);
+$host = $url_components['host'];
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -89,6 +94,12 @@ wp_head();
     <?php understrap_body_attributes(); ?>>
     <?php
 do_action('wp_body_open');
+
+if (strpos($host, 'staging') === 0) {
+    ?>
+    <div class="bg-accent text-center">DEVELOPMENT</div>
+    <?php
+}
 ?>
     <header class="px-0">
         <nav id="main-nav" class="navbar navbar-expand-lg px-2">
