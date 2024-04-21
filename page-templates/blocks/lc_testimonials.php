@@ -51,10 +51,10 @@ add_action('wp_footer', function () {
 
         var tallest = 0;
         items.forEach(function(item) {
-            var itemHeight = item.getBoundingClientRect().height;
+            var itemHeight = item.getBoundingClientRect().height; // Make sure this variable name is correct
             console.log('item: ' + itemHeight);
             console.log('tallest: ' + tallest);
-            if (itemtHeight > tallest) {
+            if (itemHeight > tallest) {
                 tallest = itemHeight;
             }
         });
