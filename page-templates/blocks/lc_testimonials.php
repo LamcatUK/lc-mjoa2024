@@ -55,7 +55,7 @@ add_action('wp_footer', function () {
             console.log('item: ' + itemHeight);
             console.log('tallest: ' + tallest);
             if (itemtHeight > tallest) {
-                tallest = item.offsetHeight;
+                tallest = itemHeight;
             }
         });
 
