@@ -22740,6 +22740,7 @@ main .single-product button:focus-visible {
   font-weight: var(--fw-900);
 }
 
+a.woocommerce-privacy-policy-link,
 a.woocommerce-terms-and-conditions-link {
   text-decoration: underline;
 }
