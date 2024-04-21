@@ -51,14 +51,15 @@ add_action('wp_footer', function () {
 
         var tallest = 0;
         items.forEach(function(item) {
-            console.log('item: ' + item.offsetHeight);
+            var itemHeight = item.getBoundingClientRect().height;
+            console.log('item: ' + itemHeight);
             console.log('tallest: ' + tallest);
-            if (item.offsetHeight > tallest) {
+            if (itemtHeight > tallest) {
                 tallest = item.offsetHeight;
             }
         });
 
-        // carousel.style.height = tallest + 'px';
+        carousel.style.height = tallest + 'px';
     }
 
     document.addEventListener('DOMContentLoaded', adjustCarouselHeight);
