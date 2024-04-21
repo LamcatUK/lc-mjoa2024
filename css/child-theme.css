@@ -22740,6 +22740,10 @@ main .single-product button:focus-visible {
   font-weight: var(--fw-900);
 }
 
+a.woocommerce-terms-and-conditions-link {
+  text-decoration: underline;
+}
+
 .news_index__grid {
   display: grid;
   gap: 1.5rem;
