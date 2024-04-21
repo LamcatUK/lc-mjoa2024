@@ -4,7 +4,7 @@ $q = new WP_Query(array(
    'posts_per_page' => -1
 ));
 ?>
-<section class="testimonials py-5 mb-5">
+<section class="testimonials py-5 mb-5" style="min-height:360px">
     <div class="container-xl">
         <h2 class="headline text-center mb-4">Testimonials</h2>
         <div id="testimonials" class="carousel slide" data-bs-ride="carousel">
@@ -42,6 +42,7 @@ while ($q->have_posts()) {
     </div>
 </section>
 <?php
+/*
 add_action('wp_footer', function () {
     ?>
 <script>
@@ -67,4 +68,5 @@ add_action('wp_footer', function () {
 </script>
 <?php
 });
+*/
 ?>
