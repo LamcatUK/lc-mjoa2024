@@ -9,41 +9,39 @@ function add_cart_icon_to_header_nav()
         return;
     }
 
-    ?>
-<style type="text/css">
-    .header-cart-icon {
-        /* Style your cart icon as desired */
-    }
-</style>
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        var cartIcon =
-            '<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" class="menu-item nav-item d-none d-md-block"><a title="Cart" href="<?=wc_get_cart_url()?>" class="nav-link"><i class="fa-solid fa-basket-shopping"></i> (' +
-            <?php echo WC()->cart->get_cart_contents_count(); ?>
-            +
-            ')</a></li>';
-        var cartIcon2 =
-            '<div class="d-md-none"><a title="Cart" href="<?=wc_get_cart_url()?>" class="nav-link"><i class="fa-solid fa-basket-shopping"></i> (' +
-            <?php echo WC()->cart->get_cart_contents_count(); ?>
-            +
-            ')</a></div>';
-
-        $('#main-menu').append(cartIcon);
-        var $cartIcon2 = $(cartIcon2); // Assuming cartIcon2 is your element or a selector
-        var $children = $('#main-nav').children(); // Get all child elements of #main-nav
-        var penultimateIndex = $children.length - 2; // Calculate the penultimate index
-
-        // Check if there are at least two elements to have a penultimate position
-        if (penultimateIndex >= 0) {
-            $children.eq(penultimateIndex).before(
-                $cartIcon2); // Insert cartIcon2 before the penultimate element
-        } else {
-            // If there are less than 2 elements, just append it (or handle as needed)
-            $('#main-nav').append($cartIcon2);
+?>
+    <style type="text/css">
+        .header-cart-icon {
+            /* Style your cart icon as desired */
         }
+    </style>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            var cartIcon =
+                '<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" class="menu-item nav-item d-none d-md-block"><a title="Cart" href="<?= wc_get_cart_url() ?>" class="nav-link"><i class="fa-solid fa-basket-shopping"></i> (' +
+                <?php echo WC()->cart->get_cart_contents_count(); ?> +
+                ')</a></li>';
+            var cartIcon2 =
+                '<div class="d-md-none"><a title="Cart" href="<?= wc_get_cart_url() ?>" class="nav-link"><i class="fa-solid fa-basket-shopping"></i> (' +
+                <?php echo WC()->cart->get_cart_contents_count(); ?> +
+                ')</a></div>';
 
-    });
-</script>
+            $('#main-menu').append(cartIcon);
+            var $cartIcon2 = $(cartIcon2); // Assuming cartIcon2 is your element or a selector
+            var $children = $('#main-nav').children(); // Get all child elements of #main-nav
+            var penultimateIndex = $children.length - 2; // Calculate the penultimate index
+
+            // Check if there are at least two elements to have a penultimate position
+            if (penultimateIndex >= 0) {
+                $children.eq(penultimateIndex).before(
+                    $cartIcon2); // Insert cartIcon2 before the penultimate element
+            } else {
+                // If there are less than 2 elements, just append it (or handle as needed)
+                $('#main-nav').append($cartIcon2);
+            }
+
+        });
+    </script>
 <?php
 }
 
@@ -70,9 +68,9 @@ function custom_woocommerce_breadcrumbs($crumbs, $breadcrumb)
         global $post;
         $terms = get_the_terms($post->ID, 'product_cat');
         $slugs = array_column((array) $terms, 'slug');
-        
+
         // Check if product has specific categories
-        if (array_intersect($slugs, array( 'multi-day-hikes', 'group-tours', 'guided-walks', 'challenge-events', 'womens-wellness-walks', 'community-events' ))) {
+        if (array_intersect($slugs, array('multi-day-hikes', 'group-tours', 'guided-walks', 'challenge-events', 'womens-wellness-walks', 'community-events'))) {
             // Define the new breadcrumb path for specific categories
             $crumbs = array(
                 array(
@@ -142,10 +140,10 @@ function lc_products_by_category($catids, $title = 'products', $limit = -1)
 
     $output = array();
 
-    if($q->have_posts()) {
+    if ($q->have_posts()) {
         $a = 0;
         $today = new DateTime('today');
-        while($q->have_posts()) {
+        while ($q->have_posts()) {
             $q->the_post();
             $start = get_post_meta(get_the_ID(), 'WooCommerceEventsDate', true);
             $start = new DateTime($start);
@@ -166,13 +164,12 @@ function lc_products_by_category($catids, $title = 'products', $limit = -1)
             $output[$a]['product'] = $product;
 
             $a++;
-
         }
         wp_reset_postdata();
     } else {
         // echo 'No ' . $title . ' found in this category.';
     }
-    
+
     return $output;
 }
 
@@ -182,10 +179,10 @@ function lc_woocommerce_show_stock()
     if (! $product->managing_stock() && ! $product->is_in_stock()) {
         return; // If the product doesn't manage stock or isn't in stock, don't display anything.
     }
-    
+
     $stock_quantity = $product->get_stock_quantity(); // Retrieves the stock quantity.
     $backorders_allowed = $product->get_backorders();
-    
+
     if ($stock_quantity > 2) {
         return '<p class="in-stock">' . sprintf('%s tickets available', $stock_quantity) . '</p>';
     } elseif ($stock_quantity > 1) {
@@ -203,6 +200,29 @@ function lc_woocommerce_show_stock()
             return '<p class="in-stock text-danger fw-bold">Sold Out!<br><a href="/contact-us/"><u>Contact us</u> to join the waiting list.</a></p>';
         }
     }
-
 }
+
+add_action('woocommerce_checkout_process', 'block_specific_emails');
+add_action('woocommerce_registration_errors', 'block_specific_emails', 10, 3);
+
+function block_specific_emails($errors)
+{
+
+    $blocked_emails = textarea_to_array();
+    // $blocked_emails = array(
+    //     'blocked@example.com', // Replace with the email address you want to block
+    // );
+
+    $user_email = isset($_POST['billing_email']) ? $_POST['billing_email'] : $_POST['email'];
+
+    if (in_array($user_email, $blocked_emails)) {
+        wc_add_notice(__('Sorry, this email address is not allowed to place an order.', 'woocommerce'), 'error');
+        if (is_wp_error($errors)) {
+            $errors->add('blocked_email', __('Sorry, this email address is not allowed to register.', 'woocommerce'));
+        }
+    }
+
+    return $errors;
+}
+
 ?>

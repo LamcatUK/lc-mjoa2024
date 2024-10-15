@@ -80,6 +80,26 @@
             "append": ""
         },
         {
+            "key": "field_670ea653d74ef",
+            "label": "Email Blocklist",
+            "name": "email_blocklist",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Email addresses in this list will be prohibited from ordering.\r\nOne per line.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
             "key": "field_6462855531267",
             "label": "Social",
             "name": "",
@@ -357,5 +377,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1713007343
+    "modified": 1729015274
 }

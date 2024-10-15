@@ -16,6 +16,27 @@ function split_lines($content)
     return $content;
 }
 
+function textarea_to_array()
+{
+    $text_field = get_field('email_blocklist', 'option');
+
+    $array = array();
+    // Check if the field is not empty
+    if ($text_field) {
+        // Use explode to split the string by newline character
+        $array = explode("\n", $text_field);
+
+        // Optionally, trim any extra whitespace from each line
+        $array = array_map('trim', $array);
+
+        // Print the array to see the result (for debugging)
+        // echo '<pre>';
+        // print_r($array);
+        // echo '</pre>';
+    }
+    return $array;
+}
+
 add_shortcode('contact_email', function () {
     if (get_field('contact_email', 'options')) {
         return '<a href="mailto:' . get_field('contact_email', 'options') . '">' . get_field('contact_email', 'options') . '</a>';
@@ -45,42 +66,42 @@ add_shortcode('contact_phone_jenn', function () {
 function social_icons()
 {
     ob_start();
-    
+
     if (get_field('linkedin_url', 'options') ?? null) {
-        ?>
-<a href="<?=get_field('linkedin_url', 'options')?>"
-    target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-<?php
+?>
+        <a href="<?= get_field('linkedin_url', 'options') ?>"
+            target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+    <?php
     }
     if (get_field('facebook_url', 'options') ?? null) {
-        ?>
-<a href="<?=get_field('facebook_url', 'options')?>"
-    target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-<?php
+    ?>
+        <a href="<?= get_field('facebook_url', 'options') ?>"
+            target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <?php
     }
     if (get_field('instagram_url', 'options') ?? null) {
-        ?>
-<a href="<?=get_field('instagram_url', 'options')?>"
-    target="_blank"><i class="fa-brands fa-instagram"></i></a>
-<?php
+    ?>
+        <a href="<?= get_field('instagram_url', 'options') ?>"
+            target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <?php
     }
     if (get_field('twitter_url', 'options') ?? null) {
-        ?>
-<a href="<?=get_field('twitter_url', 'options')?>"
-    target="_blank"><i class="fa-brands fa-twitter"></i></a>
-<?php
+    ?>
+        <a href="<?= get_field('twitter_url', 'options') ?>"
+            target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    <?php
     }
     if (get_field('youtube_url', 'options') ?? null) {
-        ?>
-<a href="<?=get_field('youtube_url', 'options')?>"
-    target="_blank"><i class="fa-brands fa-youtube"></i></a>
-<?php
+    ?>
+        <a href="<?= get_field('youtube_url', 'options') ?>"
+            target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <?php
     }
     if (get_field('tiktok_url', 'options') ?? null) {
-        ?>
-<a href="<?=get_field('tiktok_url', 'options')?>"
-    target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-<?php
+    ?>
+        <a href="<?= get_field('tiktok_url', 'options') ?>"
+            target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <?php
     }
     $ob_str = ob_get_contents();
     ob_end_clean();
@@ -99,11 +120,11 @@ function get_vimeo_data_from_id($video_id, $data)
 {
     // width can be 100, 200, 295, 640, 960 or 1280
     $request = wp_remote_get('https://vimeo.com/api/oembed.json?url=https://vimeo.com/' . $video_id . '&width=960');
-    
+
     $response = wp_remote_retrieve_body($request);
-    
+
     $video_array = json_decode($response, true);
-    
+
     return $video_array[$data];
 }
 
@@ -191,7 +212,7 @@ function random_str(
     $pieces = [];
     $max = mb_strlen($keyspace, '8bit') - 1;
     for ($i = 0; $i < $length; ++$i) {
-        $pieces []= $keyspace[random_int(0, $max)];
+        $pieces[] = $keyspace[random_int(0, $max)];
     }
     return implode('', $pieces);
 }
@@ -202,19 +223,19 @@ function lc_social_share($id)
     $url = get_the_permalink($id);
 
     ?>
-<div class="text-larger text--yellow mb-5">
-    <div class="h4 text-dark">Share</div>
-    <a target='_blank' href='https://twitter.com/share?url=<?=$url?>'
-        class="mr-2"><i class='fa-brands fa-twitter'></i></a>
-    <a target='_blank'
-        href='http://www.linkedin.com/shareArticle?url=<?=$url?>'
-        class="mr-2"><i class='fa-brands fa-linkedin-in'></i></a>
-    <a target='_blank'
-        href='http://www.facebook.com/sharer.php?u=<?=$url?>'><i
-            class='fa-brands fa-facebook-f'></i></a>
-</div>
-<?php
-    
+    <div class="text-larger text--yellow mb-5">
+        <div class="h4 text-dark">Share</div>
+        <a target='_blank' href='https://twitter.com/share?url=<?= $url ?>'
+            class="mr-2"><i class='fa-brands fa-twitter'></i></a>
+        <a target='_blank'
+            href='http://www.linkedin.com/shareArticle?url=<?= $url ?>'
+            class="mr-2"><i class='fa-brands fa-linkedin-in'></i></a>
+        <a target='_blank'
+            href='http://www.facebook.com/sharer.php?u=<?= $url ?>'><i
+                class='fa-brands fa-facebook-f'></i></a>
+    </div>
+    <?php
+
     $out = ob_get_clean();
     return $out;
 }
@@ -236,8 +257,8 @@ function lc_list($field)
         if ($b == '') {
             continue;
         }
-        ?>
-<li><?=$b?></li>
+    ?>
+        <li><?= $b ?></li>
 <?php
     }
     return ob_get_clean();
@@ -257,7 +278,7 @@ function formatBytes($size, $precision = 2)
     $base = log($size, 1024);
     $suffixes = array('', 'K', 'M', 'G', 'T');
 
-    return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
+    return round(pow(1024, $base - floor($base)), $precision) . ' ' . $suffixes[floor($base)];
 }
 
 
@@ -302,15 +323,15 @@ add_action('init', 'myprefix_unregister_tags');
 add_action('admin_init', function () {
     // Redirect any user trying to access comments page
     global $pagenow;
-     
+
     if ($pagenow === 'edit-comments.php') {
         wp_safe_redirect(admin_url());
         exit;
     }
- 
+
     // Remove comments metabox from dashboard
     remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
- 
+
     // Disable support for comments and trackbacks in post types
     foreach (get_post_types() as $post_type) {
         if (post_type_supports($post_type, 'comments')) {
@@ -360,21 +381,21 @@ function estimate_reading_time_in_minutes($content = '', $words_per_minute = 300
 
         $content = $contentHtml;
     }
-            
+
     // Remove HTML tags from string
     $content = wp_strip_all_tags($content);
-            
+
     // When content is empty return 0
     if (!$content) {
         return 0;
     }
-            
+
     // Count words containing string
     $words_count = str_word_count($content);
-            
+
     // Calculate time for read all words and round
     $minutes = ceil($words_count / $words_per_minute);
-    
+
     if ($formatted) {
         $minutes = '<p class="reading">Estimated reading time ' . $minutes . ' ' . pluralise($minutes, 'minute') . '</p>';
     }
@@ -382,23 +403,23 @@ function estimate_reading_time_in_minutes($content = '', $words_per_minute = 300
     return $minutes;
 }
 
-function pluralise($quantity, $singular, $plural=null)
+function pluralise($quantity, $singular, $plural = null)
 {
-    if ($quantity==1 || !strlen($singular)) {
+    if ($quantity == 1 || !strlen($singular)) {
         return $singular;
     }
-    if ($plural!==null) {
+    if ($plural !== null) {
         return $plural;
     }
 
-    $last_letter = strtolower($singular[strlen($singular)-1]);
-    switch($last_letter) {
+    $last_letter = strtolower($singular[strlen($singular) - 1]);
+    switch ($last_letter) {
         case 'y':
-            return substr($singular, 0, -1).'ies';
+            return substr($singular, 0, -1) . 'ies';
         case 's':
-            return $singular.'es';
+            return $singular . 'es';
         default:
-            return $singular.'s';
+            return $singular . 's';
     }
 }
 ?>
