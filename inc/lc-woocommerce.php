@@ -216,9 +216,9 @@ function block_specific_emails($errors)
     $user_email = isset($_POST['billing_email']) ? $_POST['billing_email'] : $_POST['email'];
 
     if (in_array($user_email, $blocked_emails)) {
-        wc_add_notice(__('Sorry, this email address is not allowed to place an order.', 'woocommerce'), 'error');
+        wc_add_notice(__('Sorry, this email address is invalid.', 'woocommerce'), 'error');
         if (is_wp_error($errors)) {
-            $errors->add('blocked_email', __('Sorry, this email address is not allowed to register.', 'woocommerce'));
+            $errors->add('blocked_email', __('Sorry, this email address is invalid.', 'woocommerce'));
         }
     }
 
