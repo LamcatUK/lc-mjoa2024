@@ -1,8 +1,20 @@
 <?php
-$q = new WP_Query(array(
-   'post_type' => 'testimonial',
-   'posts_per_page' => -1
-));
+/**
+ * Testimonials block template.
+ *
+ * Displays a carousel of testimonials.
+ *
+ * @package lc-mjoa2024
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+$q = new WP_Query(
+    array(
+        'post_type'      => 'testimonial',
+        'posts_per_page' => -1,
+    )
+);
 ?>
 <section class="testimonials py-5 mb-5" style="min-height:380px">
     <div class="container-xl">
@@ -11,23 +23,23 @@ $q = new WP_Query(array(
             <div class="carousel-inner">
                 <?php
                 $active = 'active';
-while ($q->have_posts()) {
-    $q->the_post();
-    ?>
-                <div class="carousel-item <?=$active?>">
+                while ( $q->have_posts() ) {
+                    $q->the_post();
+                    ?>
+                <div class="carousel-item <?= esc_attr( $active ); ?>">
                     <div class="testimonial">
                         <div class="testimonial__body">
-                            <?=get_the_content()?>
+                            <?= wp_kses_post( get_the_content() ); ?>
                         </div>
                         <div class="testimonial__cite">
-                            <?=get_the_title()?>
+                            <?= esc_html( get_the_title() ); ?>
                         </div>
                     </div>
                 </div>
-                <?php
-                $active = '';
-}
-?>
+                    <?php
+                    $active = '';
+                }
+                ?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#testimonials" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -42,31 +54,4 @@ while ($q->have_posts()) {
     </div>
 </section>
 <?php
-/*
-add_action('wp_footer', function () {
-    ?>
-<script>
-    function adjustCarouselHeight() {
-        var carousel = document.querySelector('#testimonials .carousel-inner');
-        var items = carousel.querySelectorAll('.carousel-item');
-
-        var tallest = 0;
-        items.forEach(function(item) {
-            var itemHeight = item.getBoundingClientRect().height; // Make sure this variable name is correct
-            console.log('item: ' + itemHeight);
-            console.log('tallest: ' + tallest);
-            if (itemHeight > tallest) {
-                tallest = itemHeight;
-            }
-        });
-
-        carousel.style.height = tallest + 'px';
-    }
-
-    document.addEventListener('DOMContentLoaded', adjustCarouselHeight);
-    window.addEventListener('resize', adjustCarouselHeight);
-</script>
-<?php
-});
-*/
-?>
+wp_reset_postdata();

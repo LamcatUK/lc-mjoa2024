@@ -1,3 +1,12 @@
+<?php
+/**
+ * Contact block component.
+ *
+ * @package lc-mjoa2024
+ */
+
+defined( 'ABSPATH' ) || exit;
+?>
 <section class="contact py-5">
     <div class="container-xl">
         <div class="row g-4 px-2">
@@ -9,36 +18,36 @@
                 </div>
                 <ul class="fa-ul mb-4">
                     <li class="mb-3"><span class="fa-li"><i class="fa-solid fa-envelope"></i></span>
-                        <?=do_shortcode('[contact_email]')?>
+                        <?= do_shortcode( '[contact_email]' ); ?>
                     </li>
                     <?php
-                    if (get_field('contact_phone_mike', 'options') ?? null) {
+                    if ( get_field( 'contact_phone_mike', 'options' ) ?? null ) {
                         ?>
                     <li class="mb-3"><span class="fa-li"><i class="fa-solid fa-phone"></i></span>
                         <strong>Mike:</strong>
-                        <?=do_shortcode('[contact_phone_mike]')?>
+                        <?= wp_kses_post( do_shortcode( '[contact_phone_mike]' ) ); ?>
                     </li>
-                    <?php
+                        <?php
                     }
-                        if (get_field('contact_phone_jenn', 'options') ?? null) {
-                            ?>
+                    if ( get_field( 'contact_phone_jenn', 'options' ) ?? null ) {
+                        ?>
                     <li class="mb-3"><span class="fa-li"><i class="fa-solid fa-phone"></i></span>
                         <strong>Jenn:</strong>
-                        <?=do_shortcode('[contact_phone_jenn]')?>
+                        <?= wp_kses_post( do_shortcode( '[contact_phone_jenn]' ) ); ?>
                     </li>
-                    <?php
-                        }
-                        ?>
+                        <?php
+                    }
+                    ?>
                 </ul>
                 <h3 class="headline">Connect</h3>
                 <div class="mb-4">Find us on social media</div>
                 <div class="social-icons">
-                    <?=do_shortcode('[social_icons]')?>
+                    <?= do_shortcode( '[social_icons]' ); ?>
                 </div>
             </div>
             <div class="col-md-6" data-aos="fade">
                 <h3 class="headline">Get in touch</h3>
-                <?=do_shortcode('[contact-form-7 id="39258bf" title="Contact form 1"]')?>
+                <?= do_shortcode( '[contact-form-7 id="39258bf" title="Contact form 1"]' ); ?>
             </div>
         </div>
     </div>

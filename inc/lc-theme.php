@@ -68,6 +68,49 @@ function widgets_init()
     unregister_sidebar('right-sidebar');
     unregister_sidebar('footerfull');
     unregister_nav_menu('primary');
+
+    add_theme_support('disable-custom-colors');
+    add_theme_support(
+        'editor-color-palette',
+        array(
+            array(
+                'name'  => 'Guided Walks',
+                'slug'  => 'guided-walks',
+                'color' => '#C75B39',
+            ),
+            array(
+                'name'  => 'Group Tours',
+                'slug'  => 'group-tours',
+                'color' => '#287C7A',
+            ),
+            array(
+                'name'  => 'Multi-Day Hikes',
+                'slug'  => 'multi-day-hikes',
+                'color' => '#2A3D66',
+            ),
+            array(
+                'name'  => 'Challenge Events',
+                'slug'  => 'challenge-events',
+                'color' => '#B02E2E',
+            ),
+            array(
+                'name'  => "Women's Wellness Walks",
+                'slug'  => 'womens-wellness-walks',
+                'color' => '#A890C5',
+            ),
+            array(
+                'name'  => 'Community Events',
+                'slug'  => 'community-events',
+                'color' => '#FF6B4A',
+            ),
+            array(
+                'name'  => 'Dark',
+                'slug'  => 'dark',
+                'color' => '#333333',
+            ),
+        )
+    );
+
 }
 add_action('widgets_init', 'widgets_init', 11);
 

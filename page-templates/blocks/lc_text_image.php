@@ -1,78 +1,85 @@
 <?php
-$txtcol = get_field('order') == 'text' ? 'order-2 order-md-1' : 'order-2 order-md-2';
-$imgcol = get_field('order') == 'text' ? 'order-1 order-md-2' : 'order-1 order-md-1';
+/**
+ * Text + Image component
+ *
+ * @package lc-mjoa2024
+ */
 
-$txtanim = get_field('order') == 'text' ? 'fade-right' : 'fade-left';
-$imganim = get_field('order') == 'text' ? 'fade-left' : 'fade-right';
+defined( 'ABSPATH' ) || exit;
+
+$txtcol = 'text' === get_field( 'order' ) ? 'order-2 order-md-1' : 'order-2 order-md-2';
+$imgcol = 'text' === get_field( 'order' ) ? 'order-1 order-md-2' : 'order-1 order-md-1';
+
+$txtanim = 'text' === get_field( 'order' ) ? 'fade-right' : 'fade-left';
+$imganim = 'text' === get_field( 'order' ) ? 'fade-left' : 'fade-right';
 
 $txtanim = 'fade';
 $imganim = 'fade';
 
-$polaroid = get_field('polaroid') ?? null;
+$polaroid = get_field( 'polaroid' ) ?? null;
 
 $classes = $block['className'] ?? 'py-5';
 
 ?>
-<section class="text_image mx-4 <?=$classes?>">
+<section class="text_image mx-4 <?= esc_attr( $classes ); ?>">
     <div class="container-xl">
         <?php
-        if (get_field('title') ?? null) {
+        if ( get_field( 'title' ) ?? null ) {
             ?>
         <div class="h2 text-center d-md-none headline mb-5" data-aos="fade">
-            <?=get_field('title')?>
+            <?= esc_html( get_field( 'title' ) ); ?>
         </div>
-        <?php
+            <?php
         }
-?>
+        ?>
         <div class="row g-4">
-            <div class="col-md-8 <?=$txtcol?> d-flex flex-column justify-content-center"
-                data-aos="<?=$txtanim?>">
-                <?php
-        if (get_field('title') ?? null) {
+            <div class="col-md-8 <?= esc_attr( $txtcol ); ?> d-flex flex-column justify-content-center"
+                data-aos="<?= esc_attr( $txtanim ); ?>">
+        <?php
+        if ( get_field( 'title' ) ?? null ) {
             ?>
                 <h2 class="d-none d-md-block h2 headline">
-                    <?=get_field('title')?>
+                    <?= esc_html( get_field( 'title' ) ); ?>
                 </h2>
                 <?php
         }
-?>
-                <div><?=get_field('content')?>
+        ?>
+                <div><?= esc_html( get_field( 'content' ) ); ?>
                 </div>
-                <?php
-if (get_field('link') ?? null) {
-    $l = get_field('link');
-    ?>
-                <a href="<?=$l['url']?>"
-                    target="<?=$l['target']?>"
-                    class="mt-4 btn btn-primary text-center align-self-center align-self-md-start"><?=$l['title']?></a>
-                <?php
-}
-?>
+        <?php
+        if ( get_field( 'link' ) ?? null ) {
+            $l = get_field( 'link' );
+            ?>
+                <a href="<?= esc_url( $l['url'] ); ?>"
+                    target="<?= esc_attr( $l['target'] ); ?>"
+                    class="mt-4 btn btn-primary text-center align-self-center align-self-md-start"><?= esc_html( $l['title'] ); ?></a>
+            <?php
+        }
+        ?>
             </div>
-            <div class="col-md-4 <?=$imgcol?> d-flex align-items-center mb-4"
-                data-aos="<?=$imganim?>">
-                <?php
-                if ($polaroid) {
-
-                    ?>
+            <div class="col-md-4 <?= esc_attr( $imgcol ); ?> d-flex align-items-center mb-4"
+                data-aos="<?= esc_attr( $imganim ); ?>">
+        <?php
+        if ( $polaroid ) {
+            ?>
                 <div class="polaroid mx-auto">
                     <div class="polaroid__image">
-                        <img src="<?=wp_get_attachment_image_url(get_field('image'), 'large')?>"
-                            alt="<?=get_field('caption')?>">
+                        <img src="<?= esc_url( wp_get_attachment_image_url( get_field( 'image' ), 'large' ) ); ?>"
+                            alt="<?= esc_attr( get_field( 'caption' ) ); ?>">
                     </div>
                     <div class="polaroid__title">
-                        <?=get_field('caption')?>
+                        <?= esc_html( get_field( 'caption' ) ); ?>
                     </div>
                 </div>
-                <?php
-                } else {
-                    ?>
-                <img src="<?=wp_get_attachment_image_url(get_field('image'), 'large')?>"
-                    alt="<?=get_field('title')?>"
+            <?php
+        } else {
+            ?>
+                <img src="<?= esc_url( wp_get_attachment_image_url( get_field( 'image' ), 'large' ) ); ?>"
+                    alt="<?= esc_attr( get_field( 'title' ) ); ?>"
                     class="feature__img mx-auto">
-                <?php
-                }
-?>
+            <?php
+        }
+        ?>
             </div>
         </div>
     </div>

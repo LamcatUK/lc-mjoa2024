@@ -10,14 +10,20 @@
   --col-green-200: hsl(var(--hsl-green-200));
   --hsl-green-100: 70 46% 88%;
   --col-green-100: hsl(var(--hsl-green-100));
-  --col-polaroid: #F7F1E7;
-  --col-light: #EDE8DC;
-  --col-dark: #3D4237;
-  --col-accent: #FFB501;
+  --col-polaroid: #f7f1e7;
+  --col-light: #ede8dc;
+  --col-dark: #3d4237;
+  --col-accent: #ffb501;
+  --col-guided-walks: #c75b39;
+  --col-group-tours: #287c7a;
+  --col-multi-day-hikes: #2a3d66;
+  --col-challenge-events: #b02e2e;
+  --col-womens-wellness-walks: #a890c5;
+  --col-community-events: #ff6b4a;
   --fs-100: 0.64rem;
   --fs-200: 0.8rem;
-  --fs-300: 0.90rem;
-  --fs-400: 1.00rem;
+  --fs-300: 0.9rem;
+  --fs-400: 1rem;
   --fs-500: 1.2rem;
   --fs-600: 1.56rem;
   --fs-700: 2.4rem;
@@ -26,16 +32,20 @@
   --fw-600: 400;
   --fw-900: 700;
   --ff-hand: "Shelby";
-  --ff-body: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  --ff-headings: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  --ff-headlines: "Gagalin", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-body: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-headings: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-headlines: "Gagalin", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   --transition: 200ms ease-out;
   --shadow-0: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
   --shadow-bottom: 0 3px 5px -5px #00000080;
   --shadow-in-2: 0 1px 2px #00000080;
   --shadow-in: 0 3px 5px #00000080;
-  --shadow-out:0 10px 20px #00000080;
-  --filter-shadow-1: drop-shadow(0 1px 3px rgba(0,0,0,.12)) drop-shadow(0 1px 2px rgba(0,0,0,.24));
+  --shadow-out: 0 10px 20px #00000080;
+  --filter-shadow-1: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.24));
   --h-top: 80px;
   --footer-img: 96px;
 }
@@ -2373,10 +2383,10 @@ textarea.form-control-lg {
 .btn-check[disabled] + .btn, .place-order .btn-check[disabled] + button,
 .wc-proceed-to-checkout .btn-check[disabled] + a,
 .btn-check[disabled] + .btn-outline-primary,
-.btn-check[disabled] + .add_to_cart_button, .btn-check:disabled + .btn, .place-order .btn-check:disabled + button,
+.btn-check[disabled] + .add_to_cart_button, .fc .btn-check[disabled] + .fc-button-primary, .btn-check:disabled + .btn, .place-order .btn-check:disabled + button,
 .wc-proceed-to-checkout .btn-check:disabled + a,
 .btn-check:disabled + .btn-outline-primary,
-.btn-check:disabled + .add_to_cart_button {
+.btn-check:disabled + .add_to_cart_button, .fc .btn-check:disabled + .fc-button-primary {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2575,7 +2585,7 @@ textarea.form-control-lg {
 .input-group .wc-proceed-to-checkout a,
 .wc-proceed-to-checkout .input-group a,
 .input-group .btn-outline-primary,
-.input-group .add_to_cart_button {
+.input-group .add_to_cart_button, .input-group .fc .fc-button-primary, .fc .input-group .fc-button-primary {
   position: relative;
   z-index: 2;
 }
@@ -2583,7 +2593,7 @@ textarea.form-control-lg {
 .input-group .wc-proceed-to-checkout a:focus,
 .wc-proceed-to-checkout .input-group a:focus,
 .input-group .btn-outline-primary:focus,
-.input-group .add_to_cart_button:focus {
+.input-group .add_to_cart_button:focus, .input-group .fc .fc-button-primary:focus, .fc .input-group .fc-button-primary:focus {
   z-index: 5;
 }
 
@@ -2609,7 +2619,8 @@ textarea.form-control-lg {
 .place-order .input-group-lg > button,
 .wc-proceed-to-checkout .input-group-lg > a,
 .input-group-lg > .btn-outline-primary,
-.input-group-lg > .add_to_cart_button {
+.input-group-lg > .add_to_cart_button,
+.fc .input-group-lg > .fc-button-primary {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.5rem;
@@ -2622,7 +2633,8 @@ textarea.form-control-lg {
 .place-order .input-group-sm > button,
 .wc-proceed-to-checkout .input-group-sm > a,
 .input-group-sm > .btn-outline-primary,
-.input-group-sm > .add_to_cart_button {
+.input-group-sm > .add_to_cart_button,
+.fc .input-group-sm > .fc-button-primary {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.25rem;
@@ -2841,7 +2853,7 @@ textarea.form-control-lg {
 .btn, .place-order button,
 .wc-proceed-to-checkout a,
 .btn-outline-primary,
-.add_to_cart_button {
+.add_to_cart_button, .fc .fc-button-primary {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
   --bs-btn-font-family: ;
@@ -2880,14 +2892,14 @@ textarea.form-control-lg {
   .btn, .place-order button,
   .wc-proceed-to-checkout a,
   .btn-outline-primary,
-  .add_to_cart_button {
+  .add_to_cart_button, .fc .fc-button-primary {
     transition: none;
   }
 }
 .btn:hover, .place-order button:hover,
 .wc-proceed-to-checkout a:hover,
 .btn-outline-primary:hover,
-.add_to_cart_button:hover {
+.add_to_cart_button:hover, .fc .fc-button-primary:hover {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
@@ -2895,7 +2907,7 @@ textarea.form-control-lg {
 .btn-check + .btn:hover, .place-order .btn-check + button:hover,
 .wc-proceed-to-checkout .btn-check + a:hover,
 .btn-check + .btn-outline-primary:hover,
-.btn-check + .add_to_cart_button:hover {
+.btn-check + .add_to_cart_button:hover, .fc .btn-check + .fc-button-primary:hover {
   color: var(--bs-btn-color);
   background-color: var(--bs-btn-bg);
   border-color: var(--bs-btn-border-color);
@@ -2903,7 +2915,7 @@ textarea.form-control-lg {
 .btn:focus-visible, .place-order button:focus-visible,
 .wc-proceed-to-checkout a:focus-visible,
 .btn-outline-primary:focus-visible,
-.add_to_cart_button:focus-visible {
+.add_to_cart_button:focus-visible, .fc .fc-button-primary:focus-visible {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
   border-color: var(--bs-btn-hover-border-color);
@@ -2913,7 +2925,7 @@ textarea.form-control-lg {
 .btn-check:focus-visible + .btn, .place-order .btn-check:focus-visible + button,
 .wc-proceed-to-checkout .btn-check:focus-visible + a,
 .btn-check:focus-visible + .btn-outline-primary,
-.btn-check:focus-visible + .add_to_cart_button {
+.btn-check:focus-visible + .add_to_cart_button, .fc .btn-check:focus-visible + .fc-button-primary {
   border-color: var(--bs-btn-hover-border-color);
   outline: 0;
   box-shadow: var(--bs-btn-focus-box-shadow);
@@ -2921,19 +2933,19 @@ textarea.form-control-lg {
 .btn-check:checked + .btn, .place-order .btn-check:checked + button,
 .wc-proceed-to-checkout .btn-check:checked + a,
 .btn-check:checked + .btn-outline-primary,
-.btn-check:checked + .add_to_cart_button, :not(.btn-check) + .btn:active, .place-order :not(.btn-check) + button:active,
+.btn-check:checked + .add_to_cart_button, .fc .btn-check:checked + .fc-button-primary, :not(.btn-check) + .btn:active, .place-order :not(.btn-check) + button:active,
 .wc-proceed-to-checkout :not(.btn-check) + a:active,
 :not(.btn-check) + .btn-outline-primary:active,
-:not(.btn-check) + .add_to_cart_button:active, .btn:first-child:active, .place-order button:first-child:active,
+:not(.btn-check) + .add_to_cart_button:active, .fc :not(.btn-check) + .fc-button-primary:active, .btn:first-child:active, .place-order button:first-child:active,
 .wc-proceed-to-checkout a:first-child:active,
 .btn-outline-primary:first-child:active,
-.add_to_cart_button:first-child:active, .btn.active, .place-order button.active,
+.add_to_cart_button:first-child:active, .fc .fc-button-primary:first-child:active, .btn.active, .place-order button.active,
 .wc-proceed-to-checkout a.active,
 .active.btn-outline-primary,
-.active.add_to_cart_button, .btn.show, .place-order button.show,
+.active.add_to_cart_button, .fc .active.fc-button-primary, .btn.show, .place-order button.show,
 .wc-proceed-to-checkout a.show,
 .show.btn-outline-primary,
-.show.add_to_cart_button {
+.show.add_to_cart_button, .fc .show.fc-button-primary {
   color: var(--bs-btn-active-color);
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
@@ -2941,32 +2953,32 @@ textarea.form-control-lg {
 .btn-check:checked + .btn:focus-visible, .place-order .btn-check:checked + button:focus-visible,
 .wc-proceed-to-checkout .btn-check:checked + a:focus-visible,
 .btn-check:checked + .btn-outline-primary:focus-visible,
-.btn-check:checked + .add_to_cart_button:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .place-order :not(.btn-check) + button:active:focus-visible,
+.btn-check:checked + .add_to_cart_button:focus-visible, .fc .btn-check:checked + .fc-button-primary:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .place-order :not(.btn-check) + button:active:focus-visible,
 .wc-proceed-to-checkout :not(.btn-check) + a:active:focus-visible,
 :not(.btn-check) + .btn-outline-primary:active:focus-visible,
-:not(.btn-check) + .add_to_cart_button:active:focus-visible, .btn:first-child:active:focus-visible, .place-order button:first-child:active:focus-visible,
+:not(.btn-check) + .add_to_cart_button:active:focus-visible, .fc :not(.btn-check) + .fc-button-primary:active:focus-visible, .btn:first-child:active:focus-visible, .place-order button:first-child:active:focus-visible,
 .wc-proceed-to-checkout a:first-child:active:focus-visible,
 .btn-outline-primary:first-child:active:focus-visible,
-.add_to_cart_button:first-child:active:focus-visible, .btn.active:focus-visible, .place-order button.active:focus-visible,
+.add_to_cart_button:first-child:active:focus-visible, .fc .fc-button-primary:first-child:active:focus-visible, .btn.active:focus-visible, .place-order button.active:focus-visible,
 .wc-proceed-to-checkout a.active:focus-visible,
 .active.btn-outline-primary:focus-visible,
-.active.add_to_cart_button:focus-visible, .btn.show:focus-visible, .place-order button.show:focus-visible,
+.active.add_to_cart_button:focus-visible, .fc .active.fc-button-primary:focus-visible, .btn.show:focus-visible, .place-order button.show:focus-visible,
 .wc-proceed-to-checkout a.show:focus-visible,
 .show.btn-outline-primary:focus-visible,
-.show.add_to_cart_button:focus-visible {
+.show.add_to_cart_button:focus-visible, .fc .show.fc-button-primary:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
 .btn:disabled, .place-order button:disabled,
 .wc-proceed-to-checkout a:disabled,
 .btn-outline-primary:disabled,
-.add_to_cart_button:disabled, .btn.disabled, .place-order button.disabled,
+.add_to_cart_button:disabled, .fc .fc-button-primary:disabled, .btn.disabled, .place-order button.disabled,
 .wc-proceed-to-checkout a.disabled,
 .disabled.btn-outline-primary,
-.disabled.add_to_cart_button, fieldset:disabled .btn, fieldset:disabled .place-order button, .place-order fieldset:disabled button,
+.disabled.add_to_cart_button, .fc .disabled.fc-button-primary, fieldset:disabled .btn, fieldset:disabled .place-order button, .place-order fieldset:disabled button,
 fieldset:disabled .wc-proceed-to-checkout a,
 .wc-proceed-to-checkout fieldset:disabled a,
 fieldset:disabled .btn-outline-primary,
-fieldset:disabled .add_to_cart_button {
+fieldset:disabled .add_to_cart_button, fieldset:disabled .fc .fc-button-primary, .fc fieldset:disabled .fc-button-primary {
   color: var(--bs-btn-disabled-color);
   pointer-events: none;
   background-color: var(--bs-btn-disabled-bg);
@@ -2974,7 +2986,7 @@ fieldset:disabled .add_to_cart_button {
   opacity: var(--bs-btn-disabled-opacity);
 }
 
-.btn-primary {
+.btn-primary, .fc .fc-button-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #000000;
   --bs-btn-border-color: #000000;
@@ -3271,7 +3283,7 @@ fieldset:disabled .add_to_cart_button {
 .btn-lg, .btn-group-lg > .btn, .place-order .btn-group-lg > button,
 .wc-proceed-to-checkout .btn-group-lg > a,
 .btn-group-lg > .btn-outline-primary,
-.btn-group-lg > .add_to_cart_button {
+.btn-group-lg > .add_to_cart_button, .fc .btn-group-lg > .fc-button-primary {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 1rem;
   --bs-btn-font-size: 1.25rem;
@@ -3281,7 +3293,7 @@ fieldset:disabled .add_to_cart_button {
 .btn-sm, .btn-group-sm > .btn, .place-order .btn-group-sm > button,
 .wc-proceed-to-checkout .btn-group-sm > a,
 .btn-group-sm > .btn-outline-primary,
-.btn-group-sm > .add_to_cart_button {
+.btn-group-sm > .add_to_cart_button, .fc .btn-group-sm > .fc-button-primary {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.875rem;
@@ -3650,74 +3662,86 @@ fieldset:disabled .add_to_cart_button {
 .btn-group > .btn, .place-order .btn-group > button,
 .wc-proceed-to-checkout .btn-group > a,
 .btn-group > .btn-outline-primary,
-.btn-group > .add_to_cart_button,
+.btn-group > .add_to_cart_button, .fc .btn-group > .fc-button-primary,
 .btn-group-vertical > .btn,
 .place-order .btn-group-vertical > button,
 .wc-proceed-to-checkout .btn-group-vertical > a,
 .btn-group-vertical > .btn-outline-primary,
-.btn-group-vertical > .add_to_cart_button {
+.btn-group-vertical > .add_to_cart_button,
+.fc .btn-group-vertical > .fc-button-primary {
   position: relative;
   flex: 1 1 auto;
 }
 .btn-group > .btn-check:checked + .btn, .place-order .btn-group > .btn-check:checked + button,
 .wc-proceed-to-checkout .btn-group > .btn-check:checked + a,
 .btn-group > .btn-check:checked + .btn-outline-primary,
-.btn-group > .btn-check:checked + .add_to_cart_button,
+.btn-group > .btn-check:checked + .add_to_cart_button, .fc .btn-group > .btn-check:checked + .fc-button-primary,
 .btn-group > .btn-check:focus + .btn,
 .place-order .btn-group > .btn-check:focus + button,
 .wc-proceed-to-checkout .btn-group > .btn-check:focus + a,
 .btn-group > .btn-check:focus + .btn-outline-primary,
 .btn-group > .btn-check:focus + .add_to_cart_button,
+.fc .btn-group > .btn-check:focus + .fc-button-primary,
 .btn-group > .btn:hover,
 .place-order .btn-group > button:hover,
 .wc-proceed-to-checkout .btn-group > a:hover,
 .btn-group > .btn-outline-primary:hover,
 .btn-group > .add_to_cart_button:hover,
+.fc .btn-group > .fc-button-primary:hover,
 .btn-group > .btn:focus,
 .place-order .btn-group > button:focus,
 .wc-proceed-to-checkout .btn-group > a:focus,
 .btn-group > .btn-outline-primary:focus,
 .btn-group > .add_to_cart_button:focus,
+.fc .btn-group > .fc-button-primary:focus,
 .btn-group > .btn:active,
 .place-order .btn-group > button:active,
 .wc-proceed-to-checkout .btn-group > a:active,
 .btn-group > .btn-outline-primary:active,
 .btn-group > .add_to_cart_button:active,
+.fc .btn-group > .fc-button-primary:active,
 .btn-group > .btn.active,
 .place-order .btn-group > button.active,
 .wc-proceed-to-checkout .btn-group > a.active,
 .btn-group > .active.btn-outline-primary,
 .btn-group > .active.add_to_cart_button,
+.fc .btn-group > .active.fc-button-primary,
 .btn-group-vertical > .btn-check:checked + .btn,
 .place-order .btn-group-vertical > .btn-check:checked + button,
 .wc-proceed-to-checkout .btn-group-vertical > .btn-check:checked + a,
 .btn-group-vertical > .btn-check:checked + .btn-outline-primary,
 .btn-group-vertical > .btn-check:checked + .add_to_cart_button,
+.fc .btn-group-vertical > .btn-check:checked + .fc-button-primary,
 .btn-group-vertical > .btn-check:focus + .btn,
 .place-order .btn-group-vertical > .btn-check:focus + button,
 .wc-proceed-to-checkout .btn-group-vertical > .btn-check:focus + a,
 .btn-group-vertical > .btn-check:focus + .btn-outline-primary,
 .btn-group-vertical > .btn-check:focus + .add_to_cart_button,
+.fc .btn-group-vertical > .btn-check:focus + .fc-button-primary,
 .btn-group-vertical > .btn:hover,
 .place-order .btn-group-vertical > button:hover,
 .wc-proceed-to-checkout .btn-group-vertical > a:hover,
 .btn-group-vertical > .btn-outline-primary:hover,
 .btn-group-vertical > .add_to_cart_button:hover,
+.fc .btn-group-vertical > .fc-button-primary:hover,
 .btn-group-vertical > .btn:focus,
 .place-order .btn-group-vertical > button:focus,
 .wc-proceed-to-checkout .btn-group-vertical > a:focus,
 .btn-group-vertical > .btn-outline-primary:focus,
 .btn-group-vertical > .add_to_cart_button:focus,
+.fc .btn-group-vertical > .fc-button-primary:focus,
 .btn-group-vertical > .btn:active,
 .place-order .btn-group-vertical > button:active,
 .wc-proceed-to-checkout .btn-group-vertical > a:active,
 .btn-group-vertical > .btn-outline-primary:active,
 .btn-group-vertical > .add_to_cart_button:active,
+.fc .btn-group-vertical > .fc-button-primary:active,
 .btn-group-vertical > .btn.active,
 .place-order .btn-group-vertical > button.active,
 .wc-proceed-to-checkout .btn-group-vertical > a.active,
 .btn-group-vertical > .active.btn-outline-primary,
-.btn-group-vertical > .active.add_to_cart_button {
+.btn-group-vertical > .active.add_to_cart_button,
+.fc .btn-group-vertical > .active.fc-button-primary {
   z-index: 1;
 }
 
@@ -3736,41 +3760,45 @@ fieldset:disabled .add_to_cart_button {
 .btn-group > :not(.btn-check:first-child) + .btn, .place-order .btn-group > :not(.btn-check:first-child) + button,
 .wc-proceed-to-checkout .btn-group > :not(.btn-check:first-child) + a,
 .btn-group > :not(.btn-check:first-child) + .btn-outline-primary,
-.btn-group > :not(.btn-check:first-child) + .add_to_cart_button,
+.btn-group > :not(.btn-check:first-child) + .add_to_cart_button, .fc .btn-group > :not(.btn-check:first-child) + .fc-button-primary,
 .btn-group > .btn-group:not(:first-child) {
   margin-left: -1px;
 }
 .btn-group > .btn:not(:last-child):not(.dropdown-toggle), .place-order .btn-group > button:not(:last-child):not(.dropdown-toggle),
 .wc-proceed-to-checkout .btn-group > a:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-outline-primary:not(:last-child):not(.dropdown-toggle),
-.btn-group > .add_to_cart_button:not(:last-child):not(.dropdown-toggle),
+.btn-group > .add_to_cart_button:not(:last-child):not(.dropdown-toggle), .fc .btn-group > .fc-button-primary:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn.dropdown-toggle-split:first-child,
 .place-order .btn-group > button.dropdown-toggle-split:first-child,
 .wc-proceed-to-checkout .btn-group > a.dropdown-toggle-split:first-child,
 .btn-group > .dropdown-toggle-split.btn-outline-primary:first-child,
 .btn-group > .dropdown-toggle-split.add_to_cart_button:first-child,
+.fc .btn-group > .dropdown-toggle-split.fc-button-primary:first-child,
 .btn-group > .btn-group:not(:last-child) > .btn,
 .place-order .btn-group > .btn-group:not(:last-child) > button,
 .wc-proceed-to-checkout .btn-group > .btn-group:not(:last-child) > a,
 .btn-group > .btn-group:not(:last-child) > .btn-outline-primary,
-.btn-group > .btn-group:not(:last-child) > .add_to_cart_button {
+.btn-group > .btn-group:not(:last-child) > .add_to_cart_button,
+.fc .btn-group > .btn-group:not(:last-child) > .fc-button-primary {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 .btn-group > .btn:nth-child(n+3), .place-order .btn-group > button:nth-child(n+3),
 .wc-proceed-to-checkout .btn-group > a:nth-child(n+3),
 .btn-group > .btn-outline-primary:nth-child(n+3),
-.btn-group > .add_to_cart_button:nth-child(n+3),
+.btn-group > .add_to_cart_button:nth-child(n+3), .fc .btn-group > .fc-button-primary:nth-child(n+3),
 .btn-group > :not(.btn-check) + .btn,
 .place-order .btn-group > :not(.btn-check) + button,
 .wc-proceed-to-checkout .btn-group > :not(.btn-check) + a,
 .btn-group > :not(.btn-check) + .btn-outline-primary,
 .btn-group > :not(.btn-check) + .add_to_cart_button,
+.fc .btn-group > :not(.btn-check) + .fc-button-primary,
 .btn-group > .btn-group:not(:first-child) > .btn,
 .place-order .btn-group > .btn-group:not(:first-child) > button,
 .wc-proceed-to-checkout .btn-group > .btn-group:not(:first-child) > a,
 .btn-group > .btn-group:not(:first-child) > .btn-outline-primary,
-.btn-group > .btn-group:not(:first-child) > .add_to_cart_button {
+.btn-group > .btn-group:not(:first-child) > .add_to_cart_button,
+.fc .btn-group > .btn-group:not(:first-child) > .fc-button-primary {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -3789,7 +3817,7 @@ fieldset:disabled .add_to_cart_button {
 .btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .place-order .btn-group-sm > button + .dropdown-toggle-split,
 .wc-proceed-to-checkout .btn-group-sm > a + .dropdown-toggle-split,
 .btn-group-sm > .btn-outline-primary + .dropdown-toggle-split,
-.btn-group-sm > .add_to_cart_button + .dropdown-toggle-split {
+.btn-group-sm > .add_to_cart_button + .dropdown-toggle-split, .fc .btn-group-sm > .fc-button-primary + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
@@ -3797,7 +3825,7 @@ fieldset:disabled .add_to_cart_button {
 .btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .place-order .btn-group-lg > button + .dropdown-toggle-split,
 .wc-proceed-to-checkout .btn-group-lg > a + .dropdown-toggle-split,
 .btn-group-lg > .btn-outline-primary + .dropdown-toggle-split,
-.btn-group-lg > .add_to_cart_button + .dropdown-toggle-split {
+.btn-group-lg > .add_to_cart_button + .dropdown-toggle-split, .fc .btn-group-lg > .fc-button-primary + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -3810,26 +3838,27 @@ fieldset:disabled .add_to_cart_button {
 .btn-group-vertical > .btn, .place-order .btn-group-vertical > button,
 .wc-proceed-to-checkout .btn-group-vertical > a,
 .btn-group-vertical > .btn-outline-primary,
-.btn-group-vertical > .add_to_cart_button,
+.btn-group-vertical > .add_to_cart_button, .fc .btn-group-vertical > .fc-button-primary,
 .btn-group-vertical > .btn-group {
   width: 100%;
 }
 .btn-group-vertical > .btn:not(:first-child), .place-order .btn-group-vertical > button:not(:first-child),
 .wc-proceed-to-checkout .btn-group-vertical > a:not(:first-child),
 .btn-group-vertical > .btn-outline-primary:not(:first-child),
-.btn-group-vertical > .add_to_cart_button:not(:first-child),
+.btn-group-vertical > .add_to_cart_button:not(:first-child), .fc .btn-group-vertical > .fc-button-primary:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: -1px;
 }
 .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .place-order .btn-group-vertical > button:not(:last-child):not(.dropdown-toggle),
 .wc-proceed-to-checkout .btn-group-vertical > a:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-outline-primary:not(:last-child):not(.dropdown-toggle),
-.btn-group-vertical > .add_to_cart_button:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .add_to_cart_button:not(:last-child):not(.dropdown-toggle), .fc .btn-group-vertical > .fc-button-primary:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-group:not(:last-child) > .btn,
 .place-order .btn-group-vertical > .btn-group:not(:last-child) > button,
 .wc-proceed-to-checkout .btn-group-vertical > .btn-group:not(:last-child) > a,
 .btn-group-vertical > .btn-group:not(:last-child) > .btn-outline-primary,
-.btn-group-vertical > .btn-group:not(:last-child) > .add_to_cart_button {
+.btn-group-vertical > .btn-group:not(:last-child) > .add_to_cart_button,
+.fc .btn-group-vertical > .btn-group:not(:last-child) > .fc-button-primary {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -3856,12 +3885,21 @@ fieldset:disabled .add_to_cart_button {
 .place-order .btn-group-vertical > button ~ .add_to_cart_button,
 .wc-proceed-to-checkout .btn-group-vertical > a ~ .add_to_cart_button,
 .btn-group-vertical > .btn-outline-primary ~ .add_to_cart_button,
-.btn-group-vertical > .add_to_cart_button ~ .add_to_cart_button,
+.btn-group-vertical > .add_to_cart_button ~ .add_to_cart_button, .fc .btn-group-vertical > .fc-button-primary ~ .btn, .fc .place-order .btn-group-vertical > .fc-button-primary ~ button, .place-order .fc .btn-group-vertical > .fc-button-primary ~ button,
+.fc .wc-proceed-to-checkout .btn-group-vertical > .fc-button-primary ~ a,
+.wc-proceed-to-checkout .fc .btn-group-vertical > .fc-button-primary ~ a,
+.fc .btn-group-vertical > .fc-button-primary ~ .btn-outline-primary,
+.fc .btn-group-vertical > .fc-button-primary ~ .add_to_cart_button, .fc .btn-group-vertical > .btn ~ .fc-button-primary, .fc .place-order .btn-group-vertical > button ~ .fc-button-primary, .place-order .fc .btn-group-vertical > button ~ .fc-button-primary,
+.fc .wc-proceed-to-checkout .btn-group-vertical > a ~ .fc-button-primary,
+.wc-proceed-to-checkout .fc .btn-group-vertical > a ~ .fc-button-primary,
+.fc .btn-group-vertical > .btn-outline-primary ~ .fc-button-primary,
+.fc .btn-group-vertical > .add_to_cart_button ~ .fc-button-primary, .fc .btn-group-vertical > .fc-button-primary ~ .fc-button-primary,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn,
 .place-order .btn-group-vertical > .btn-group:not(:first-child) > button,
 .wc-proceed-to-checkout .btn-group-vertical > .btn-group:not(:first-child) > a,
 .btn-group-vertical > .btn-group:not(:first-child) > .btn-outline-primary,
-.btn-group-vertical > .btn-group:not(:first-child) > .add_to_cart_button {
+.btn-group-vertical > .btn-group:not(:first-child) > .add_to_cart_button,
+.fc .btn-group-vertical > .btn-group:not(:first-child) > .fc-button-primary {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -4878,7 +4916,7 @@ fieldset:disabled .add_to_cart_button {
 .btn .badge, .place-order button .badge,
 .wc-proceed-to-checkout a .badge,
 .btn-outline-primary .badge,
-.add_to_cart_button .badge {
+.add_to_cart_button .badge, .fc .fc-button-primary .badge {
   position: relative;
   top: -1px;
 }
@@ -6876,7 +6914,7 @@ fieldset:disabled .add_to_cart_button {
 .placeholder.btn::before, .place-order button.placeholder::before,
 .wc-proceed-to-checkout a.placeholder::before,
 .placeholder.btn-outline-primary::before,
-.placeholder.add_to_cart_button::before {
+.placeholder.add_to_cart_button::before, .fc .placeholder.fc-button-primary::before {
   display: inline-block;
   content: "";
 }
@@ -22472,7 +22510,7 @@ footer .current_page_item a {
 .btn, .place-order button,
 .wc-proceed-to-checkout a,
 .btn-outline-primary,
-.add_to_cart_button {
+.add_to_cart_button, .fc .fc-button-primary {
   border-radius: 100vw;
   border-width: 2px;
   align-self: flex-start;
@@ -22484,18 +22522,27 @@ footer .current_page_item a {
   transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
 }
 
-.btn-primary {
+.btn-primary, .fc .fc-button-primary {
   background-color: var(--col-accent);
   border-color: color-mix(in srgb, var(--col-accent), #000 20%);
   box-shadow: var(--shadow-out);
   color: var(--col-brown-400);
 }
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus-visible {
+.btn-primary:hover, .fc .fc-button-primary:hover, .btn-primary:active, .fc .fc-button-primary:active, .btn-primary:focus-visible, .fc .fc-button-primary:focus-visible {
   color: var(--col-brown-400);
   background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
   border-color: color-mix(in srgb, var(--col-accent), #000 20%);
   box-shadow: var(--shadow-in);
   transform: translateY(2px);
+}
+
+.fc .fc-button-primary {
+  font-size: var(--fs-100);
+  box-shadow: none;
+}
+.fc .fc-button-primary:hover {
+  box-shadow: none;
+  transform: translateY(0);
 }
 
 .btn-outline, .btn-previous, .btn-next {
@@ -23118,6 +23165,49 @@ a.woocommerce-terms-and-conditions-link {
   color: var(--col-accent);
 }
 
+.fc-h-event .fc-event-title {
+  display: block;
+  text-wrap: balance;
+  font-size: var(--fs-200);
+}
+
+@media (max-width: 991px) {
+  a.fc-event.fc-daygrid-event.fc-h-event {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+  }
+  a.fc-event.fc-daygrid-event.fc-h-event .fc-event-title {
+    display: none;
+  }
+}
+
+.fc-header-toolbar.fc-toolbar {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#collapseKey {
+  border: 1px solid var(--col-green-300);
+  border-radius: 0.25rem;
+  background-color: var(--col-polaroid);
+}
+
+.hikes-list__color-key {
+  padding: 0.5rem;
+  flex-basis: 100%;
+}
+@media (min-width: 576px) {
+  .hikes-list__color-key {
+    flex-basis: calc(50% - 1rem);
+  }
+}
+@media (min-width: 768px) {
+  .hikes-list__color-key {
+    flex-basis: calc(33% - 1rem);
+  }
+}
+
 .contact .social-icons {
   display: flex;
   gap: 2rem;
@@ -23345,6 +23435,40 @@ a > .polaroid:hover {
   left: 0;
   right: 0;
   z-index: 9999;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-family: var(--ff-headlines, inherit);
+}
+.pagination .page-numbers {
+  display: inline-block;
+  min-width: 2.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.25rem;
+  text-align: center;
+  font-family: var(--ff-headlines, inherit);
+  font-size: var(--fs-700);
+  color: var(--col-green-400, #222);
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.pagination .page-numbers:hover, .pagination .page-numbers:focus {
+  color: var(--col-accent, #f3e9e2);
+  outline: none;
+}
+.pagination .page-numbers.current {
+  color: var(--col-accent, #c75b39);
+  font-weight: bold;
+  cursor: default;
+  pointer-events: none;
+}
+.pagination .page-numbers.next, .pagination .page-numbers.prev {
+  font-weight: bold;
 }
 
 /*

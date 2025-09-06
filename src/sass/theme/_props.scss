@@ -3,62 +3,71 @@ $col-secondary: #0661ff;
 $col-highlight: #ff0000;
 
 :root {
+  --hsl-brown-400: 32 83% 23%; // #6B3E0A
+  --col-brown-400: hsl(var(--hsl-brown-400));
+  --hsl-green-400: 94 75% 22%; // #32620E
+  --col-green-400: hsl(var(--hsl-green-400));
+  --hsl-green-300: 101 29% 54%; // #7EAC69;
+  --col-green-300: hsl(var(--hsl-green-300));
+  --hsl-green-200: 64 53% 67%; //#D1D77E
+  --col-green-200: hsl(var(--hsl-green-200));
+  --hsl-green-100: 70 46% 88%; // #E9EED1
+  --col-green-100: hsl(var(--hsl-green-100));
 
-    --hsl-brown-400: 32 83% 23%; // #6B3E0A
-    --col-brown-400: hsl(var(--hsl-brown-400));
-    --hsl-green-400: 94 75% 22%; // #32620E
-    --col-green-400: hsl(var(--hsl-green-400));
-    --hsl-green-300: 101 29% 54%; // #7EAC69;
-    --col-green-300: hsl(var(--hsl-green-300));
-    --hsl-green-200: 64 53% 67%; //#D1D77E
-    --col-green-200: hsl(var(--hsl-green-200));
-    --hsl-green-100: 70 46% 88%; // #E9EED1
-    --col-green-100: hsl(var(--hsl-green-100));
+  --col-polaroid: #f7f1e7;
 
-    --col-polaroid: #F7F1E7;
+  --col-light: #ede8dc;
+  --col-dark: #3d4237;
 
-    --col-light: #EDE8DC;
-    --col-dark: #3D4237;
+  --col-accent: #ffb501;
 
-    --col-accent: #FFB501;
+  --col-guided-walks: #c75b39;
+  --col-group-tours: #287c7a;
+  --col-multi-day-hikes: #2a3d66;
+  --col-challenge-events: #b02e2e;
+  --col-womens-wellness-walks: #a890c5;
+  --col-community-events: #ff6b4a;
 
-    --fs-100: 0.64rem;
-    --fs-200: 0.8rem;
-    --fs-300: 0.90rem;
-    --fs-400: 1.00rem;
-    // --fs-450: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
-    --fs-500: 1.2rem;
-    // --fs-600: 1.33rem;
-    --fs-600: 1.56rem;
-    --fs-700: 2.4rem;
-    // --fs-800: clamp(2.44rem, calc(2.33rem + 0.53vw), 2.75rem);
-    // --fs-900: clamp(2.5rem, calc(2.44rem + 0.62vw), 5rem);
-    --fs-900: clamp(2.5rem, 0rem + 6.667vw, 3rem);
-    // --fs-900: 3rem;
+  --fs-100: 0.64rem;
+  --fs-200: 0.8rem;
+  --fs-300: 0.9rem;
+  --fs-400: 1rem;
+  // --fs-450: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --fs-500: 1.2rem;
+  // --fs-600: 1.33rem;
+  --fs-600: 1.56rem;
+  --fs-700: 2.4rem;
+  // --fs-800: clamp(2.44rem, calc(2.33rem + 0.53vw), 2.75rem);
+  // --fs-900: clamp(2.5rem, calc(2.44rem + 0.62vw), 5rem);
+  --fs-900: clamp(2.5rem, 0rem + 6.667vw, 3rem);
+  // --fs-900: 3rem;
 
-    --fw-400: 300;
-    --fw-600: 400;
-    --fw-900: 700;
+  --fw-400: 300;
+  --fw-600: 400;
+  --fw-900: 700;
 
-    --ff-hand: 'Shelby';
-    --ff-body: 'Lato', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    --ff-headings: 'Lato', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    --ff-headlines: 'Gagalin', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  --ff-hand: "Shelby";
+  --ff-body: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-headings: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-headlines: "Gagalin", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 
-    --transition: 200ms ease-out;
-        
-    --shadow-0: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px; // #40
-    // --shadow-in: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; // #37
-    --shadow-bottom: 0 3px 5px -5px #00000080;
-    --shadow-in-2: 0 1px 2px #00000080;
-    --shadow-in: 0 3px 5px #00000080;
-    // --shadow-out: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; // #38
-    // --shadow-out: rgba(0, 0, 0, 0.5) 0px 20px 25px -5px, rgba(0, 0, 0, 0.3) 0px 10px 10px -5px; // #38
-    --shadow-out:0 10px 20px #00000080;
-    // --shadow-2: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; // #39
-    --filter-shadow-1: drop-shadow(0 1px 3px rgba(0,0,0,.12)) drop-shadow(0 1px 2px rgba(0,0,0,.24));
+  --transition: 200ms ease-out;
 
-    --h-top: 80px;
-    --footer-img : 96px;
+  --shadow-0: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px; // #40
+  // --shadow-in: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; // #37
+  --shadow-bottom: 0 3px 5px -5px #00000080;
+  --shadow-in-2: 0 1px 2px #00000080;
+  --shadow-in: 0 3px 5px #00000080;
+  // --shadow-out: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; // #38
+  // --shadow-out: rgba(0, 0, 0, 0.5) 0px 20px 25px -5px, rgba(0, 0, 0, 0.3) 0px 10px 10px -5px; // #38
+  --shadow-out: 0 10px 20px #00000080;
+  // --shadow-2: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; // #39
+  --filter-shadow-1: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.24));
 
+  --h-top: 80px;
+  --footer-img: 96px;
 }

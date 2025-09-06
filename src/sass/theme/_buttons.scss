@@ -1,121 +1,139 @@
 .btn {
-    border-radius: 100vw;
-    border-width: 2px;
-    align-self: flex-start;
-    padding: 0.5rem 1.5rem;
-    font-weight: var(--fw-900);
-    font-family: var(--ff-headlines);
-    font-size: var(--fs-500);
-    letter-spacing: 1.2px;
-    transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+  border-radius: 100vw;
+  border-width: 2px;
+  align-self: flex-start;
+  padding: 0.5rem 1.5rem;
+  font-weight: var(--fw-900);
+  font-family: var(--ff-headlines);
+  font-size: var(--fs-500);
+  letter-spacing: 1.2px;
+  transition: transform var(--transition), background-color var(--transition),
+    box-shadow var(--transition);
 }
 .btn-primary {
-    background-color: var(--col-accent);
-    border-color: color-mix(in srgb, var(--col-accent), #000 20%);
-    box-shadow: var(--shadow-out);
+  background-color: var(--col-accent);
+  border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+  box-shadow: var(--shadow-out);
+  color: var(--col-brown-400);
+  &:hover,
+  &:active,
+  &:focus-visible {
     color: var(--col-brown-400);
-    &:hover, &:active, &:focus-visible {
-        color: var(--col-brown-400);
-        background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
-        border-color:  color-mix(in srgb, var(--col-accent), #000 20%);
-        box-shadow: var(--shadow-in);
-        transform: translateY(2px);
-    }
+    background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
+    border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+    box-shadow: var(--shadow-in);
+    transform: translateY(2px);
+  }
+}
+
+.fc .fc-button-primary {
+  @extend .btn;
+  @extend .btn-primary;
+  font-size: var(--fs-100);
+  box-shadow: none;
+  &:hover {
+    box-shadow: none;
+    transform: translateY(0);
+  }
 }
 
 .btn-outline {
-    background-color: transparent;
-    border: none;
-    min-width: 200px;
-    font-size: var(--fs-500);
-    transition: color var(--transition);
-    &:hover, &:active, &:focus-visible {
-        color: var(--col-accent);
-    }
+  background-color: transparent;
+  border: none;
+  min-width: 200px;
+  font-size: var(--fs-500);
+  transition: color var(--transition);
+  &:hover,
+  &:active,
+  &:focus-visible {
+    color: var(--col-accent);
+  }
 }
 
 .btn-next {
-    @extend .btn-outline;
-    &::after {
-        content: "\f105";
-        font-family: 'font awesome 6 free';
-        margin-left: 0.5rem;
-    }
+  @extend .btn-outline;
+  &::after {
+    content: "\f105";
+    font-family: "font awesome 6 free";
+    margin-left: 0.5rem;
+  }
 }
 
 .btn-previous {
-    @extend .btn-outline;
-    &::before {
-        content: "\f104";
-        font-family: 'font awesome 6 free';
-        margin-right: 0.5rem;
-    }
+  @extend .btn-outline;
+  &::before {
+    content: "\f104";
+    font-family: "font awesome 6 free";
+    margin-right: 0.5rem;
+  }
 
-    &::after {
-        content: "";
-    }
+  &::after {
+    content: "";
+  }
 }
 
 .place-order button,
 .wc-proceed-to-checkout a,
 .btn-outline-primary,
 .add_to_cart_button {
-    @extend .btn;
-    min-width: unset;
-    padding: 0.25rem 1rem;
-    background-color: var(--col-accent);
-    border-color: color-mix(in srgb, var(--col-accent), #000 20%);
-    box-shadow: var(--shadow-in);
+  @extend .btn;
+  min-width: unset;
+  padding: 0.25rem 1rem;
+  background-color: var(--col-accent);
+  border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+  box-shadow: var(--shadow-in);
+  color: var(--col-brown-400);
+  &:hover,
+  &:active,
+  &:focus-visible {
     color: var(--col-brown-400);
-    &:hover, &:active, &:focus-visible {
-        color: var(--col-brown-400);
-        background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
-        border-color:  color-mix(in srgb, var(--col-accent), #000 20%);
-        box-shadow: var(--shadow-in-2);
-        transform: translateY(2px);
-    }
+    background-color: color-mix(in srgb, var(--col-accent), #fff 20%);
+    border-color: color-mix(in srgb, var(--col-accent), #000 20%);
+    box-shadow: var(--shadow-in-2);
+    transform: translateY(2px);
+  }
 
-    font-family: var(--ff-body);
-    font-size: var(--fs-400);
-    transition: all var(--transition);
-    margin-inline: auto;
-    display: inline-block;
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  transition: all var(--transition);
+  margin-inline: auto;
+  display: inline-block;
 }
 
 .actions {
-    .coupon {
-        float: unset;
-        display: flex;
-        flex-wrap: wrap;
-        #coupon_code {
-            width: 100%;
-            margin-bottom: 0.5rem;
-            @media (min-width:576px) {
-                width: min(200px,100vw);
-            }
-        }
+  .coupon {
+    float: unset;
+    display: flex;
+    flex-wrap: wrap;
+    #coupon_code {
+      width: 100%;
+      margin-bottom: 0.5rem;
+      @media (min-width: 576px) {
+        width: min(200px, 100vw);
+      }
     }
-    button[name='update_cart'] {
-        display: block;
-        margin-inline: auto;
-        @media (min-width:768px) {
-            margin-right: 0;
-        }
+  }
+  button[name="update_cart"] {
+    display: block;
+    margin-inline: auto;
+    @media (min-width: 768px) {
+      margin-right: 0;
     }
+  }
 }
 
 .woocommerce-notice--success,
 .cart_totals h2 {
-    @extend .h2;
-    font-family: var(--ff-headlines);
+  @extend .h2;
+  font-family: var(--ff-headlines);
 }
 
 .woocommerce-notice--success {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .woocommerce-order-details__title,
 .woocommerce-column__title {
-    @extend .h3;
-    font-family: var(--ff-headlines);
+  @extend .h3;
+  font-family: var(--ff-headlines);
 }

@@ -10,14 +10,20 @@
   --col-green-200: hsl(var(--hsl-green-200));
   --hsl-green-100: 70 46% 88%;
   --col-green-100: hsl(var(--hsl-green-100));
-  --col-polaroid: #F7F1E7;
-  --col-light: #EDE8DC;
-  --col-dark: #3D4237;
-  --col-accent: #FFB501;
+  --col-polaroid: #f7f1e7;
+  --col-light: #ede8dc;
+  --col-dark: #3d4237;
+  --col-accent: #ffb501;
+  --col-guided-walks: #c75b39;
+  --col-group-tours: #287c7a;
+  --col-multi-day-hikes: #2a3d66;
+  --col-challenge-events: #b02e2e;
+  --col-womens-wellness-walks: #a890c5;
+  --col-community-events: #ff6b4a;
   --fs-100: 0.64rem;
   --fs-200: 0.8rem;
-  --fs-300: 0.90rem;
-  --fs-400: 1.00rem;
+  --fs-300: 0.9rem;
+  --fs-400: 1rem;
   --fs-500: 1.2rem;
   --fs-600: 1.56rem;
   --fs-700: 2.4rem;
@@ -26,16 +32,20 @@
   --fw-600: 400;
   --fw-900: 700;
   --ff-hand: "Shelby";
-  --ff-body: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  --ff-headings: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  --ff-headlines: "Gagalin", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-body: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-headings: "Lato", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --ff-headlines: "Gagalin", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   --transition: 200ms ease-out;
   --shadow-0: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
   --shadow-bottom: 0 3px 5px -5px #00000080;
   --shadow-in-2: 0 1px 2px #00000080;
   --shadow-in: 0 3px 5px #00000080;
-  --shadow-out:0 10px 20px #00000080;
-  --filter-shadow-1: drop-shadow(0 1px 3px rgba(0,0,0,.12)) drop-shadow(0 1px 2px rgba(0,0,0,.24));
+  --shadow-out: 0 10px 20px #00000080;
+  --filter-shadow-1: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.24));
   --h-top: 80px;
   --footer-img: 96px;
 }

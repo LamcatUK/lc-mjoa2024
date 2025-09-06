@@ -9,22 +9,22 @@
 
 a,
 a.noline {
-    text-decoration: none;
+  text-decoration: none;
 }
 a.anchor {
-    display: block;
-    position: relative;
-    top: calc( var(--h-top) * -1);
-    visibility: hidden;
+  display: block;
+  position: relative;
+  top: calc(var(--h-top) * -1);
+  visibility: hidden;
 }
 
-@media (min-width:992px) {
-    .cols-lg-2 {
-        columns: 2;
-    }
-    .cols-lg-3 {
-        columns: 3;
-    }
+@media (min-width: 992px) {
+  .cols-lg-2 {
+    columns: 2;
+  }
+  .cols-lg-3 {
+    columns: 3;
+  }
 }
 
 // a {
@@ -34,129 +34,161 @@ a.anchor {
 //     }
 // }
 
-
 .breadcrumbs {
-    font-size: var(--fs-300);
+  font-size: var(--fs-300);
 }
 
 body {
-    display: grid;
-    margin-inline: auto;
-    width: min(1320px, 98vw);
-    box-shadow: var(--shadow-0);
-    margin-bottom: 2rem;
-    background-color: var(--col-light);
-    background-image:url(../img/contours.svg);
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: soft-light;
-    background-attachment: fixed;
+  display: grid;
+  margin-inline: auto;
+  width: min(1320px, 98vw);
+  box-shadow: var(--shadow-0);
+  margin-bottom: 2rem;
+  background-color: var(--col-light);
+  background-image: url(../img/contours.svg);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: soft-light;
+  background-attachment: fixed;
 }
 
 main {
-    position: relative;
-    background-color: #fff;
-    padding-bottom: var(--footer-img);
+  position: relative;
+  background-color: #fff;
+  padding-bottom: var(--footer-img);
 }
-
-
 
 /* polaroid */
 .polaroid {
-    z-index: 1;
-    border-radius: 0;
-    cursor: pointer;
-    min-width: 230px;
-    flex-basis: calc( 33.3% - 0.66rem);
-    padding: 14px;
-    background-color: var(--col-polaroid);
-    display: grid;
-    grid-template-rows: auto 55px;
-    box-shadow: var(--shadow-in);
-    transform: rotate(0) scale(1);
-    transition: all 200ms ease-in-out;
+  z-index: 1;
+  border-radius: 0;
+  cursor: pointer;
+  min-width: 230px;
+  flex-basis: calc(33.3% - 0.66rem);
+  padding: 14px;
+  background-color: var(--col-polaroid);
+  display: grid;
+  grid-template-rows: auto 55px;
+  box-shadow: var(--shadow-in);
+  transform: rotate(0) scale(1);
+  transition: all 200ms ease-in-out;
+  position: relative;
+
+  transform: rotate(-3deg) scale(1.1);
+
+  &::after {
+    content: "";
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    mix-blend-mode: overlay;
+    opacity: 1;
+  }
+
+  &__image {
     position: relative;
-
-    transform: rotate(-3deg) scale(1.1);
-    
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      aspect-ratio: 1;
+    }
     &::after {
-        content: '';
-        width: 2.5rem;
-        height: 2.5rem;
-        position: absolute;
-        bottom: 0.5rem;
-        left: 0.5rem;
-        mix-blend-mode: overlay;
-        opacity: 1;
+      content: "";
+      display: block;
+      inset: 0;
+      position: absolute;
+      box-shadow: inset 0 0 5px #00000080;
     }
-
-    &__image {
-        position: relative;
-        width: 100%;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            aspect-ratio: 1;
-        }
-        &::after {
-            content: '';
-            display: block;
-            inset: 0;
-            position: absolute;
-            box-shadow: inset 0 0 5px #00000080;
-        }
-    }
-    &__title {
-        padding-top: 1rem;
-        display: grid;
-        place-content: center;
-        font-family: var(--ff-hand);
-        font-size: 2.2rem;
-        text-align: center;
-        text-wrap: balance;
-        position: relative;
-        flex: 1;
-    }
+  }
+  &__title {
+    padding-top: 1rem;
+    display: grid;
+    place-content: center;
+    font-family: var(--ff-hand);
+    font-size: 2.2rem;
+    text-align: center;
+    text-wrap: balance;
+    position: relative;
+    flex: 1;
+  }
 }
 a > .polaroid {
-    transform: rotate(0) scale(1);
-    &:hover {
-        transform: rotate(-3deg) scale(1.1);
-        box-shadow: var(--shadow-out);
-        z-index: 2;
-    }
+  transform: rotate(0) scale(1);
+  &:hover {
+    transform: rotate(-3deg) scale(1.1);
+    box-shadow: var(--shadow-out);
+    z-index: 2;
+  }
 }
 
 .icon--guided-walks .polaroid::after {
-    background-image: url(../img/icons/icon--guided-walks.svg);
+  background-image: url(../img/icons/icon--guided-walks.svg);
 }
 .icon--group-tours .polaroid::after {
-    background-image: url(../img/icons/icon--group-tours.svg);
+  background-image: url(../img/icons/icon--group-tours.svg);
 }
 .icon--challenge-events .polaroid::after {
-    background-image: url(../img/icons/icon--challenge-events.svg);
+  background-image: url(../img/icons/icon--challenge-events.svg);
 }
 .icon--womens-wellness-walks .polaroid::after {
-    background-image: url(../img/icons/icon--womens-wellness-walks.svg);
+  background-image: url(../img/icons/icon--womens-wellness-walks.svg);
 }
 .icon--multi-day-hikes .polaroid::after {
-    background-image: url(../img/icons/icon--multi-day-hikes.svg);
+  background-image: url(../img/icons/icon--multi-day-hikes.svg);
 }
 .icon--community-events .polaroid::after {
-    background-image: url(../img/icons/icon--community-events.svg);
+  background-image: url(../img/icons/icon--community-events.svg);
 }
-
 
 .devbanner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
 }
 
+// Pagination styles
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-family: var(--ff-headlines, inherit);
+  .page-numbers {
+    display: inline-block;
+    min-width: 2.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-family: var(--ff-headlines, inherit);
+    font-size: var(--fs-700);
+    color: var(--col-green-400, #222);
+    background: transparent;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    &:hover,
+    &:focus {
+      color: var(--col-accent, #f3e9e2);
+      outline: none;
+    }
+    &.current {
+      color: var(--col-accent, #c75b39);
+      font-weight: bold;
+      cursor: default;
+      pointer-events: none;
+    }
+    &.next,
+    &.prev {
+      font-weight: bold;
+    }
+  }
+}
 // show stuff that overflows horizontally
 // * {
 //     outline: 1px solid #f00 !important;
