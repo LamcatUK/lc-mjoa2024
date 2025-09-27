@@ -1,5 +1,12 @@
 <?php
-// Exit if accessed directly.
+/**
+ * Theme initialization and customizations for LC MJOA 2024.
+ *
+ * This file contains theme setup, hooks, filters, and utility functions.
+ *
+ * @package lc-mjoa2024
+ */
+
 defined('ABSPATH') || exit;
 
 
@@ -7,10 +14,9 @@ require_once LC_THEME_DIR . '/inc/lc-utility.php';
 require_once LC_THEME_DIR . '/inc/lc-blocks.php';
 require_once LC_THEME_DIR . '/inc/lc-woocommerce.php';
 require_once LC_THEME_DIR . '/inc/lc-blog.php';
-// require_once LC_THEME_DIR . '/inc/lc-careers.php';
 
 
-// Remove unwanted SVG filter injection WP
+// Remove unwanted SVG filter injection WP.
 remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
 remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 
@@ -31,35 +37,42 @@ function remove_comments_menu()
 }
 
 add_filter('theme_page_templates', 'child_theme_remove_page_template');
-function child_theme_remove_page_template($page_templates)
+function child_theme_remove_page_template( $page_templates )
 {
-    // unset($page_templates['page-templates/blank.php'],$page_templates['page-templates/empty.php'], $page_templates['page-templates/fullwidthpage.php'], $page_templates['page-templates/left-sidebarpage.php'], $page_templates['page-templates/right-sidebarpage.php'], $page_templates['page-templates/both-sidebarspage.php']);
-    unset($page_templates['page-templates/blank.php'],$page_templates['page-templates/empty.php'], $page_templates['page-templates/left-sidebarpage.php'], $page_templates['page-templates/right-sidebarpage.php'], $page_templates['page-templates/both-sidebarspage.php']);
+    unset(
+        $page_templates['page-templates/blank.php'],
+        $page_templates['page-templates/empty.php'],
+        $page_templates['page-templates/left-sidebarpage.php'],
+        $page_templates['page-templates/right-sidebarpage.php'],
+        $page_templates['page-templates/both-sidebarspage.php']
+    );
     return $page_templates;
 }
 add_action('after_setup_theme', 'remove_understrap_post_formats', 11);
 function remove_understrap_post_formats()
 {
-    remove_theme_support('post-formats', array( 'aside', 'image', 'video' , 'quote' , 'link' ));
+    remove_theme_support('post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ));
 }
 
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(
         array(
-            'page_title' 	=> 'Site-Wide Settings',
-            'menu_title'	=> 'Site-Wide Settings',
-            'menu_slug' 	=> 'theme-general-settings',
-            'capability'	=> 'edit_posts',
+            'page_title'     => 'Site-Wide Settings',
+            'menu_title'    => 'Site-Wide Settings',
+            'menu_slug'     => 'theme-general-settings',
+            'capability'    => 'edit_posts',
         )
     );
 }
 
 function widgets_init()
 {
-    register_nav_menus(array(
+    register_nav_menus(
+        array(
         'primary_nav' => __('Primary Nav', 'lc-mjoa2024'),
         'footer_menu1' => __('Footer Menu 1', 'lc-mjoa2024'),
-    ));
+        )
+    );
 
     unregister_sidebar('hero');
     unregister_sidebar('herocanvas');
@@ -134,7 +147,7 @@ function lc_dashboard_widget_display()
     ?>
 <div style="display: flex; align-items: center; justify-content: space-around;">
     <img style="width: 50%;"
-        src="<?= get_stylesheet_directory_uri().'/img/lc-full.jpg'; ?>">
+        src="<?php echo get_stylesheet_directory_uri().'/img/lc-full.jpg'; ?>">
     <a class="button button-primary" target="_blank" rel="noopener nofollow noreferrer"
         href="mailto:hello@lamcat.co.uk/">Contact</a>
 </div>
@@ -144,7 +157,7 @@ function lc_dashboard_widget_display()
     <p>Got a problem with your site, or want to make some changes & need us to take a look for you?</p>
     <p>Use the link above to get in touch and we'll get back to you ASAP.</p>
 </div>
-<?php
+    <?php
 }
 
 
@@ -182,9 +195,11 @@ function cc_gutenberg_register_files()
         array( 'wp-blocks', 'wp-edit-post' )
     );
     // register block editor script
-    register_block_type('cc/ma-block-files', array(
+    register_block_type(
+        'cc/ma-block-files', array(
         'editor_script' => 'cc-block-script'
-    ));
+        )
+    );
 }
 add_action('init', 'cc_gutenberg_register_files');
 
@@ -373,5 +388,188 @@ function add_current_nav_class($classes, $item)
 
     return $classes;
 }
+
+/**
+ * FooEvents 48-Hour Reminder System
+ *
+ * Automatically sends email reminders to customers 48 hours before their event starts.
+ * Triggers when WooCommerce orders containing FooEvents products are completed.
+ */
+
+/**
+ * Configuration: Set reminder offset time
+ *
+ * Change this value to adjust when reminders are sent.
+ * Default: 48 hours before event start time.
+ */
+$reminder_offset = 5 * MINUTE_IN_SECONDS; // 300 seconds = 5 minutes for testing.
+
+/**
+ * Schedule event reminders when an order is completed.
+ *
+ * This function runs when a WooCommerce order status changes to 'completed'.
+ * It checks if the order contains FooEvents products and schedules reminder emails.
+ *
+ * @param int $order_id The WooCommerce order ID.
+ */
+function lc_schedule_fooevents_reminders( $order_id )
+{
+    global $reminder_offset;
+
+    // Get the order object.
+    $order = wc_get_order($order_id);
+    if (! $order ) {
+        return;
+    }
+
+    // Get customer information for the reminder email.
+    $customer_first_name = $order->get_billing_first_name();
+    $customer_email      = $order->get_billing_email();
+
+    // Check each item in the order for FooEvents products.
+    foreach ( $order->get_items() as $item_id => $item ) {
+        $product_id = $item->get_product_id();
+        $product    = wc_get_product($product_id);
+
+        if (! $product ) {
+            continue;
+        }
+
+        // Check if this product has FooEvents data (event start date and time).
+        $event_start_date = get_post_meta($product_id, '_event_start_date', true);
+        $event_start_time = get_post_meta($product_id, '_event_start_time', true);
+
+        // Skip if this isn't a FooEvents product or missing event data.
+        if (empty($event_start_date) || empty($event_start_time) ) {
+            continue;
+        }
+
+        // Combine date and time to create event start timestamp.
+        $event_datetime_string = $event_start_date . ' ' . $event_start_time;
+        $event_timestamp       = strtotime($event_datetime_string);
+
+        // Skip if we couldn't parse the event datetime.
+        if (false === $event_timestamp ) {
+            continue;
+        }
+
+        // Calculate when the reminder should be sent (offset before event start).
+        $reminder_timestamp = $event_timestamp - $reminder_offset;
+        $current_timestamp  = time();
+
+        // Skip scheduling if the reminder time has already passed.
+        if ($reminder_timestamp <= $current_timestamp ) {
+            continue;
+        }
+
+        // Create unique hook name for this specific reminder.
+        $hook_name = 'lc_send_fooevents_reminder';
+        $hook_args = array(
+            'order_id'            => $order_id,
+            'product_id'          => $product_id,
+            'customer_email'      => $customer_email,
+            'customer_first_name' => $customer_first_name,
+            'event_timestamp'     => $event_timestamp,
+        );
+
+        // Schedule the reminder email to be sent.
+        wp_schedule_single_event($reminder_timestamp, $hook_name, $hook_args);
+    }
+}
+add_action('woocommerce_order_status_completed', 'lc_schedule_fooevents_reminders');
+
+/**
+ * Send the actual reminder email.
+ *
+ * This function is triggered by the WP-Cron system at the scheduled time.
+ * It sends a reminder email to the customer about their upcoming event.
+ *
+ * @param int    $order_id            The WooCommerce order ID.
+ * @param int    $product_id          The FooEvents product ID.
+ * @param string $customer_email      The customer's email address.
+ * @param string $customer_first_name The customer's first name.
+ * @param int    $event_timestamp     The event start timestamp.
+ */
+function lc_send_fooevents_reminder( $order_id, $product_id, $customer_email, $customer_first_name, $event_timestamp )
+{
+    // Get product information for the email.
+    $product = wc_get_product($product_id);
+    if (! $product ) {
+        return;
+    }
+
+    $event_name = $product->get_name();
+
+    // Format the event date and time for display.
+    $event_date_formatted = date_i18n(get_option('date_format'), $event_timestamp);
+    $event_time_formatted = date_i18n(get_option('time_format'), $event_timestamp);
+
+    // Prepare email content.
+    $site_name = get_bloginfo('name');
+    $subject   = sprintf('Event Reminder: %s - Starting Soon!', $event_name);
+
+    // Build the email message.
+    $message = sprintf(
+        "Hi %s,\n\n" .
+        "This is a friendly reminder that your event is starting in 48 hours!\n\n" .
+        "Event Details:\n" .
+        "• Event: %s\n" .
+        "• Date: %s\n" .
+        "• Time: %s\n\n" .
+        "We look forward to seeing you there!\n\n" .
+        "Best regards,\n" .
+        'The %s Team',
+        esc_html($customer_first_name),
+        esc_html($event_name),
+        esc_html($event_date_formatted),
+        esc_html($event_time_formatted),
+        esc_html($site_name)
+    );
+
+    // Set email headers for better formatting.
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ' . $site_name . ' <' . get_option('admin_email') . '>',
+    );
+
+    // Send the reminder email.
+    wp_mail($customer_email, $subject, $message, $headers);
+}
+add_action('lc_send_fooevents_reminder', 'lc_send_fooevents_reminder', 10, 5);
+
+/**
+ * Clean up scheduled reminders when orders are cancelled or refunded.
+ *
+ * This prevents sending reminders for events that customers can no longer attend.
+ *
+ * @param int $order_id The WooCommerce order ID.
+ */
+function lc_cancel_fooevents_reminders( $order_id )
+{
+    // Get all scheduled events for this order.
+    $scheduled_hooks = _get_cron_array();
+    if (empty($scheduled_hooks) ) {
+        return;
+    }
+
+    // Loop through all scheduled cron events.
+    foreach ( $scheduled_hooks as $timestamp => $hooks ) {
+        if (! isset($hooks['lc_send_fooevents_reminder']) ) {
+            continue;
+        }
+
+        // Check each scheduled reminder.
+        foreach ( $hooks['lc_send_fooevents_reminder'] as $hook_key => $hook_data ) {
+            $args = $hook_data['args'];
+
+            // If this reminder is for the cancelled order, remove it.
+            if (isset($args[0]) && (int) $args[0] === $order_id ) {
+                wp_unschedule_event($timestamp, 'lc_send_fooevents_reminder', $args);
+            }
+        }
+    }
+}
+add_action('woocommerce_order_status_cancelled', 'lc_cancel_fooevents_reminders');
+add_action('woocommerce_order_status_refunded', 'lc_cancel_fooevents_reminders');
 
 ?>
