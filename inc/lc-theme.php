@@ -402,7 +402,7 @@ function add_current_nav_class($classes, $item)
  * Change this value to adjust when reminders are sent.
  * Default: 48 hours before event start time.
  */
-$reminder_offset = 5 * MINUTE_IN_SECONDS; // 300 seconds = 5 minutes for testing.
+$reminder_offset = 48 * HOUR_IN_SECONDS; // 172800 seconds = 48 hours.
 
 /**
  * Schedule event reminders when an order is completed.
