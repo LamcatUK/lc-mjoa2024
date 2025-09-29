@@ -402,7 +402,7 @@ function add_current_nav_class($classes, $item)
  * Change this value to adjust when reminders are sent.
  * Default: 48 hours before event start time.
  */
-$reminder_offset = 48 * HOUR_IN_SECONDS; // 172800 seconds = 48 hours.
+$reminder_offset = 5 * MINUTE_IN_SECONDS; // 300 seconds = 5 minutes for testing.
 
 /**
  * Schedule event reminders when an order is completed.
@@ -423,8 +423,8 @@ function lc_schedule_fooevents_reminders( $order_id )
     }
 
     // Get customer information for the reminder email.
-    $customer_first_name = $order->get_billing_first_name();
-    $customer_email      = $order->get_billing_email();
+    $customer_name  = $full_name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
+    $customer_email = $order->get_billing_email();
 
     // Check each item in the order for FooEvents products.
     foreach ( $order->get_items() as $item_id => $item ) {
@@ -435,23 +435,16 @@ function lc_schedule_fooevents_reminders( $order_id )
             continue;
         }
 
-        // Check if this product has FooEvents data (event start date and time).
-        $event_start_date = get_post_meta($product_id, '_event_start_date', true);
-        $event_start_time = get_post_meta($product_id, '_event_start_time', true);
+                // Check if this product has FooEvents data (event start timestamp).
+        $event_timestamp = get_post_meta($product_id, 'WooCommerceEventsDateTimeTimestamp', true);
 
         // Skip if this isn't a FooEvents product or missing event data.
-        if (empty($event_start_date) || empty($event_start_time) ) {
+        if (empty($event_timestamp) ) {
             continue;
         }
 
-        // Combine date and time to create event start timestamp.
-        $event_datetime_string = $event_start_date . ' ' . $event_start_time;
-        $event_timestamp       = strtotime($event_datetime_string);
-
-        // Skip if we couldn't parse the event datetime.
-        if (false === $event_timestamp ) {
-            continue;
-        }
+        // Convert to integer if it's not already
+        $event_timestamp = (int) $event_timestamp;
 
         // Calculate when the reminder should be sent (offset before event start).
         $reminder_timestamp = $event_timestamp - $reminder_offset;
@@ -468,7 +461,7 @@ function lc_schedule_fooevents_reminders( $order_id )
             'order_id'            => $order_id,
             'product_id'          => $product_id,
             'customer_email'      => $customer_email,
-            'customer_first_name' => $customer_first_name,
+            'customer_name'       => $customer_name,
             'event_timestamp'     => $event_timestamp,
         );
 
@@ -487,26 +480,27 @@ add_action('woocommerce_order_status_completed', 'lc_schedule_fooevents_reminder
  * @param int    $order_id            The WooCommerce order ID.
  * @param int    $product_id          The FooEvents product ID.
  * @param string $customer_email      The customer's email address.
- * @param string $customer_first_name The customer's first name.
+ * @param string $customer_name       The customer's name.
  * @param int    $event_timestamp     The event start timestamp.
  */
-function lc_send_fooevents_reminder( $order_id, $product_id, $customer_email, $customer_first_name, $event_timestamp )
+function lc_send_fooevents_reminder( $order_id, $product_id, $customer_email, $customer_name, $event_timestamp )
 {
     // Get product information for the email.
-    $product = wc_get_product($product_id);
-    if (! $product ) {
+    $product = wc_get_product( $product_id );
+    if ( ! $product ) {
         return;
     }
 
     $event_name = $product->get_name();
+    $event_link = $product->get_permalink();
 
     // Format the event date and time for display.
-    $event_date_formatted = date_i18n(get_option('date_format'), $event_timestamp);
-    $event_time_formatted = date_i18n(get_option('time_format'), $event_timestamp);
+    $event_date_formatted = date_i18n( get_option( 'date_format' ), $event_timestamp );
+    $event_time_formatted = date_i18n( get_option( 'time_format' ), $event_timestamp );
 
     // Prepare email content.
-    $site_name = get_bloginfo('name');
-    $subject   = sprintf('Event Reminder: %s - Starting Soon!', $event_name);
+    $site_name = get_bloginfo( 'name' );
+    $subject   = sprintf( 'Event Reminder: %s - Starting Soon!', $event_name );
 
     // Build the email message.
     $message = sprintf(
@@ -516,24 +510,37 @@ function lc_send_fooevents_reminder( $order_id, $product_id, $customer_email, $c
         "• Event: %s\n" .
         "• Date: %s\n" .
         "• Time: %s\n\n" .
+        "• More Info: %s\n\n" .
         "We look forward to seeing you there!\n\n" .
         "Best regards,\n" .
         'The %s Team',
-        esc_html($customer_first_name),
-        esc_html($event_name),
-        esc_html($event_date_formatted),
-        esc_html($event_time_formatted),
-        esc_html($site_name)
+        esc_html( $customer_name ),
+        esc_html( $event_name ),
+        esc_html( $event_date_formatted ),
+        esc_html( $event_time_formatted ),
+        esc_html( $event_link ),
+        esc_html( $site_name )
     );
 
     // Set email headers for better formatting.
     $headers = array(
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ' . $site_name . ' <' . get_option('admin_email') . '>',
+        'From: ' . $site_name . ' <' . get_field( 'contact_email', 'option' ) . '>',
     );
 
+    // // Configure SMTP for MailHog (temporary for testing).
+    // add_action(
+    //     'phpmailer_init',
+    //     function ( $phpmailer ) {
+    //         $phpmailer->isSMTP();
+    //         $phpmailer->Host     = 'localhost';
+    //         $phpmailer->Port     = 1025;
+    //         $phpmailer->SMTPAuth = false;
+    //     }
+    // );
+
     // Send the reminder email.
-    wp_mail($customer_email, $subject, $message, $headers);
+    wp_mail( $customer_email, $subject, $message, $headers );
 }
 add_action('lc_send_fooevents_reminder', 'lc_send_fooevents_reminder', 10, 5);
 
