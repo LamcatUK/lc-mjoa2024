@@ -26,8 +26,15 @@ while (have_posts()) {
 
         $start = get_post_meta(get_the_ID(), 'WooCommerceEventsDate', true);
         $datetime = DateTime::createFromFormat('F d, Y', $start);
-        $zdate = $datetime->format('Y-m-d');
-
+        if (!$datetime instanceof DateTime) {
+            error_log("Invalid WooCommerceEventsDate for product " . get_the_ID() . ": " . $start);
+        }
+        if ($datetime instanceof DateTime) {
+            $zdate = $datetime->format('Y-m-d');
+        } else {
+            // Handle unexpected format – maybe log it or use the raw value
+            $zdate = $start;
+        }
 
         ?>
 <main id="main" class="single-hike">
@@ -80,12 +87,18 @@ while (have_posts()) {
                 <div class="col-md-4 col-lg-3">
                     <a id="cartbar" class="anchor"></a>
                     <div class="sticky-top">
-                        <time datetime="<?=$zdate?>"
-                            class="icon mb-4">
-                            <em><?=$datetime->format('l')?></em>
-                            <strong><?=$datetime->format('F')?></strong>
-                            <span><?=$datetime->format('j')?></span>
-                        </time>
+                        <?php if ($datetime instanceof DateTime): ?>
+                            <time datetime="<?=$zdate?>" class="icon mb-4">
+                                <em><?=$datetime->format('l')?></em>
+                                <strong><?=$datetime->format('F')?></strong>
+                                <span><?=$datetime->format('j')?></span>
+                            </time>
+                        <?php else: ?>
+                            <div class="icon mb-4">
+                                <em>Unknown day</em>
+                                <strong><?=esc_html($start)?></strong>
+                            </div>
+                        <?php endif; ?>
                         <?=lc_woocommerce_show_stock()?>
                         <?php woocommerce_template_single_price(); ?>
                         <?php woocommerce_template_single_add_to_cart(); ?>
