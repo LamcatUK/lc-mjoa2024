@@ -95,7 +95,7 @@ while (have_posts()) {
                             </time>
                         <?php else: ?>
                             <div class="icon mb-4">
-                                <em>Unknown day</em>
+                                <!-- <em>Unknown day</em> -->
                                 <strong><?=esc_html($start)?></strong>
                             </div>
                         <?php endif; ?>
