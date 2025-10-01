@@ -26,6 +26,12 @@ while (have_posts()) {
 
         $start = get_post_meta(get_the_ID(), 'WooCommerceEventsDate', true);
         $datetime = DateTime::createFromFormat('F d, Y', $start);
+
+        
+        if (!$datetime) {
+            $datetime = DateTime::createFromFormat('j F Y', $start);
+        }
+
         if (!$datetime instanceof DateTime) {
             error_log("Invalid WooCommerceEventsDate for product " . get_the_ID() . ": " . $start);
         }
