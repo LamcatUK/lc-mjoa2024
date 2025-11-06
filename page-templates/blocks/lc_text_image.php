@@ -44,7 +44,7 @@ $classes = $block['className'] ?? 'py-5';
                 <?php
         }
         ?>
-                <div><?= esc_html( get_field( 'content' ) ); ?>
+                <div><?= wp_kses_post( get_field( 'content' ) ); ?>
                 </div>
         <?php
         if ( get_field( 'link' ) ?? null ) {
