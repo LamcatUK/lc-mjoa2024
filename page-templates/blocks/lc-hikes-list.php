@@ -54,6 +54,7 @@ if ( ! empty( $output ) ) {
 }
 
 if ( ! is_front_page() ) {
+    // phpcs:disable 
     ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" />
     <div class="hikes-list-toggle text-center mb-3">
@@ -62,6 +63,7 @@ if ( ! is_front_page() ) {
         <button type="button" class="btn btn-outline-primary" id="hikes-list-toggle-calendar">Calendar View</button>
     </div>
     <?php
+    // phpcs:enable
 }
 ?>
 <div class="hikes-list mx-4 pb-5 <?= esc_attr( $class ); ?>" id="hikes-list-list-view">
@@ -207,7 +209,9 @@ if ( ! is_front_page() ) {
         ?>
     <div class="mt-4" id="hikes-calendar"></div>
 </div>
+<?php // phpcs:disable ?>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<?php // phpcs:enable ?>
 <script>
 // Hike data for calendar
 const hikesEvents = <?php echo wp_json_encode( $hikes_for_js ); ?>;

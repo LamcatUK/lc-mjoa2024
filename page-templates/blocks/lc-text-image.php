@@ -20,6 +20,8 @@ $polaroid = get_field( 'polaroid' ) ?? null;
 
 $classes = $block['className'] ?? 'py-5';
 
+$heading_level = get_field( 'heading_level' ) ? get_field( 'heading_level' ) : 'h2';
+
 ?>
 <section class="text_image mx-4 <?= esc_attr( $classes ); ?>">
     <div class="container-xl">
@@ -38,9 +40,9 @@ $classes = $block['className'] ?? 'py-5';
         <?php
         if ( get_field( 'title' ) ?? null ) {
             ?>
-                <h2 class="d-none d-md-block h2 headline">
+                <<?= esc_attr( $heading_level ); ?> class="d-none d-md-block <?= esc_attr( $heading_level ); ?> headline">
                     <?= esc_html( get_field( 'title' ) ); ?>
-                </h2>
+                </<?= esc_attr( $heading_level ); ?>>
                 <?php
         }
         ?>

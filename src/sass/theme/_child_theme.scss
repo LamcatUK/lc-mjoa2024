@@ -18,6 +18,11 @@ a.anchor {
   visibility: hidden;
 }
 
+.cols-lg-2 .cols-lg-2,
+.cols-lg-3 .cols-lg-3 {
+  columns: auto;
+}
+
 @media (min-width: 992px) {
   .cols-lg-2 {
     columns: 2;

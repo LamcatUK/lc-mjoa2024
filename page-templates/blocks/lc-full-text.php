@@ -12,8 +12,8 @@ defined( 'ABSPATH' ) || exit;
         <?php
         if ( get_field( 'title' ) ?? null ) {
             ?>
-        <h2 class="d-none d-md-block text-center h2">
-            <?= esc_html( get_field( 'title' ) ); ?>
+        <h2 class="d-none d-md-block text-center h2 headline">
+            <?= wp_kses_post( get_field( 'title' ) ); ?>
         </h2>
             <?php
         }

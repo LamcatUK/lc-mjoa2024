@@ -13,12 +13,23 @@
 // },9999
 // );
 
-
 AOS.init({
-    once: true,
-    easing: 'ease-in',
+  once: true,
+  easing: "ease-in",
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof Lenis === "undefined") return;
+  const lenis = new Lenis({
+    smooth: true,
+    lerp: 0.1,
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+});
 
 // jQuery(function($){
 //     var btn = $('#to-top');
@@ -36,4 +47,3 @@ AOS.init({
 //       $('html, body').animate({ scrollTop: 0 }, '300');
 //     });
 // },9999);
-

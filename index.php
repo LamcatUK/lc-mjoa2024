@@ -96,7 +96,7 @@ if ( 1 === $current_paged && ! empty( $sticky ) ) {
     <section class="breadcrumbs container-xl text-center mb-4">
         <?php
         if ( function_exists( 'yoast_breadcrumb' ) ) {
-            yoast_breadcrumb( '<div id="breadcrumbs" class="my-2">', '</div>' );
+            yoast_breadcrumb( '<div id="breadcrumbs" class="my-2">', '</div>' ); // phpcs:ignore
         }
         ?>
     </section>

@@ -6757,7 +6757,19 @@
 
 	AOS.init({
 	  once: true,
-	  easing: 'ease-in'
+	  easing: "ease-in"
+	});
+	document.addEventListener("DOMContentLoaded", function () {
+	  if (typeof Lenis === "undefined") return;
+	  const lenis = new Lenis({
+	    smooth: true,
+	    lerp: 0.1
+	  });
+	  function raf(time) {
+	    lenis.raf(time);
+	    requestAnimationFrame(raf);
+	  }
+	  requestAnimationFrame(raf);
 	});
 
 	// jQuery(function($){

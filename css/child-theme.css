@@ -23291,6 +23291,34 @@ a.woocommerce-terms-and-conditions-link {
   fill: var(--col-dark);
 }
 
+.feature__marquee {
+  overflow: hidden;
+  width: 100%;
+}
+.feature__track .swiper-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+.feature__logo {
+  height: 120px;
+  width: auto;
+  flex: 0 0 auto;
+}
+.feature .swiper-slide {
+  flex: 0 0 auto;
+  width: auto;
+}
+.feature__item {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--col-accent);
+  transition: all 0.3s ease;
+}
+.feature__item:hover {
+  background-color: var(--col-green-100);
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 a,
 a.noline {
   text-decoration: none;
@@ -23301,6 +23329,12 @@ a.anchor {
   position: relative;
   top: calc(var(--h-top) * -1);
   visibility: hidden;
+}
+
+.cols-lg-2 .cols-lg-2,
+.cols-lg-3 .cols-lg-3 {
+  -moz-columns: auto;
+  columns: auto;
 }
 
 @media (min-width: 992px) {
