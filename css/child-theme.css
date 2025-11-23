@@ -22406,7 +22406,7 @@ header .navbar {
 }
 header .navbar .nav-link {
   font-family: var(--ff-headlines);
-  font-size: var(--fs-600);
+  font-size: var(--fs-500);
   font-weight: var(--fw-600);
   color: var(--col-green-400);
 }
@@ -22424,7 +22424,8 @@ header .navbar img {
 header .navbar .navbar-toggler i {
   color: var(--col-dark);
 }
-header .navbar a[aria-current=page], header .navbar .current_page_parent a {
+header .navbar a[aria-current=page],
+header .navbar .current_page_parent a {
   color: var(--col-accent);
 }
 header .navbar-cart {
