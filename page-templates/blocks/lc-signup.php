@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <section class="signup bg--light py-5" data-aos="fade">
-	<div class="container-xl mx-4">
+	<div class="container-xl px-4">
 		<h2 class="h2 headline mb-4">Join our Mailing List</h2>
 		<div class="row">
 			<div class="col-md-6">
@@ -54,7 +54,7 @@ defined( 'ABSPATH' ) || exit;
 						<div class="ml-form-fieldRow ml-last-item">
 							<div class="ml-field-group ml-field-email ml-validate-email ml-validate-required mb-4">
 								<!-- input -->
-								<input aria-label="email" aria-required="true" type="email" class="form-control" style="max-width:40vw" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email">
+								<input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email">
 								<!-- /input -->
 							</div>
 						</div>
