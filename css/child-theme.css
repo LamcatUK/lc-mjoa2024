@@ -22371,6 +22371,10 @@ main a:not([class]):not(footer a):hover {
   background-color: var(--col-primary);
 }
 
+.bg--light {
+  background-color: var(--col-light);
+}
+
 .bg--grey-200 {
   background-color: var(--col-grey-200);
 }

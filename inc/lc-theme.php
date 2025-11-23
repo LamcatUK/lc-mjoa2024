@@ -23,15 +23,18 @@ remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
 
 add_filter( 'big_image_size_threshold', '__return_false' );
 
+/**
+ * Remove the comment reply script from the header.
+ */
 function remove_comment_reply_header_hook() {
     wp_deregister_script( 'comment-reply' );
 }
 add_action( 'init', 'remove_comment_reply_header_hook' );
 
-add_action( 'admin_menu', 'remove_comments_menu' );
 function remove_comments_menu() {
     remove_menu_page( 'edit-comments.php' );
 }
+add_action( 'admin_menu', 'remove_comments_menu' );
 
 add_filter( 'theme_page_templates', 'child_theme_remove_page_template' );
 function child_theme_remove_page_template( $page_templates ) {

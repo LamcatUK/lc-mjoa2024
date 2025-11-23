@@ -14,6 +14,16 @@ function acf_blocks()
         ));
 
         acf_register_block_type(array(
+            'name'				=> 'lc_signup',
+            'title'				=> __('LC Signup'),
+            'category'			=> 'layout',
+            'icon'				=> 'cover-image',
+            'render_template'	=> 'page-templates/blocks/lc-signup.php',
+            'mode'	=> 'edit',
+            'supports' => array('mode' => false),
+        ));
+
+        acf_register_block_type(array(
             'name'				=> 'lc_hero',
             'title'				=> __('LC Hero'),
             'category'			=> 'layout',
