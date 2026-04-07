@@ -155,7 +155,7 @@ if ( ! is_front_page() ) {
                     <?= wp_kses_post( $h['price'] ); ?>
                 </div>
                 <div class="hikes-list__desc">
-                    <?= wp_ksesp_post( $h['product']->get_short_description() ); ?>
+                    <?= wp_kses_post( $h['product']->get_short_description() ); ?>
                 </div>
             </div>
         </a>
