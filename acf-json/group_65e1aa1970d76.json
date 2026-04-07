@@ -19,10 +19,10 @@
             "choices": {
                 "guided-walks": "Guided Walks",
                 "group-tours": "Group Tours",
-                "challenge-events": "Challenge Events",
+                "challenge-events": "Challenge Events (single-day)",
                 "multi-day-hikes": "Multi-Day Hikes",
                 "womens-wellness-walks": "Women's Wellness Walks",
-                "community-events": "Community Events",
+                "community-events": "Group Events",
                 "mens-hiking-group": "Men's Hiking Group"
             },
             "default_value": false,

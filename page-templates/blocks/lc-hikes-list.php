@@ -35,6 +35,12 @@ $type_names = array(
     'community-events'      => 'Community Events',
 );
 
+$hibernated_slugs = lc_get_hibernated_product_category_slugs();
+
+foreach ( $hibernated_slugs as $hibernated_slug ) {
+    unset( $type_colours[ $hibernated_slug ], $type_names[ $hibernated_slug ] );
+}
+
 if ( ! empty( $output ) ) {
     $today = new DateTime( 'today' );
     foreach ( $output as $h ) {
