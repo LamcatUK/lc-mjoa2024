@@ -8,7 +8,10 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <section class="full_text">
-    <div class="container-xl py-5" data-aos="fade">
+    <?php
+    $spacing_classes = $block['attrs']['className'] ?? 'py-5';
+    ?>
+    <div class="container-xl <?= esc_attr( $spacing_classes ); ?>" data-aos="fade">
         <?php
         if ( get_field( 'title' ) ?? null ) {
             ?>
