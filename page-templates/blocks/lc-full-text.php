@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <section class="full_text">
     <?php
-    $spacing_classes = $block['attrs']['className'] ?? 'py-5';
+    $spacing_classes = $block['className'] ?? 'py-5';
     ?>
     <div class="container-xl <?= esc_attr( $spacing_classes ); ?>" data-aos="fade">
         <?php
