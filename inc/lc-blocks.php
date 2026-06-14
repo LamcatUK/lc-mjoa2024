@@ -129,6 +129,16 @@ function acf_blocks()
             'supports' => array('mode' => false),
         ));
 
+        acf_register_block_type(array(
+            'name'				=> 'lc_corporate_events',
+            'title'				=> __('LC Corporate Events'),
+            'category'			=> 'layout',
+            'icon'				=> 'location-alt',
+            'render_template'	=> 'page-templates/blocks/lc-corporate-events.php',
+            'mode'	=> 'preview',
+            'supports' => array('mode' => false),
+        ));
+
     }
 }
 add_action('acf/init', 'acf_blocks');

@@ -1,0 +1,136 @@
+.corporate-routes {
+
+  // County tabs
+  &__tabs {
+    --bs-nav-pills-link-active-bg: var(--col-dark);
+    --bs-nav-pills-link-active-color: #fff;
+
+    .nav-link {
+      color: var(--col-dark);
+      font-family: var(--ff-headings);
+      font-weight: var(--fw-900);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-size: var(--fs-300);
+      padding-inline: 1.25rem;
+      background-color: var(--col-light);
+      border: 2px solid var(--col-dark);
+      transition: var(--transition);
+
+      &:hover {
+        background-color: var(--col-polaroid);
+      }
+
+      &.active {
+        background-color: var(--col-dark);
+        color: #fff;
+      }
+    }
+  }
+
+  &__inner {
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  // Card = button wrapping a polaroid (matches .hike-nav__card)
+  &__card {
+    appearance: none;
+    border: 0;
+    background: none;
+    padding: 0;
+    text-align: center;
+    min-width: 245px;
+    flex-basis: calc(50% - 1rem);
+
+    @media (min-width: 768px) {
+      flex-basis: calc(33.333% - 1rem);
+    }
+
+    > .polaroid {
+      width: 100%;
+      grid-template-rows: auto auto auto;
+      transform: rotate(0) scale(1);
+    }
+
+    &:hover > .polaroid,
+    &:focus-visible > .polaroid {
+      transform: rotate(-3deg) scale(1.05);
+      box-shadow: var(--shadow-out);
+      z-index: 2;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    .polaroid__title {
+      padding-top: 0.75rem;
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+  }
+
+  .polaroid__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 0.75rem;
+    padding-top: 0.5rem;
+    font-family: var(--ff-body);
+    font-size: var(--fs-200);
+    color: var(--col-dark);
+
+    span {
+      position: relative;
+
+      & + span::before {
+        content: "\00b7";
+        position: absolute;
+        left: -0.5rem;
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+// Route popup
+.route-modal {
+  &__content {
+    background-color: var(--col-polaroid);
+    border: 0;
+    border-radius: 0;
+    box-shadow: var(--shadow-out);
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    box-shadow: var(--shadow-in);
+  }
+
+  &__stats {
+    li {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__stat-label {
+    font-family: var(--ff-headings);
+    font-weight: var(--fw-900);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: var(--fs-100);
+    color: var(--col-dark);
+    opacity: 0.7;
+  }
+
+  &__stat-value {
+    font-size: var(--fs-400);
+  }
+
+  &__blurb {
+    font-size: var(--fs-400);
+  }
+}

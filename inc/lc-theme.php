@@ -14,6 +14,7 @@ require_once LC_THEME_DIR . '/inc/lc-utility.php';
 require_once LC_THEME_DIR . '/inc/lc-blocks.php';
 require_once LC_THEME_DIR . '/inc/lc-woocommerce.php';
 require_once LC_THEME_DIR . '/inc/lc-blog.php';
+require_once LC_THEME_DIR . '/inc/lc-corporate.php';
 
 
 // Remove unwanted SVG filter injection WP.
